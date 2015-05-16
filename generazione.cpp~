@@ -1,0 +1,97 @@
+// Event generation class definition
+// Cartesian system: z = K momentum direction
+
+#include <TRandom3.h>
+#include <TMath.h>
+
+using namespace std;
+
+class KGen() {
+ private:
+
+  ////////// Physical and mathematical constants ////////////
+
+  double c = 0.299792458; // Light speed [m/ns] 
+  double e = 0.160217657; // Electron charge [aC]
+  double pi = 4*TMath::ATan(1);
+
+  ///////////////// K parameters ////////////
+  
+  double K_tau0 = 0.08954; // K mean lifetime [ns]
+  double K_meanP = 100; // K mean momentum [GeV]
+  double K_sigmaP = 0.05; // K ean momentum deviation [GeV]
+  double K_Mass = 0.497614; // K mass [GeV]
+  double pi_Mass = 0.13957018; // Pi mass [GeV]
+
+  /////////////// Generation  parameters ////////////
+  
+  double K_p; // K Momentum [GeV/c]
+  double K_E; // K Energy [GeV]
+  double K_lambda; // K Mean free path = gamma*beta*c*tau0 [m]
+  double K_z; // K Decay point [m]
+  double K_beta; 
+  double K_gamma;
+  
+  double pi_plus_modp_star; // Positive Pi momentum in CMS [GeV/c]
+  double pi_plus_E_star; // Positive Pi energy in CMS [GeV]
+  double pi_min_modp_star; // Negative Pi momentum in CMS [GeV/c]
+  double pi_min_E_star; // Negative Pi energy in CMS [GeV]
+  double pi_plus_p_star[3]; //Positive Pi p vector in CMS [GeV/c]
+  double pi_min_p_star[3]; //Negative Pi p vector in CMS [GeV/c]
+
+  double pi_plus_modp; // Positive Pi momentum in LAB [GeV/c]
+  double pi_plus_E; // Positive Pi energy in LAB [GeV]
+  double pi_min_modp; // Negative Pi momentum in LAB [GeV/c]
+  double pi_min_E; // Negative Pi energy in LAB [GeV]
+  double pi_plus_p[3]; // Positive Pi p vector in LAB [GeV/c]
+  double pi_min_p[3]; // Negative Pi p vector in LAB [GeV/c]
+
+  double pi_plus_theta_star; // Positive Pi Polar theta in CMS [rad]
+  double pi_min_theta_star; // Negative Pi Polar theta in CMS [rad]
+  double pi_plus_phi_star; // Positive Pi Polar phi in CMS [rad]
+  double pi_min_phi_star; // Positive Pi Polar phi in CMS [rad]
+
+  double pi_plus_theta; // Positive Pi Polar theta in LAB [rad]
+  double pi_min_theta; // Negative Pi Polar theta in LAB [rad]
+  double pi_plus_phi; // Positive Pi Polar phi in LAB [rad]
+  double pi_min_phi; // Positive Pi Polar phi in LAB [rad]
+
+
+  /////////////// Random variables //////////////
+
+  static TRandom3 rndgen; //Random number generator. Static so that every event is different from the other
+  
+
+ public:
+  void generate() {
+    K_p = rndgen.Gaus(K_meanP, K_sigmaP);
+    K_E = TMath::Sqrt(K_p*K_p + K_Mass*K_Mass);
+    K_beta = 1 - 0.5*K_Mass*K_Mass/(K_p*K_p); // Second order Taylor expansion
+    K_lambda = K_p/K_Mass*c*K_tau0;
+    K_z = rndgen.Exp(K_lambda);
+    
+    pi_plus_theta_star = TMath::ACos(rndgen.Uniform(2)-1); //Cosine uniform distribution [-1,1]
+    pi_plus_phi_star = rndgen.Uniform(2*pi); // Uniform distribution [0,2pi]
+    pi_min_theta_star = pi - pi_plus_theta_star; //Opposite angle
+
+    if (pi_plus_phi_star <= pi) pi_min_phi_star = pi_plus_phi_star + pi; //Opposite angle
+    else pi_min_phi_star = pi_min_phi_star = pi_plus_phi_star - pi;
+
+    pi_plus_phi = pi_plus_phi_star;
+    pi_min_phi = pi_min_phi_star;
+
+    pi_plus_E_star = K_Mass/2;
+    pi_min_E_star = pi_plus_E_star;
+
+    pi_plus_modp_star = TMath::Sqrt(pi_plus_E_star*pi_plus_E_star - pi_Mass*pi_Mass);
+    pi_min_modp_star = pi_plus_modp_star;
+    
+  }
+    
+  
+  
+  
+
+
+
+}

@@ -1,0 +1,66 @@
+
+# DO NOT DELETE
+
+./eventifuori_cpp.so: event.h /home/federico/root/include/TH1F.h
+./eventifuori_cpp.so: /home/federico/root/include/TH1.h
+./eventifuori_cpp.so: /home/federico/root/include/TAxis.h
+./eventifuori_cpp.so: /home/federico/root/include/TNamed.h
+./eventifuori_cpp.so: /home/federico/root/include/TObject.h
+./eventifuori_cpp.so: /home/federico/root/include/Rtypes.h
+./eventifuori_cpp.so: /home/federico/root/include/RConfig.h
+./eventifuori_cpp.so: /home/federico/root/include/RVersion.h
+./eventifuori_cpp.so: /home/federico/root/include/DllImport.h
+./eventifuori_cpp.so: /home/federico/root/include/Rtypeinfo.h
+./eventifuori_cpp.so: /home/federico/root/include/snprintf.h
+./eventifuori_cpp.so: /home/federico/root/include/strlcpy.h
+./eventifuori_cpp.so: /home/federico/root/include/TGenericClassInfo.h
+./eventifuori_cpp.so: /home/federico/root/include/TSchemaHelper.h
+./eventifuori_cpp.so: /home/federico/root/include/TStorage.h
+./eventifuori_cpp.so: /home/federico/root/include/TVersionCheck.h
+./eventifuori_cpp.so: /home/federico/root/include/Riosfwd.h
+./eventifuori_cpp.so: /home/federico/root/include/TBuffer.h
+./eventifuori_cpp.so: /home/federico/root/include/TString.h
+./eventifuori_cpp.so: /home/federico/root/include/TMathBase.h
+./eventifuori_cpp.so: /home/federico/root/include/TAttAxis.h
+./eventifuori_cpp.so: /home/federico/root/include/TArrayD.h
+./eventifuori_cpp.so: /home/federico/root/include/TArray.h
+./eventifuori_cpp.so: /home/federico/root/include/TAttLine.h
+./eventifuori_cpp.so: /home/federico/root/include/TAttFill.h
+./eventifuori_cpp.so: /home/federico/root/include/TAttMarker.h
+./eventifuori_cpp.so: /home/federico/root/include/TArrayC.h
+./eventifuori_cpp.so: /home/federico/root/include/TArrayS.h
+./eventifuori_cpp.so: /home/federico/root/include/TArrayI.h
+./eventifuori_cpp.so: /home/federico/root/include/TArrayF.h
+./eventifuori_cpp.so: /home/federico/root/include/Foption.h
+./eventifuori_cpp.so: /home/federico/root/include/TVectorFfwd.h
+./eventifuori_cpp.so: /home/federico/root/include/TVectorDfwd.h
+./eventifuori_cpp.so: /home/federico/root/include/TFitResultPtr.h
+./eventifuori_cpp.so: /home/federico/root/include/TFile.h
+./eventifuori_cpp.so: /home/federico/root/include/TDirectoryFile.h
+./eventifuori_cpp.so: /home/federico/root/include/TDirectory.h
+./eventifuori_cpp.so: /home/federico/root/include/TList.h
+./eventifuori_cpp.so: /home/federico/root/include/TSeqCollection.h
+./eventifuori_cpp.so: /home/federico/root/include/TCollection.h
+./eventifuori_cpp.so: /home/federico/root/include/TIterator.h
+./eventifuori_cpp.so: /home/federico/root/include/TDatime.h
+./eventifuori_cpp.so: /home/federico/root/include/TUUID.h
+./eventifuori_cpp.so: /home/federico/root/include/TMap.h
+./eventifuori_cpp.so: /home/federico/root/include/THashTable.h
+./eventifuori_cpp.so: /home/federico/root/include/TUrl.h
+./eventifuori_cpp.so: /home/federico/root/include/TMath.h
+./eventifuori_cpp.so: /home/federico/root/include/TError.h
+./eventifuori_cpp.so: /home/federico/root/include/TMinuit.h
+./eventifuori_cpp.so: /home/federico/root/include/TMethodCall.h
+./eventifuori_cpp.so: /home/federico/root/include/TDictionary.h
+./eventifuori_cpp.so: /home/federico/root/include/Property.h
+./eventifuori_cpp.so: /home/federico/root/include/TMatrixD.h
+./eventifuori_cpp.so: /home/federico/root/include/TMatrixT.h
+./eventifuori_cpp.so: /home/federico/root/include/TMatrixTBase.h
+./eventifuori_cpp.so: /home/federico/root/include/TMatrixFBasefwd.h
+./eventifuori_cpp.so: /home/federico/root/include/TMatrixDBasefwd.h
+./eventifuori_cpp.so: /home/federico/root/include/TMatrixTUtils.h
+./eventifuori_cpp.so: /home/federico/root/include/TMatrixDfwd.h
+./eventifuori_cpp.so: /home/federico/root/include/TMatrixDUtils.h
+./eventifuori_cpp.so: /home/federico/root/include/TMatrixDUtilsfwd.h
+./eventifuori_cpp.so: /home/federico/root/include/cintdictversion.h /home/federico/root/include/RVersion.h
+eventifuori_cpp__ROOTBUILDVERSION= 5.34/08

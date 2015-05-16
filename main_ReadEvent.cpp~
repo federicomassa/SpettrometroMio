@@ -1,0 +1,75 @@
+#include "ReadEvent.h"
+#include <fstream>
+#include <string>
+#include <TMath.h>
+#include <TRandom3.h>
+#include <iomanip>
+#include <ctype.h>
+
+void detector() {
+
+  ifstream in("events.dat"); //input file (events)
+  ofstream detector_out("measures.dat"); //output file (detector response)
+  string str;
+  string ev_str;
+  getline(in,str);
+  detector_out << str << endl; //Time info
+  getline(in,str);
+  detector_out << str << endl; //N. of events 
+  ev_str = str.substr(10);
+  int imax = atoi(ev_str.c_str()); //Save n. of events
+  detector_out << '\n';
+  getline(in,str);
+  getline(in,str);
+  getline(in,str);
+  
+  ///// EVENT VARIABLES
+  int ev_no, K_z, K_p;
+  double pi_plus_modp, pi_plus_theta, pi_plus_phi;
+  double pi_min_modp, pi_min_theta, pi_min_phi;
+  
+
+  ///// DETECTOR VARIABLES
+  TRandom3 rndgen; // Pseudo-Random numbers generator
+  double P1_plus_t[3], P1_min_t[3]; //First detector true points
+  double P1_plus_m[3], P1_min_m[3]; //First detector measured points
+  double z1 = 20; //First detector z position [m]
+  P1_plus_t[2] = z1;
+  P1_min_t[2] = z1;
+  double sigma_x = 0.001, sigma_y = 0.001;  //detector resolution
+  double d1; //event distance from detector 1
+  
+  ///// Write legend /////////////////////
+  detector_out << "Event" << '\t' << "x1+" << '\t' << "y1+" << '\t' << "z1+" << '\t' << "x1-" << '\t' << "y1-" << '\t' << "z1-" << '\n' << '\n';
+
+  // int k = 1;
+  while (!in.eof()) {
+    // k++;
+    ReadEvent(in,ev_no,K_z,K_p,pi_plus_modp,pi_plus_theta,pi_plus_phi,pi_min_modp,pi_min_theta,pi_min_phi);
+    if (ev_no % (imax/20) == 0) cout << double(ev_no)/double(imax)*100 << "% completed..." << endl;
+
+    // cout << ev_no << '\t' << K_z << '\t' << K_p << '\t' << pi_plus_modp << '\t' << pi_plus_theta << '\t' << pi_plus_phi << '\t' << pi_min_modp << '\t' << pi_min_theta << '\t' << pi_min_phi << endl;
+    d1 = z1 - K_z;
+    if (d1 < 0) continue;
+    else {
+      P1_plus_t[0] = d1*TMath::Tan(pi_plus_theta)*TMath::Cos(pi_plus_phi); //x1,y1 calculation given z1, theta, phi
+      P1_min_t[0] = d1*TMath::Tan(pi_min_theta)*TMath::Cos(pi_min_phi);
+      P1_plus_t[1] = d1*TMath::Tan(pi_plus_theta)*TMath::Sin(pi_plus_phi);
+      P1_min_t[1] = d1*TMath::Tan(pi_min_theta)*TMath::Sin(pi_min_phi);
+
+      // Detector resolution
+      P1_plus_m[0] = rndgen.Gaus(P1_plus_t[0],sigma_x);
+      P1_plus_m[1] = rndgen.Gaus(P1_plus_t[1],sigma_y);
+      P1_plus_m[2] = P1_plus_t[2];
+
+      P1_min_m[0] = rndgen.Gaus(P1_min_t[0],sigma_x);
+      P1_min_m[1] = rndgen.Gaus(P1_min_t[1],sigma_y);
+      P1_min_m[2] = P1_min_t[2];
+
+      detector_out << fixed << setprecision(0) << ev_no << '\t'  << setprecision(5) << P1_plus_m[0] << '\t' << P1_plus_m[1] << '\t' << P1_plus_m[2] << '\t' << P1_min_m[0] << '\t' << P1_min_m[1] << '\t' << P1_min_m[2] << endl;
+      
+    }
+
+  }
+
+}

@@ -1,0 +1,152 @@
+// Histogramming and writing events into a file
+
+#include "KGen.h"
+#include <TH1F.h>
+#include <TFile.h>
+#include <iostream>
+#include <fstream>
+#include <ctime>
+#include <string>
+#include <sstream>
+
+void generation(const char* filename = "events.dat", const char* gen_option = "") {
+  int imax = 1E2;
+  string z_gen_str;
+  double z_gen_val;
+  stringstream ss;
+  ss << filename;
+  ss >> z_gen_str;
+  ss.clear();
+
+  z_gen_str = z_gen_str.substr(8,2);
+  ss << z_gen_str;
+  ss >> z_gen_val;
+  
+  
+  KGen event;
+  
+  TFile* root_out = new TFile("KGen.root","RECREATE");
+  ofstream ascii_out(filename);
+  TH1F* K_z_hist = new TH1F("K_z_hist","K Decay point Histogram; z(m); #",1000,1,0);
+  TH1F* K_p_hist = new TH1F("K_p_hist","K momentum Histogram; p(GeV/c); #",1000,1,0);  
+  TH1F* K_E_hist = new TH1F("K_E_hist","K energy Histogram; E(GeV); #",1000,1,0);
+  TH1F* pi_plus_theta_star_hist = new TH1F("pi_plus_theta_star_hist", "Pi+ Theta* Histogram; Theta* (rad); #", 1000,1,0);
+  TH1F* pi_min_theta_star_hist = new TH1F("pi_min_theta_star_hist", "Pi- Theta* Histogram; Theta* (rad); #", 1000,1,0);
+  TH1F* pi_plus_theta_hist = new TH1F("pi_plus_theta_hist", "Pi+ Theta Histogram; Theta (rad); #", 1000,1,0);
+  TH1F* pi_min_theta_hist = new TH1F("pi_min_theta_hist", "Pi- Theta Histogram; Theta (rad); #", 1000,1,0);
+  TH1F* pi_plus_phi_star_hist = new TH1F("pi_plus_phi_star_hist", "Pi+ Phi* Histogram; Phi* (rad); #", 1000,1,0);
+  TH1F* pi_min_phi_star_hist = new TH1F("pi_min_phi_star_hist", "Pi- Phi* Histogram; Phi* (rad); #", 1000,1,0);
+  TH1F* pi_plus_phi_hist = new TH1F("pi_plus_phi_hist", "Pi+ Phi Histogram; Phi (rad); #", 1000,1,0);
+  TH1F* pi_min_phi_hist = new TH1F("pi_min_phi_hist", "Pi- Phi Histogram; Phi (rad); #", 1000,1,0);
+  TH1F* pi_plus_E_star_hist = new TH1F("pi_plus_E_star_hist", "Pi+ E* Histogram; E* (GeV); #", 1000, 1, 0);
+  TH1F* pi_min_E_star_hist = new TH1F("pi_min_E_star_hist", "Pi- E* Histogram; E* (GeV); #", 1000, 1, 0);
+  TH1F* pi_plus_E_hist = new TH1F("pi_plus_E_hist", "Pi+ E Histogram; E (GeV); #", 1000, 1, 0);
+  TH1F* pi_min_E_hist = new TH1F("pi_min_E_hist", "Pi- E Histogram; E (GeV); #", 1000, 1, 0);
+  TH1F* pi_plus_modp_star_hist = new TH1F("pi_plus_modp_star_hist", "Pi+ p* Histogram; p* (GeV/c); #",1000,1,0);
+  TH1F* pi_min_modp_star_hist = new TH1F("pi_min_modp_star_hist", "Pi- p* Histogram; p* (GeV/c); #",1000,1,0);
+  TH1F* pi_plus_modp_hist = new TH1F("pi_plus_modp_hist", "Pi+ p Histogram; p (GeV/c); #",1000,1,0);
+  TH1F* pi_min_modp_hist = new TH1F("pi_min_modp_hist", "Pi- p Histogram; p (GeV/c); #",1000,1,0);
+  TH1F* pi_plus_px_star_hist = new TH1F("pi_plus_px_star_hist", "Pi+ Px* Histogram; Px* (GeV/c); #", 1000, 1, 0);
+  TH1F* pi_plus_py_star_hist = new TH1F("pi_plus_py_star_hist", "Pi+ Py* Histogram; Py* (GeV/c); #", 1000, 1, 0);
+  TH1F* pi_plus_pz_star_hist = new TH1F("pi_plus_pz_star_hist", "Pi+ Pz* Histogram; Pz* (GeV/c); #", 1000, 1, 0);  
+  TH1F* pi_min_px_star_hist = new TH1F("pi_min_px_star_hist", "Pi- Px* Histogram; Px* (GeV/c); #", 1000, 1, 0);
+  TH1F* pi_min_py_star_hist = new TH1F("pi_min_py_star_hist", "Pi- Py* Histogram; Py* (GeV/c); #", 1000, 1, 0);
+  TH1F* pi_min_pz_star_hist = new TH1F("pi_min_pz_star_hist", "Pi- Pz* Histogram; Pz* (GeV/c); #", 1000, 1, 0);
+  TH1F* pi_plus_px_hist = new TH1F("pi_plus_px_hist", "Pi+ Px Histogram; Px (GeV/c); #", 1000, 1, 0);
+  TH1F* pi_plus_py_hist = new TH1F("pi_plus_py_hist", "Pi+ Py Histogram; Py (GeV/c); #", 1000, 1, 0);
+  TH1F* pi_plus_pz_hist = new TH1F("pi_plus_pz_hist", "Pi+ Pz Histogram; Pz (GeV/c); #", 1000, 1, 0);  
+  TH1F* pi_min_px_hist = new TH1F("pi_min_px_hist", "Pi- Px Histogram; Px (GeV/c); #", 1000, 1, 0);
+  TH1F* pi_min_py_hist = new TH1F("pi_min_py_hist", "Pi- Py Histogram; Py (GeV/c); #", 1000, 1, 0);
+  TH1F* pi_min_pz_hist = new TH1F("pi_min_pz_hist", "Pi- Pz Histogram; Pz (GeV/c); #", 1000, 1, 0);
+
+  // Write generation details
+  time_t t = time(0); 
+  struct tm* now = localtime(&t); //Built-in structure to get local time
+  ascii_out << "EVENTS GENERATED ON ";
+  if (now->tm_mday < 10) ascii_out << '0' << now->tm_mday;
+  else ascii_out << now->tm_mday;
+  ascii_out << '.';
+  if (now->tm_mon < 10) ascii_out << '0' << now->tm_mon + 1;
+  else ascii_out << now->tm_mon + 1;
+  ascii_out << '.' << now->tm_year + 1900 << " LOCAL TIME " << now->tm_hour << ':';
+  if (now->tm_min < 10) ascii_out << '0' << now->tm_min;
+  else ascii_out << now->tm_min;
+  ascii_out << ':';
+  if (now->tm_sec < 10) ascii_out << '0' << now->tm_sec;
+  else ascii_out << now->tm_sec;
+  ascii_out << '\n' << "Generated " << imax << " events" << '\n' << '\n';
+
+  // Event cycle
+  for (int i = 0; i < imax; i++) {
+    if (i % (imax/20) == 0) std::cout << double(i)/double(imax)*100 << "% completed..." << std::endl;
+    event.Generate(gen_option, z_gen_val);
+    K_z_hist->Fill(event.GetK_z());
+    K_p_hist->Fill(event.GetK_p());
+    K_E_hist->Fill(event.GetK_E());
+    pi_plus_theta_star_hist->Fill(event.GetPi_plus_theta_star());
+    pi_min_theta_star_hist->Fill(event.GetPi_min_theta_star());
+    pi_plus_theta_hist->Fill(event.GetPi_plus_theta());
+    pi_min_theta_hist->Fill(event.GetPi_min_theta());
+    pi_plus_phi_star_hist->Fill(event.GetPi_plus_phi_star());
+    pi_min_phi_star_hist->Fill(event.GetPi_min_phi_star());
+    pi_plus_phi_hist->Fill(event.GetPi_plus_phi());
+    pi_min_phi_hist->Fill(event.GetPi_min_phi());
+    pi_plus_E_star_hist->Fill(event.GetPi_plus_E_star());
+    pi_min_E_star_hist->Fill(event.GetPi_min_E_star());
+    pi_plus_E_hist->Fill(event.GetPi_plus_E());
+    pi_min_E_hist->Fill(event.GetPi_min_E());
+    pi_plus_modp_star_hist->Fill(event.GetPi_plus_modp_star());
+    pi_min_modp_star_hist->Fill(event.GetPi_min_modp_star());
+    pi_plus_modp_hist->Fill(event.GetPi_plus_modp());
+    pi_min_modp_hist->Fill(event.GetPi_min_modp());
+    pi_plus_px_star_hist->Fill(event.GetPi_plus_px_star());
+    pi_plus_py_star_hist->Fill(event.GetPi_plus_py_star());
+    pi_plus_pz_star_hist->Fill(event.GetPi_plus_pz_star());      
+    pi_plus_px_hist->Fill(event.GetPi_plus_px());
+    pi_plus_py_hist->Fill(event.GetPi_plus_py());
+    pi_plus_pz_hist->Fill(event.GetPi_plus_pz());
+    pi_min_px_star_hist->Fill(event.GetPi_min_px_star());
+    pi_min_py_star_hist->Fill(event.GetPi_min_py_star());
+    pi_min_pz_star_hist->Fill(event.GetPi_min_pz_star());      
+    pi_min_px_hist->Fill(event.GetPi_min_px());
+    pi_min_py_hist->Fill(event.GetPi_min_py());
+    pi_min_pz_hist->Fill(event.GetPi_min_pz());
+    event.WriteEvent(ascii_out,i+1);
+  }
+
+
+  // Write into a root file
+  K_z_hist->Write();
+  K_p_hist->Write();
+  K_E_hist->Write();
+  pi_plus_theta_star_hist->Write();
+  pi_min_theta_star_hist->Write();
+  pi_plus_theta_hist->Write();
+  pi_min_theta_hist->Write();
+  pi_plus_phi_star_hist->Write();
+  pi_min_phi_star_hist->Write();
+  pi_plus_phi_hist->Write();
+  pi_min_phi_hist->Write();
+  pi_plus_E_star_hist->Write();
+  pi_min_E_star_hist->Write();
+  pi_plus_E_hist->Write();
+  pi_min_E_hist->Write();
+  pi_plus_modp_star_hist->Write();
+  pi_min_modp_star_hist->Write();
+  pi_plus_modp_hist->Write();
+  pi_min_modp_hist->Write();
+  pi_plus_px_star_hist->Write();
+  pi_plus_py_star_hist->Write();
+  pi_plus_pz_star_hist->Write();
+  pi_min_px_star_hist->Write();
+  pi_min_py_star_hist->Write();
+  pi_min_pz_star_hist->Write();
+  pi_plus_px_hist->Write();
+  pi_plus_py_hist->Write();
+  pi_plus_pz_hist->Write();
+  pi_min_px_hist->Write();
+  pi_min_py_hist->Write();
+  pi_min_pz_hist->Write();
+  root_out->Close();
+  ascii_out.close();
+}
