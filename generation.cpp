@@ -12,10 +12,13 @@
 void generation(const char* filename = "events.dat", const char* gen_option = "") {
   int imax = 1E6;
   string z_gen_str;
+  string path = "../Spettrometro_Files/";
+  string complete_filename;
   double z_gen_val;
   stringstream ss;
   ss << filename;
   ss >> z_gen_str;
+  complete_filename = path + z_gen_str;
   ss.clear();
 
   z_gen_str = z_gen_str.substr(8,2);
@@ -25,8 +28,8 @@ void generation(const char* filename = "events.dat", const char* gen_option = ""
   
   KGen event;
   
-  TFile* root_out = new TFile("KGen.root","RECREATE");
-  ofstream ascii_out(filename);
+  TFile* root_out = new TFile("../Spettrometro_Files/KGen.root","RECREATE");
+  ofstream ascii_out(complete_filename.c_str());
   TH1F* K_z_hist = new TH1F("K_z_hist","K Decay point Histogram; z(m); #",1000,1,0);
   TH1F* K_p_hist = new TH1F("K_p_hist","K momentum Histogram; p(GeV/c); #",1000,1,0);  
   TH1F* K_E_hist = new TH1F("K_E_hist","K energy Histogram; E(GeV); #",1000,1,0);

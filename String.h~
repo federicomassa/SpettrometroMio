@@ -1,0 +1,64 @@
+#ifndef MYSTRING_H
+#define MYSTRING_H
+
+#include <string>
+#include <sstream>
+#include <cstring>
+#include <cctype>
+#include <iostream>
+
+using namespace std;
+
+class String : public string {
+ public:
+  double GetElement(unsigned int);
+};
+
+// n = 0 first element
+double String::GetElement(unsigned int n) {
+  string str = *this;
+  string str_buff = "";
+  bool isValid = false;
+  char ch_el[1];
+  string str_el;
+  stringstream ss;
+  unsigned int j = 0;
+  double return_val = 0;
+
+  for (unsigned int i = 0; i < str.size() + 1; i++) {
+    str_el = str.substr(i,1);
+
+    if (strcmp(str_el.c_str(), ".") != 0 && strcmp(str_el.c_str(), "-") != 0 && strcmp(str_el.c_str(), " ") != 0 && strcmp(str_el.c_str(), "\t") != 0 && !isdigit(str_el[0])) continue;
+
+    ss << str_el;
+    ss >> ch_el;
+   
+    ss.clear();
+
+    str_buff += str_el;
+    
+    if (strcmp(str_el.c_str(), " ") == 0 || strcmp(str_el.c_str(), "\t") == 0 || strcmp(str_el.c_str(), "\n") == 0) {
+      
+	if (j == n) {isValid = true; stringstream(str_buff) >> return_val; break;}
+	
+
+	j++;
+	str_buff = "";
+    }
+  }
+ 
+
+  if (!isValid) cout << "ERROR: No matching element for String::GetElement(int)" << endl;
+
+  isValid = false;  
+  return return_val;
+}
+      
+	
+	
+    
+
+
+
+
+#endif

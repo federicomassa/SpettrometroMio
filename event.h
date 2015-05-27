@@ -2,10 +2,12 @@
 #define EVENT_H
 
 #include <TH1F.h>
+#include <TH2F.h>
 #include <TFile.h>
 #include <TMath.h>
 #include <TMinuit.h>
 #include <TMatrixD.h>
+#include <TMatrixDSym.h>
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -32,7 +34,7 @@ static Double_t z_k(Double_t *par) {
 }
 
 //x1+, y1+, x1-, y1-, analogous expression for the 2nd detector
-  TMatrixD GetConstraintsVector(Double_t* coord) {
+ TMatrixD GetConstraintsVector(Double_t* coord) {
    TMatrixD constr_V(3,1);
    Double_t x1_p = coord[0];
    Double_t y1_p = coord[1];
@@ -57,6 +59,7 @@ static Double_t z_k(Double_t *par) {
  }
 
   static Int_t dec_no, ev_no;
+  Int_t iteration_no;
   static Double_t K_z, K_p, 
     pi_plus_modp, pi_plus_theta, pi_plus_phi,
     pi_min_modp, pi_min_theta, pi_min_phi,
@@ -66,7 +69,9 @@ static Double_t z_k(Double_t *par) {
     x2_plus_k, y2_plus_k, z2_plus_k, x2_min_k, y2_min_k, z2_min_k,
     K_z_k, sigma;
   Double_t measures[8];
+  Double_t coord_init[8];
   Bool_t isFirstIteration;
+  Bool_t isValid;
 
   event() {
     dec_no = ev_no =
@@ -87,6 +92,9 @@ static Double_t z_k(Double_t *par) {
        Double_t x1plus, Double_t y1plus, Double_t z1plus, Double_t x1min, Double_t y1min, Double_t z1min,
 		Double_t x2plus, Double_t y2plus, Double_t z2plus, Double_t x2min, Double_t y2min, Double_t z2min) {
     
+    if (Kz > z1plus || Kz > z1min || Kz > z2plus || Kz > z2min)
+      cout << "ERROR: decay after detector" << endl;
+
     dec_no = dec;
     ev_no = ev;
     K_z = Kz;
@@ -100,43 +108,63 @@ static Double_t z_k(Double_t *par) {
     
     x1_plus = x1plus;
     measures[0] = x1plus;
+    coord_init[0] = (z1plus - Kz)*TMath::Tan(piplustheta)*TMath::Cos(piplusphi);
 
     y1_plus = y1plus;
     measures[1] = y1plus;
+    coord_init[1] = (z1plus - Kz)*TMath::Tan(piplustheta)*TMath::Sin(piplusphi);
 
     z1_plus = z1plus;
 
     x1_min = x1min;
     measures[2] = x1min;
+    coord_init[2] = (z1min - Kz)*TMath::Tan(pimintheta)*TMath::Cos(piminphi);
 
     y1_min = y1min;
     measures[3] = y1min;
+    coord_init[3] = (z1min - Kz)*TMath::Tan(pimintheta)*TMath::Sin(piminphi);
+
 
     z1_min = z1min;
 
     x2_plus = x2plus;
     measures[4] = x2plus;
+    coord_init[4] = (z2plus - Kz)*TMath::Tan(piplustheta)*TMath::Cos(piplusphi);
 
     y2_plus = y2plus;
     measures[5] = y2plus;
+    coord_init[5] = (z2plus - Kz)*TMath::Tan(piplustheta)*TMath::Sin(piplusphi);
 
     z2_plus = z2plus;
 
     x2_min = x2min;
     measures[6] = x2min;
+    coord_init[6] = (z2min - Kz)*TMath::Tan(pimintheta)*TMath::Cos(piminphi);
 
     y2_min = y2min;
     measures[7] = y2min;
+    coord_init[7] = (z2min - Kz)*TMath::Tan(pimintheta)*TMath::Sin(piminphi);
 
     z2_min = z2min;
     
     isFirstIteration = true;
+    isValid = true;
 
   }
 
-  void Reconstruction(TH1F* CDA_plus_hist, TH1F* CDA_min_hist, TH1F* CDA_mean_hist, TH1F* kinematic_z_hist) {
-    //Types of reconstruction: 1) Using the CDA of just one of the particles (pi+ or pi-) 2) Using both CDA
 
+
+  
+    
+
+  void Reconstruction(TH1F* CDA_plus_hist, TH1F* CDA_min_hist, TH1F* CDA_mean_hist, TH1F* kinematic_z_hist, TH1F* iteration_hist, TH1F* iteration_no_hist, TH2F* z_itno_iter_corr_hist, TH1F* kin_iter_diff_hist, TH2F* kin_iter_zz_hist, TH1F* chi2_init_hist, TH2F* chi2_corr_hist, TH1F* chi2_kin_hist, TH1F* chi2_iter_hist, TH2F* z_theta_corr_hist) {
+    //Types of reconstruction: 1) Using the CDA of just one of the particles (pi+ or pi-) 2) Using both CDA
+    Double_t chi2_val;
+    Int_t npar = 5;
+    Double_t* gin = new Double_t;
+    Int_t iflag = 0;
+
+    chi2_init_hist->Fill(chi2_all(coord_init));
     CDA_plus_hist->Fill(CDA_plus() - K_z);
     CDA_min_hist->Fill(CDA_min() - K_z);
     CDA_mean_hist->Fill(CDA_mean() - K_z);
@@ -144,7 +172,30 @@ static Double_t z_k(Double_t *par) {
     kinematic_z_reco();
 
     kinematic_z_hist->Fill(K_z_k - K_z);
+
+    Double_t final_coord[8], pars[5];
+    IterationCycle(final_coord);
     
+    pars[0] = final_coord[0];
+    pars[1] = final_coord[1];
+    pars[2] = final_coord[4];
+    pars[3] = final_coord[2];
+    pars[4] = final_coord[3];
+    
+    if (isValid) iteration_hist->Fill(z_k(pars) - K_z); 
+    chi2_corr_hist->Fill(K_z - z_k(pars), chi2_all(final_coord));
+    if (TMath::Abs(z_k(pars) - K_z) > 5) chi2_iter_hist->Fill(chi2_all(final_coord));
+    chi2(npar, gin, chi2_val, pars, iflag);
+    chi2_kin_hist->Fill(chi2_val);
+    iteration_no_hist->Fill(iteration_no);
+
+    kin_iter_diff_hist->Fill(K_z_k - z_k(pars));
+    kin_iter_zz_hist->Fill(K_z - K_z_k, K_z - z_k(pars)); 
+    if (TMath::Abs(K_z - K_z_k) < 0.01 && TMath::Abs(K_z - z_k(pars)) > 5)
+      cout << "WARNING: Good Kin vs. Bad Iter at decay number: " << dec_no << endl;
+
+    z_theta_corr_hist->Fill(K_z - z_k(pars), pi_plus_theta < pi_min_theta ? pi_plus_theta : pi_min_theta); 
+    z_itno_iter_corr_hist->Fill(K_z - z_k(pars), double(iteration_no));
   }
 
   Double_t CDA_plus() {
@@ -365,33 +416,20 @@ void kinematic_z_reco() {
  }
 
  // R = (D_t G^-1 D)^-1
- TMatrixD GetRMatrix(TMatrixD D, TMatrixD G_inv) {
+ TMatrixDSym GetRMatrix(TMatrixD D) {
 
    TMatrixD D_t(3,8);
    D_t.Transpose(D);
    
-   TMatrixD R(3,3);
+   TMatrixDSym R(3);
 
-   
-
-   //Initialize as identity matrix
-   for (int i = 0; i < 3; i++) {
-     for (int j = 0; j < 3; j++) {
-       R(i,j) = 0;
-     }
-   }
-
-   for (int i = 0; i < 3; i++) R(i,i) = 1;
-
-   TMatrixD M1(3,8);
-   M1.Mult(D_t,G_inv);
-   R.Mult(M1,D);
+   R.TMult(D);
 
   
-   cout << "R: " << endl; 
-   cout << "    Det: " << R.Determinant() << endl;
+   /* cout << "R: " << endl;  */
+   /* cout << "    Det: " << R.Determinant() << endl; */
    
-   R.Print();
+   /* R.Print(); */
  R.InvertFast();
    return R;
  }
@@ -409,17 +447,17 @@ void kinematic_z_reco() {
    
 
 
- TMatrixD x_Vector (TMatrixD D, TMatrixD G_inv, TMatrixD x_G, TMatrixD Constr_Vector) {
+ TMatrixD x_Vector (TMatrixD D, TMatrixD x_G, TMatrixD Constr_Vector) {
    
    TMatrixD x_V(8,1);
    TMatrixD R(3,3);
    TMatrixD D_t(3,8);
    D_t.Transpose(D);
 
-   R = GetRMatrix(D,G_inv);
+   R = GetRMatrix(D);
 
    TMatrixD A_1(8,3);
-   A_1.Mult(G_inv,D);
+   A_1 = D;
    A_1 *= R;
    
    TMatrixD A_2(3,1); //D_t x_G
@@ -433,11 +471,13 @@ void kinematic_z_reco() {
  }  
    
  void Iterate(Double_t old_coord[], Double_t new_coord[]) {
+  
    TMatrixD x_G(8,1);
    TMatrixD x_V(8,1);
    TMatrixD D(8,3);
-   TMatrixD G_inv(8,8);
+   /* TMatrixD G_inv(8,8); */
    TMatrixD constr_V(3,1);
+
 
    if (isFirstIteration) {
      for (int i = 0; i < 8; i++) {
@@ -446,69 +486,103 @@ void kinematic_z_reco() {
    }
 
    D = GetConstraintDerivativeMatrix(old_coord);
-   cout << "D: " << endl;
-   D.Print();
-   cout << "G_inv: " << endl;
-   G_inv = GetVarianceMatrix();
-   G_inv.Print();
+   /* cout << "D: " << endl; */
+   /* D.Print(); */
+   /* cout << "G_inv: " << endl; */
+   /* G_inv = GetVarianceMatrix(); */
+   /* G_inv.Print() */;
    
    x_G = x_Guess(old_coord);
-   cout << "XG" << endl;
-   x_G.Print();
-   cout << "FINE XG" << endl;
+   /* cout << "XG" << endl; */
+   /* x_G.Print(); */
+   /* cout << "FINE XG" << endl; */
    
    constr_V = GetConstraintsVector(old_coord);
-   cout << "Constr_V: " << endl;
-   constr_V.Print();
-   x_V = x_Vector(D, G_inv, x_G, constr_V);
-   cout << "x_V: " << endl;
-   x_V.Print();
+   /* cout << "Constr_V: " << endl; */
+   /* constr_V.Print(); */
+   x_V = x_Vector(D, x_G, constr_V);
+   /* cout << "x_V: " << endl; */
+   /* x_V.Print(); */
    for (int i = 0; i < 8; i++) {
-     new_coord[i] = x_V(i,0) + measures[i];
+     new_coord[i] = old_coord[i] + 0.5*(x_V(i,0) - x_G(i,0));
    }
+
 
  }
    
  Double_t par_constr[5];
 
  void IterationCycle(Double_t final_coord[]) {
+   
+   Double_t old_pars[5] = {0,0,0,0,0}, new_pars[5] = {0,0,0,0,0}, final_pars[5] = {0,0,0,0,0};
+   Double_t old_z, new_z;
    Double_t old_coord[8];
    Double_t new_coord[8];
-   ofstream fout("chi2_iter.dat");
-   TFile* file_out = new TFile("iter.root", "recreate");
-   TH1F* chi2_iter_hist = new TH1F("chi2_iter_hist", "Chi2 Iter Hist", 1000,1,0);
-     chi2_iter_hist->SetBinContent(1,chi2_all(measures));
+   iteration_no = 0;
+   /* ofstream fout("chi2_iter.dat"); */
+   /* TFile* file_out = new TFile("iter.root", "recreate"); */
+   /* TH1F* chi2_iter_hist = new TH1F("chi2_iter_hist", "Chi2 Iter Hist", 1000,0,1000); */
+     /* chi2_iter_hist->SetBinContent(1,chi2_all(measures)); */
+
+ 
 
      for (int j = 0; j < 5; j++) par_constr[j] = 0;
      par_constr[0] = measures[0];
      par_constr[2] = measures[4];
-     fout << chi2_all(measures) << '\t';
-     fout << z_k(par_constr) << '\t';
-     fout << measures[0] << '\t' << measures[1] << '\t' << measures[3] << endl;
-     chi2_iter_hist->SetBinContent(1,chi2_all(measures));
+     /* fout << chi2_all(measures) << '\t'; */
+     /* fout << z_k(par_constr) << '\t'; */
+     /* fout << measures[0] << '\t' << measures[1] << '\t' << measures[3] << endl; */
+     /* chi2_iter_hist->SetBinContent(1,chi2_all(measures)); */
      
 
-   for (int i = 0; i < 10; i++) {
+     do {
      Iterate(old_coord, new_coord);
-    
+     iteration_no++;
+
+     old_pars[0] = old_coord[0];
+     old_pars[2] = old_coord[4];
+
+     new_pars[0] = new_coord[0];
+     new_pars[2] = new_coord[4];
+
+     old_z = z_k(old_pars);
+     new_z = z_k(new_pars);
      
+     //    cout << "It. no: " << iteration_no << "\t" << new_z << endl;
+
      for (int j = 0; j < 5; j++) par_constr[j] = 0;
      par_constr[0] = new_coord[0];
      par_constr[2] = new_coord[4];
-     fout << chi2_all(new_coord) << '\t';
-     fout << z_k(par_constr) << '\t';
-     fout << new_coord[0] << '\t' << new_coord[1] << '\t' << new_coord[3] << endl;
-     chi2_iter_hist->SetBinContent(i+2,chi2_all(new_coord));
-     for (int j = 0; j < 8; j++) old_coord[i] = new_coord[i];
-   }
+     /* fout << chi2_all(new_coord) << '\t'; */
+     /* fout << z_k(par_constr) << '\t'; */
+     /* fout << new_coord[0] << '\t' << new_coord[1] << '\t' << new_coord[3] << endl; */
+     /* chi2_iter_hist->SetBinContent(i+2,chi2_all(new_coord)); */
+
+     
+     for (int j = 0; j < 8; j++) old_coord[j] = new_coord[j];
+     }
+     
+     while (TMath::Abs(new_z - old_z) > 1E-5 && iteration_no < 5000);
+     
+     //   cout << "-------------------------------------------" << endl;
+
+     if (iteration_no == 5000) {cout << "MAX iteration number exceeded: decay number " << dec_no << endl; isValid = false;
+      }
+     
    
    for (int i = 0; i < 8; i++) {
      final_coord[i] = new_coord[i];
    }
 
-   chi2_iter_hist->Write();
-   file_out->Close();
-   fout.close();
+   final_pars[0] = final_coord[0];
+   final_pars[2] = final_coord[4];
+   
+   if (iteration_no == 5000) cout << "z: " << z_k(final_pars) << endl;
+
+
+   /* chi2_iter_hist->Write(); */
+   /* file_out->Close(); */
+   /* fout.close(); */
  }
 
 };
@@ -549,8 +623,8 @@ Double_t event::y2_min_k = 0;
 Double_t event::z2_min_k = 0;
 Double_t event::K_z_k = 0;
 
-Double_t event::sigma = 1;
-    
+Double_t event::sigma = 0.001;
+
 #endif 
 
     
