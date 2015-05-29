@@ -56,7 +56,8 @@ void reconstruction(const char* event_name = "events", const char* detector_name
   TH1F* CDA_min_hist = new TH1F("CDA_min_hist","Pi- CDA Reco Histogram", 1000, 1, 0);
   TH1F* CDA_mean_hist = new TH1F("CDA_mean_hist","Mean CDA Reco Histogram", 1000, 1, 0);
   TH1F* kinematic_z_reco_hist = new TH1F("kinematic_z_reco_hist","Kinematic Fit z Reco Histogram", 1000, 1, 0);
-  TH1F* iteration_hist = new TH1F("iteration_hist","Iterative Kin Fit Hist", 1000, 1, 0);
+  TH1F* iteration_hist = new TH1F("iteration_hist","Iterative Kin Fit Hist; z - z_t;#", 1000, -10,10);
+  TH1F* iteration_cut_hist = new TH1F("iteration_cut_hist","Iterative Kin Fit (Cut) Hist; z - z_t; #", 1000, -10, 10);
   TH1F* iteration_no_hist = new TH1F("iteration_no_hist","Iterative Kin Fit Hist", 10000, 0, 10000);
   TH1F* kin_iter_diff_hist = new TH1F("kin_iter_diff_hist","Iterative Kin Fit Difference Hist", 1000, 1, 0);
   TH2F* kin_iter_zz_hist = new TH2F("kin_iter_zz_hist","z_kin - z_iter Corr Hist", 1000, 1, 0, 1000, 1, 0);
@@ -65,7 +66,7 @@ void reconstruction(const char* event_name = "events", const char* detector_name
   TH1F* chi2_kin_hist = new TH1F("chi2_kin_hist","Chi2 Kin Hist", 1000, 0, 200);
   TH1F* chi2_iter_hist = new TH1F("chi2_iter_hist","Iterative Chi2 Kin Hist", 100, 1, 0);
   TH2F* z_theta_corr_hist = new TH2F("z_theta_corr_hist","z - theta Corr Hist", 1000, 1, 0, 1000, 1, 0);
- TH2F* z_itno_iter_corr_hist = new TH2F("z_itno_iter_corr_hist","z - It.No Iter Corr Hist", 1000, 1, 0, 1000, 1, 0);
+  TH2F* z_itno_iter_corr_hist = new TH2F("z_itno_iter_corr_hist","z - It.No Iter Corr Hist", 1000, 1, 0, 1000, 1, 0);
  
 
   //Skip first 5 lines and get imax
@@ -102,7 +103,7 @@ void reconstruction(const char* event_name = "events", const char* detector_name
 
       ev.SetEvent(dec_no,ev_no,K_z,K_p,pi_plus_modp, pi_plus_theta, pi_plus_phi, pi_min_modp, pi_min_theta, pi_min_phi, x1_plus, y1_plus, z1_plus, x1_min, y1_min, z1_min, x2_plus, y2_plus, z2_plus, x2_min, y2_min, z2_min);
 
-      ev.Reconstruction(CDA_plus_hist, CDA_min_hist, CDA_mean_hist, kinematic_z_reco_hist, iteration_hist, iteration_no_hist, z_itno_iter_corr_hist, kin_iter_diff_hist, kin_iter_zz_hist, chi2_init_hist, chi2_corr_hist, chi2_kin_hist, chi2_iter_hist, z_theta_corr_hist);
+      ev.Reconstruction(CDA_plus_hist, CDA_min_hist, CDA_mean_hist, kinematic_z_reco_hist, iteration_hist, iteration_cut_hist, iteration_no_hist, z_itno_iter_corr_hist, kin_iter_diff_hist, kin_iter_zz_hist, chi2_init_hist, chi2_corr_hist, chi2_kin_hist, chi2_iter_hist, z_theta_corr_hist);
       
 
       
@@ -123,6 +124,7 @@ void reconstruction(const char* event_name = "events", const char* detector_name
   CDA_mean_hist->Write();
   kinematic_z_reco_hist->Write();
   iteration_hist->Write();
+  iteration_cut_hist->Write();
   iteration_no_hist->Write();
   kin_iter_diff_hist->Write();
   kin_iter_zz_hist->Write();
