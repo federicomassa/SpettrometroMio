@@ -39,6 +39,10 @@
 ./generation_cpp.so: /home/federico/root/include/TVectorFfwd.h
 ./generation_cpp.so: /home/federico/root/include/TVectorDfwd.h
 ./generation_cpp.so: /home/federico/root/include/TFitResultPtr.h
+./generation_cpp.so: /home/federico/root/include/TH2F.h
+./generation_cpp.so: /home/federico/root/include/TH2.h
+./generation_cpp.so: /home/federico/root/include/TMatrixFBasefwd.h
+./generation_cpp.so: /home/federico/root/include/TMatrixDBasefwd.h
 ./generation_cpp.so: /home/federico/root/include/TFile.h
 ./generation_cpp.so: /home/federico/root/include/TDirectoryFile.h
 ./generation_cpp.so: /home/federico/root/include/TDirectory.h

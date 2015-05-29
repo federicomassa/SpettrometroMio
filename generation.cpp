@@ -2,6 +2,7 @@
 
 #include "KGen.h"
 #include <TH1F.h>
+#include <TH2F.h>
 #include <TFile.h>
 #include <iostream>
 #include <fstream>
@@ -9,26 +10,38 @@
 #include <string>
 #include <sstream>
 
-void generation(const char* filename = "events.dat", const char* gen_option = "") {
+using namespace std;
+
+void generation(const char* filename = "events", const char* gen_option = "") {
   int imax = 1E6;
-  string z_gen_str;
+  string z_gen_str, z_gen_val_str;
   string path = "../Spettrometro_Files/";
-  string complete_filename;
+  string dat_ext = ".dat";
+  string root_ext = ".root";
+  string z_str = "_z";
+  string gen = "generation";
+  string complete_filename, complete_root;
   double z_gen_val;
   stringstream ss;
+
   ss << filename;
   ss >> z_gen_str;
-  complete_filename = path + z_gen_str;
   ss.clear();
 
-  z_gen_str = z_gen_str.substr(8,2);
-  ss << z_gen_str;
+  z_gen_val_str = z_gen_str.substr(8,2);
+  ss << z_gen_val_str;
   ss >> z_gen_val;
-  
+  ss.clear();
+
+  complete_filename = path + z_gen_str + dat_ext;
+  complete_root = path + z_gen_str + root_ext;
+ 
+  // if (strcmp(gen_option,"CONST Z") == 0)
+  // cout << '\n' << "Starting generation... z = " << z_gen_val << endl;
   
   KGen event;
   
-  TFile* root_out = new TFile("../Spettrometro_Files/KGen.root","RECREATE");
+  TFile* root_out = new TFile(complete_root.c_str(),"RECREATE");
   ofstream ascii_out(complete_filename.c_str());
   TH1F* K_z_hist = new TH1F("K_z_hist","K Decay point Histogram; z(m); #",1000,1,0);
   TH1F* K_p_hist = new TH1F("K_p_hist","K momentum Histogram; p(GeV/c); #",1000,1,0);  
@@ -37,6 +50,7 @@ void generation(const char* filename = "events.dat", const char* gen_option = ""
   TH1F* pi_min_theta_star_hist = new TH1F("pi_min_theta_star_hist", "Pi- Theta* Histogram; Theta* (rad); #", 1000,1,0);
   TH1F* pi_plus_theta_hist = new TH1F("pi_plus_theta_hist", "Pi+ Theta Histogram; Theta (rad); #", 1000,1,0);
   TH1F* pi_min_theta_hist = new TH1F("pi_min_theta_hist", "Pi- Theta Histogram; Theta (rad); #", 1000,1,0);
+  TH1F* pi_minimum_theta_hist = new TH1F("pi_minimum_theta_hist", "Minimum Theta Hist;Theta;#", 1000, 1,0);
   TH1F* pi_plus_phi_star_hist = new TH1F("pi_plus_phi_star_hist", "Pi+ Phi* Histogram; Phi* (rad); #", 1000,1,0);
   TH1F* pi_min_phi_star_hist = new TH1F("pi_min_phi_star_hist", "Pi- Phi* Histogram; Phi* (rad); #", 1000,1,0);
   TH1F* pi_plus_phi_hist = new TH1F("pi_plus_phi_hist", "Pi+ Phi Histogram; Phi (rad); #", 1000,1,0);
@@ -61,6 +75,7 @@ void generation(const char* filename = "events.dat", const char* gen_option = ""
   TH1F* pi_min_px_hist = new TH1F("pi_min_px_hist", "Pi- Px Histogram; Px (GeV/c); #", 1000, 1, 0);
   TH1F* pi_min_py_hist = new TH1F("pi_min_py_hist", "Pi- Py Histogram; Py (GeV/c); #", 1000, 1, 0);
   TH1F* pi_min_pz_hist = new TH1F("pi_min_pz_hist", "Pi- Pz Histogram; Pz (GeV/c); #", 1000, 1, 0);
+  TH2F* pi_theta_corr_hist = new TH2F("pi_theta_corr_hist", "Theta+ Theta- Hist; Theta+; Theta-", 1000, 1, 0, 1000, 1, 0);
 
   // Write generation details
   time_t t = time(0); 
@@ -90,6 +105,7 @@ void generation(const char* filename = "events.dat", const char* gen_option = ""
     pi_min_theta_star_hist->Fill(event.GetPi_min_theta_star());
     pi_plus_theta_hist->Fill(event.GetPi_plus_theta());
     pi_min_theta_hist->Fill(event.GetPi_min_theta());
+    pi_minimum_theta_hist->Fill(TMath::Min(event.GetPi_plus_theta(), event.GetPi_min_theta()));
     pi_plus_phi_star_hist->Fill(event.GetPi_plus_phi_star());
     pi_min_phi_star_hist->Fill(event.GetPi_min_phi_star());
     pi_plus_phi_hist->Fill(event.GetPi_plus_phi());
@@ -114,6 +130,7 @@ void generation(const char* filename = "events.dat", const char* gen_option = ""
     pi_min_px_hist->Fill(event.GetPi_min_px());
     pi_min_py_hist->Fill(event.GetPi_min_py());
     pi_min_pz_hist->Fill(event.GetPi_min_pz());
+    pi_theta_corr_hist->Fill(event.GetPi_plus_theta(), event.GetPi_min_theta());
     event.WriteEvent(ascii_out,i+1);
   }
 
@@ -126,6 +143,7 @@ void generation(const char* filename = "events.dat", const char* gen_option = ""
   pi_min_theta_star_hist->Write();
   pi_plus_theta_hist->Write();
   pi_min_theta_hist->Write();
+  pi_minimum_theta_hist->Write();
   pi_plus_phi_star_hist->Write();
   pi_min_phi_star_hist->Write();
   pi_plus_phi_hist->Write();
@@ -150,6 +168,7 @@ void generation(const char* filename = "events.dat", const char* gen_option = ""
   pi_min_px_hist->Write();
   pi_min_py_hist->Write();
   pi_min_pz_hist->Write();
+  pi_theta_corr_hist->Write();
   root_out->Close();
   ascii_out.close();
 }

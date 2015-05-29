@@ -157,7 +157,7 @@ static Double_t z_k(Double_t *par) {
   
     
 
-  void Reconstruction(TH1F* CDA_plus_hist, TH1F* CDA_min_hist, TH1F* CDA_mean_hist, TH1F* kinematic_z_hist, TH1F* iteration_hist, TH1F* iteration_no_hist, TH2F* z_itno_iter_corr_hist, TH1F* kin_iter_diff_hist, TH2F* kin_iter_zz_hist, TH1F* chi2_init_hist, TH2F* chi2_corr_hist, TH1F* chi2_kin_hist, TH1F* chi2_iter_hist, TH2F* z_theta_corr_hist) {
+  void Reconstruction(TH1F* CDA_plus_hist, TH1F* CDA_min_hist, TH1F* CDA_mean_hist, TH1F* kinematic_z_hist, TH1F* iteration_hist, TH1F* iteration_cut_hist, TH1F* iteration_no_hist, TH2F* z_itno_iter_corr_hist, TH1F* kin_iter_diff_hist, TH2F* kin_iter_zz_hist, TH1F* chi2_init_hist, TH2F* chi2_corr_hist, TH1F* chi2_kin_hist, TH1F* chi2_iter_hist, TH2F* z_theta_corr_hist) {
     //Types of reconstruction: 1) Using the CDA of just one of the particles (pi+ or pi-) 2) Using both CDA
     Double_t chi2_val;
     Int_t npar = 5;
@@ -182,7 +182,9 @@ static Double_t z_k(Double_t *par) {
     pars[3] = final_coord[2];
     pars[4] = final_coord[3];
     
+    //iteration number cut and chi2 cut (3 ndf, 0.1% probability)
     if (isValid) iteration_hist->Fill(z_k(pars) - K_z); 
+    if (isValid && chi2_all(final_coord) <= 16.2662) iteration_cut_hist->Fill(z_k(pars) - K_z); 
     chi2_corr_hist->Fill(K_z - z_k(pars), chi2_all(final_coord));
     if (TMath::Abs(z_k(pars) - K_z) > 5) chi2_iter_hist->Fill(chi2_all(final_coord));
     chi2(npar, gin, chi2_val, pars, iflag);

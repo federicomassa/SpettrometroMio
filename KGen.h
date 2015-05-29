@@ -113,7 +113,7 @@ class KGen {
   {
     /*
       OPTIONS:
-      CONST Z = <value>: generate events with fixed z
+      "CONST Z" -> generate events with fixed z = option_val
      */
     
     

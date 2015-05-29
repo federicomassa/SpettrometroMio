@@ -40,6 +40,10 @@
 ./main_constz_cpp.so: /home/federico/root/include/TVectorFfwd.h
 ./main_constz_cpp.so: /home/federico/root/include/TVectorDfwd.h
 ./main_constz_cpp.so: /home/federico/root/include/TFitResultPtr.h
+./main_constz_cpp.so: /home/federico/root/include/TH2F.h
+./main_constz_cpp.so: /home/federico/root/include/TH2.h
+./main_constz_cpp.so: /home/federico/root/include/TMatrixFBasefwd.h
+./main_constz_cpp.so: /home/federico/root/include/TMatrixDBasefwd.h
 ./main_constz_cpp.so: /home/federico/root/include/TFile.h
 ./main_constz_cpp.so: /home/federico/root/include/TDirectoryFile.h
 ./main_constz_cpp.so: /home/federico/root/include/TDirectory.h
@@ -60,8 +64,6 @@
 ./main_constz_cpp.so: /home/federico/root/include/TMatrixD.h
 ./main_constz_cpp.so: /home/federico/root/include/TMatrixT.h
 ./main_constz_cpp.so: /home/federico/root/include/TMatrixTBase.h
-./main_constz_cpp.so: /home/federico/root/include/TMatrixFBasefwd.h
-./main_constz_cpp.so: /home/federico/root/include/TMatrixDBasefwd.h
 ./main_constz_cpp.so: /home/federico/root/include/TMatrixTUtils.h
 ./main_constz_cpp.so: /home/federico/root/include/TMatrixDfwd.h
 ./main_constz_cpp.so: /home/federico/root/include/TMatrixDUtils.h

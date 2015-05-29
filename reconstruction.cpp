@@ -2,6 +2,8 @@
 #include "ReadDetector.h"
 #include "event.h"
 #include <fstream>
+#include <iomanip>
+#include <iostream>
 #include <string>
 #include <TH1F.h>
 #include <TH2F.h>
@@ -11,26 +13,28 @@
 
 using namespace std;
 
-void reconstruction(const char* event_name = "events.dat", const char* detector_name = "measures.dat", const char* root_name = "reconstruction.root") {
+void reconstruction(const char* event_name = "events", const char* detector_name = "measures", const char* root_name = "reconstruction") {
   stringstream ss;
   string path = "../Spettrometro_Files/";
   string complete_event_name;
   string complete_detector_name;
   string complete_root_name;
+  string dat_ext = ".dat";
+  string root_ext = ".root";
 
   ss << event_name;
   ss >> complete_event_name;
-  complete_event_name = path + complete_event_name;
+  complete_event_name = path + complete_event_name + dat_ext;
   ss.clear();
 
   ss << detector_name;
   ss >> complete_detector_name;
-  complete_detector_name = path + complete_detector_name;
+  complete_detector_name = path + complete_detector_name + dat_ext;
   ss.clear();
 
   ss << root_name;
   ss >> complete_root_name;
-  complete_root_name = path + complete_root_name;
+  complete_root_name = path + complete_root_name + root_ext;
   ss.clear();
   
 
@@ -93,7 +97,7 @@ void reconstruction(const char* event_name = "events.dat", const char* detector_
 
   while (!event_file.eof() && !detector_file.eof()) {
 
-    if (dec_no % int(double(imax)/20) == 0) cout << double(dec_no)/double(imax)*100 << "% completed..." << endl;
+    if (ev_no % int(double(imax)/100*5) == 0) cout << int(double(ev_no)/double(imax)*100) << "% completed..." << endl;
     if (dec_no == ev_no) {
 
       ev.SetEvent(dec_no,ev_no,K_z,K_p,pi_plus_modp, pi_plus_theta, pi_plus_phi, pi_min_modp, pi_min_theta, pi_min_phi, x1_plus, y1_plus, z1_plus, x1_min, y1_min, z1_min, x2_plus, y2_plus, z2_plus, x2_min, y2_min, z2_min);
