@@ -1,0 +1,209 @@
+#ifndef B_EVENT_H
+#define B_EVENT_H
+
+#include "B_event.cpp"
+#include "line.h"
+#include "helix.h"
+#include <TMath.h>
+#include <TGraph2D.h>
+#include <TCanvas.h>
+
+B_event::B_event() {}
+
+B_event::B_event(Double_t* p10, Double_t* p20, Double_t charge0, Double_t gamma0) {
+
+  Double_t vector_out[3]; //outgoing particle versor
+  Double_t beta;
+
+  p1[0] = p10[0];
+  p1[1] = p10[1];
+  p1[2] = p10[2];
+
+  p2[0] = p20[0];
+  p2[1] = p20[1];
+  p2[2] = p20[2];
+
+  charge = charge0;
+  gamma = gamma0;
+
+  beta = TMath::Sqrt(gamma0*gamma0-1)/gamma0;
+
+  line_in.SetLine(p10, p20);
+
+  theta_in = line_in.GetTheta();
+  phi_in = line_in.GetPhi();
+
+  /* //APPROXIMATION: ultrarelativistic particle */
+  /* init_speed[0] = TMath::Sin(theta_in)*TMath::Cos(phi_in);  */
+  /* init_speed[1] = TMath::Sin(theta_in)*TMath::Sin(phi_in); */
+  /* init_speed[2] = TMath::Cos(theta_in); */
+
+  init_speed[0] = beta*TMath::Sin(theta_in)*TMath::Cos(phi_in);
+  init_speed[1] = beta*TMath::Sin(theta_in)*TMath::Sin(phi_in);
+  init_speed[2] = beta*TMath::Cos(theta_in);
+  
+
+  h.SetHelix(p20, init_speed, charge0, gamma0);
+
+  omega = h.GetOmega();
+  radius = h.GetRadius();
+
+  /* time_interval = L/TMath::C()*1/TMath::Sqrt(1-TMath::Power(TMath::Sin(theta_in)*TMath::Cos(phi_in),2)); //APPROXIMATION at small theta */
+  time_interval = 1/omega*(TMath::ASin((L/radius)*TMath::Sign(1.0,charge0) + init_speed[1]/TMath::Sqrt(TMath::Power(init_speed[1],2)+TMath::Power(init_speed[2],2))) - TMath::ATan(init_speed[1]/init_speed[2]));
+
+  h.GetPoint(time_interval, p3);
+  
+  vector_out[0] = init_speed[0]/beta;
+  vector_out[1] = init_speed[1]*TMath::Cos(omega*time_interval) + init_speed[2]*TMath::Sin(omega*time_interval)/beta;
+  vector_out[2] = init_speed[2]*TMath::Cos(omega*time_interval) - init_speed[1]*TMath::Sin(omega*time_interval)/beta;
+
+  //THETA-PHI OUT//
+  theta_out = TMath::ACos(vector_out[2]);
+  phi_out = TMath::ATan(vector_out[1]/vector_out[0]);
+
+  if (phi_out < 0) phi_out += 2*TMath::Pi();
+  if (vector_out[0]/TMath::Sin(theta_out) < 0) phi_out += TMath::Pi();
+  // // // //
+
+
+
+  line_out.SetLine(p3, theta_out, phi_out);  
+  
+}
+
+//As constructor
+void B_event::SetB_event(Double_t* p10, Double_t* p20, Double_t charge0, Double_t gamma0) {
+
+  Double_t vector_out[3]; //outgoing particle versor
+  Double_t beta;
+
+  p1[0] = p10[0];
+  p1[1] = p10[1];
+  p1[2] = p10[2];
+
+  p2[0] = p20[0];
+  p2[1] = p20[1];
+  p2[2] = p20[2];
+
+  charge = charge0;
+  gamma = gamma0;
+
+  beta = TMath::Sqrt(gamma0*gamma0-1)/gamma; 
+
+
+  line_in.SetLine(p10, p20);
+
+  theta_in = line_in.GetTheta();
+  phi_in = line_in.GetPhi();
+
+  /* //APPROXIMATION: ultrarelativistic particle */
+  /* init_speed[0] = TMath::Sin(theta_in)*TMath::Cos(phi_in);  */
+  /* init_speed[1] = TMath::Sin(theta_in)*TMath::Sin(phi_in); */
+  /* init_speed[2] = TMath::Cos(theta_in); */
+
+  init_speed[0] = beta*TMath::Sin(theta_in)*TMath::Cos(phi_in);
+  init_speed[1] = beta*TMath::Sin(theta_in)*TMath::Sin(phi_in);
+  init_speed[2] = beta*TMath::Cos(theta_in);
+  
+
+  h.SetHelix(p20, init_speed, charge0, gamma0);
+
+  omega = h.GetOmega();
+  radius = h.GetRadius();
+
+  /* time_interval = L/TMath::C()*1/TMath::Sqrt(1-TMath::Power(TMath::Sin(theta_in)*TMath::Cos(phi_in),2)); //APPROXIMATION at small theta */
+  time_interval = 1/omega*(TMath::ASin((L/radius)*TMath::Sign(1.0,charge0) + init_speed[1]/TMath::Sqrt(TMath::Power(init_speed[1],2)+TMath::Power(init_speed[2],2))) - TMath::ATan(init_speed[1]/init_speed[2]));
+
+  h.GetPoint(time_interval, p3);
+  
+  vector_out[0] = init_speed[0]/beta ;
+  vector_out[1] = init_speed[1]*TMath::Cos(omega*time_interval) + init_speed[2]*TMath::Sin(omega*time_interval)/beta;
+    vector_out[2] = init_speed[2]*TMath::Cos(omega*time_interval) - init_speed[1]*TMath::Sin(omega*time_interval)/beta;
+
+  //THETA-PHI OUT//
+  theta_out = TMath::ACos(vector_out[2]);
+  phi_out = TMath::ATan(vector_out[1]/vector_out[0]);
+
+  if (phi_out < 0) phi_out += 2*TMath::Pi();
+  if (vector_out[0]/TMath::Sin(theta_out) < 0) phi_out += TMath::Pi();
+  // // // //
+
+
+
+  line_out.SetLine(p3, theta_out, phi_out);  
+  
+}
+
+TGraph2D* B_event::GetEventGraph() {
+
+  Double_t par_in_max, par_out_max;
+  Double_t point_buff[3];
+  Double_t final_point[3];
+  Double_t line_out_length = 3;
+  const Int_t npoints = 10000;
+  
+  line_out.GetPoint(line_out_length, final_point);
+
+  TGraph2D* event_display = new TGraph2D(3*(npoints+1));
+  event_display->SetTitle("Event Display;x;y;z");
+
+  par_in_max = line_in.GetParameter(p2);
+  par_out_max = line_out.GetParameter(final_point);
+  
+
+
+  // DRAW line_in
+  for (int i = 0; i < npoints + 1; i++) {
+    line_in.GetPoint(par_in_max/Double_t(npoints)*Double_t(i), point_buff);
+    event_display->SetPoint(i+1, point_buff[0], point_buff[1], point_buff[2]);
+  }
+  
+  // DRAW helix
+  for (int i = 0; i < npoints + 1; i++) {
+    h.GetPoint(time_interval/Double_t(npoints)*Double_t(i), point_buff);
+    event_display->SetPoint(npoints + 1 + i+1, point_buff[0], point_buff[1], point_buff[2]);
+  }
+
+  // DRAW line_out
+  for (int i = 0; i < npoints + 1; i++) {
+    line_out.GetPoint(par_out_max/Double_t(npoints)*Double_t(i), point_buff);
+    event_display->SetPoint(2*(npoints+1) + i+1, point_buff[0], point_buff[1], point_buff[2]);
+  }
+
+  cout << "FINAL Z: " << final_point[2] << endl;
+
+  return event_display;
+
+}
+
+Double_t B_event::GetTheta_in() {
+  return theta_in;
+}
+
+Double_t B_event::GetTheta_out() {
+  return theta_out;
+}
+
+Double_t B_event::GetPhi_in() {
+  return phi_in;
+}
+
+Double_t B_event::GetPhi_out() {
+  return phi_out;
+}
+
+Double_t B_event::GetTimeInterval() {
+  return time_interval;
+}
+
+Double_t B_event::GetRadius() {
+  return radius;
+}
+
+
+Double_t B_event::L = 3;
+
+
+
+
+#endif

@@ -1,0 +1,27 @@
+#include "B_event.h"
+#include <TGraph2D.h>
+#include <iostream>
+
+using namespace std;
+
+void provaB() {
+
+  B_event ev;
+  Double_t p1[3] = {0,0,0};
+  Double_t p2[3] = {1,1,1};
+  Double_t gamma = 360;
+  Double_t charge = 1;
+  
+  TGraph2D* g;
+
+  ev.SetB_event(p1, p2, charge, gamma);
+  g = ev.GetEventGraph();
+  g->SetMarkerColor(kRed);
+  g->SetMarkerStyle(7);
+  g->Draw("P");
+
+  cout << ev.GetTheta_in() << endl;
+  cout << ev.GetPhi_in() << endl;
+  cout << ev.GetTheta_in() << endl;
+  cout << ev.GetPhi_in() << endl;
+}

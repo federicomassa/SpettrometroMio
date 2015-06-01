@@ -182,7 +182,17 @@ static Double_t z_k(Double_t *par) {
     pars[3] = final_coord[2];
     pars[4] = final_coord[3];
     
-    //iteration number cut and chi2 cut (3 ndf, 0.1% probability)
+    //iteration number cut and chi2 cut (3 ndf)
+
+    //////////// CHI2 CUTS ///////////////
+    /* 
+       0.1% -> chi2 = 16.2662
+       1% -> chi2 = 11.3448
+       5% -> chi2 = 7.8147
+      
+     */
+
+
     if (isValid) iteration_hist->Fill(z_k(pars) - K_z); 
     if (isValid && chi2_all(final_coord) <= 16.2662) iteration_cut_hist->Fill(z_k(pars) - K_z); 
     chi2_corr_hist->Fill(K_z - z_k(pars), chi2_all(final_coord));
