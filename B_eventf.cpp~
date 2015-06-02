@@ -11,12 +11,12 @@ private:
   line line_in, line_out;
   helix h;
   Double_t gamma, charge;
-  Double_t p1[3], p2[3]; //Before magnetic field points
+  Double_t p1[3], p2[3];
   Double_t theta_in, phi_in; //IN angles
   Double_t theta_out, phi_out; //OUT angles
   Double_t init_speed[3]; //initial speed vector
   Double_t time_interval; //time parameter value at the end of the magnetic field zone
-  Double_t p3[3], p4[3]; //After magnetic field points
+  Double_t p3[3], p4[3];
   Double_t omega, radius;
   static Double_t L; 
   static Double_t Delta_z; //Distance between last detectors

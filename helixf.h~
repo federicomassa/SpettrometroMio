@@ -23,7 +23,7 @@ helix::helix(Double_t* init_p, Double_t* init_sp, Double_t charge0, Double_t gam
   gamma = gamma0;
 
   // [omega] = s^-1
-  omega = TMath::C()*(TMath::C()/TMath::Power(10,9))*charge0*B/(mass*gamma0);
+  omega = TMath::C()*TMath::C()/TMath::Power(10,9)*charge0*B/(mass*gamma0);
 }
 
 
@@ -42,7 +42,7 @@ void helix::SetHelix(Double_t* init_p, Double_t* init_sp, Double_t charge0, Doub
   gamma = gamma0;
 
   // [omega] = s^-1
-  omega = TMath::C()*(TMath::C()/TMath::Power(10,9))*charge0*B/(mass*gamma0);
+  omega = TMath::C()*TMath::C()/TMath::Power(10,9)*charge0*B/(mass*gamma0);
 
 }
 

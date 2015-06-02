@@ -8,7 +8,7 @@ void provaB() {
 
   B_event ev;
   Double_t p1[3] = {0,0,0};
-  Double_t p2[3] = {1,1,1};
+  Double_t p2[3] = {0.001,0.002,1};
   Double_t gamma = 360;
   Double_t charge = 1;
   
@@ -22,6 +22,8 @@ void provaB() {
 
   cout << ev.GetTheta_in() << endl;
   cout << ev.GetPhi_in() << endl;
-  cout << ev.GetTheta_in() << endl;
-  cout << ev.GetPhi_in() << endl;
+  cout << ev.GetTheta_in() - ev.GetTheta_out() << endl;
+  cout << ev.GetPhi_in() - ev.GetPhi_out() << endl;
+  cout << "TI: " << ev.GetTimeInterval() << endl;
+  cout << "RAD: " << ev.GetRadius() << endl;
 }

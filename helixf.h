@@ -1,14 +1,14 @@
 #ifndef HELIX_H
 #define HELIX_H
 
-#include "helix.cpp"
+#include "helixf.cpp"
 #include <TMath.h>
 #include <iostream>
 
 helix::helix() {};
 
 //charge in e units, coordinates in meters, speed in units of c
-helix::helix(Double_t* init_p, Double_t* init_sp, Double_t charge0, Double_t gamma0) {
+helix::helix(Float_t* init_p, Float_t* init_sp, Float_t charge0, Float_t gamma0) {
   
   init_point[0] = init_p[0];
   init_point[1] = init_p[1];
@@ -23,11 +23,11 @@ helix::helix(Double_t* init_p, Double_t* init_sp, Double_t charge0, Double_t gam
   gamma = gamma0;
 
   // [omega] = s^-1
-  omega = TMath::C()*(TMath::C()/TMath::Power(10,9))*charge0*B/(mass*gamma0);
+  omega = TMath::C()*TMath::C()/TMath::Power(10,9)*charge0*B/(mass*gamma0);
 }
 
 
-void helix::SetHelix(Double_t* init_p, Double_t* init_sp, Double_t charge0, Double_t gamma0) {
+void helix::SetHelix(Float_t* init_p, Float_t* init_sp, Float_t charge0, Float_t gamma0) {
 
   init_point[0] = init_p[0];
   init_point[1] = init_p[1];
@@ -42,40 +42,40 @@ void helix::SetHelix(Double_t* init_p, Double_t* init_sp, Double_t charge0, Doub
   gamma = gamma0;
 
   // [omega] = s^-1
-  omega = TMath::C()*(TMath::C()/TMath::Power(10,9))*charge0*B/(mass*gamma0);
+  omega = TMath::C()*TMath::C()/TMath::Power(10,9)*charge0*B/(mass*gamma0);
 
 }
 
-void helix::GetInitCoord(Double_t *init_p) {
+void helix::GetInitCoord(Float_t *init_p) {
   init_p[0] = init_point[0];
   init_p[1] = init_point[1];
   init_p[2] = init_point[2];
 }
 
-void helix::GetInitSpeed(Double_t *init_sp) {
+void helix::GetInitSpeed(Float_t *init_sp) {
   init_sp[0] = init_speed[0];
   init_sp[1] = init_speed[1];
   init_sp[2] = init_speed[2];
 }
 
-Double_t helix::GetCharge() {
+Float_t helix::GetCharge() {
   return charge;
 }
 
-Double_t helix::GetGamma() {
+Float_t helix::GetGamma() {
   return gamma;
 }
 
-Double_t helix::GetOmega() {
+Float_t helix::GetOmega() {
   return omega;
 }
 
-Double_t helix::GetRadius() {
+Float_t helix::GetRadius() {
   return TMath::Abs(1/omega*TMath::C()*TMath::Sqrt(init_speed[1]*init_speed[1] + init_speed[2]*init_speed[2]));
 }
 
 
-Double_t helix::GetParameterAtX(Double_t x) {
+Float_t helix::GetParameterAtX(Float_t x) {
 
   if (init_speed[0] == 0) std::cout << "ERROR in GetParameter, x_speed = 0" << std::endl;
 
@@ -84,7 +84,7 @@ Double_t helix::GetParameterAtX(Double_t x) {
 
 
 
-void helix::GetPoint(Double_t par, Double_t* p) {
+void helix::GetPoint(Float_t par, Float_t* p) {
   
 
   p[0] = init_point[0] + TMath::C()*init_speed[0]*par;
@@ -100,7 +100,7 @@ void helix::GetPoint(Double_t par, Double_t* p) {
 }
 
 ////////// EXPERIMENTAL SETUP //////////////////
-Double_t helix::mass = 0.13957; // [GeV/c^2]
-Double_t helix::B = 1; // [T]
+Float_t helix::mass = 0.13957; // [GeV/c^2]
+Float_t helix::B = 1; // [T]
 
 #endif

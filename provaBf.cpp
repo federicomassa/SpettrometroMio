@@ -1,4 +1,4 @@
-#include "B_event.h"
+#include "B_eventf.h"
 #include <TGraph2D.h>
 #include <iostream>
 
@@ -7,10 +7,10 @@ using namespace std;
 void provaB() {
 
   B_event ev;
-  Double_t p1[3] = {0,0,0};
-  Double_t p2[3] = {0.000000001,0.000000001,1};
-  Double_t gamma = 360;
-  Double_t charge = 1;
+  Float_t p1[3] = {0,0,0};
+  Float_t p2[3] = {0.001,0.002,1};
+  Float_t gamma = 360;
+  Float_t charge = 1;
   
   TGraph2D* g;
 
