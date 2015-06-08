@@ -43,7 +43,7 @@ void generation(const char* filename = "events", const char* gen_option = "") {
   
   KGen event;
   
-  TFile* root_out = new TFile(complete_root.c_str(),"RECREATE");
+  TFile* root_out = new TFile(complete_root.c_str(),"recreate");
   ofstream ascii_out(complete_filename.c_str());
   TH1F* K_z_hist = new TH1F("K_z_hist","K Decay point Histogram; z(m); #",1000,1,0);
   TH1F* K_p_hist = new TH1F("K_p_hist","K momentum Histogram; p(GeV/c); #",1000,1,0);  
@@ -136,7 +136,6 @@ void generation(const char* filename = "events", const char* gen_option = "") {
     pi_theta_corr_hist->Fill(event.GetPi_plus_theta(), event.GetPi_min_theta());
     event.WriteEvent(ascii_out,i+1);
   }
-
 
   // Write into a root file
   K_z_hist->Write();

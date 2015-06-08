@@ -23,12 +23,12 @@ public:
 //   int publ_fcn() {return A.PRIV;}
 // };
 
-  int main() {
+  void provainh() {
 
     Primitive* pr1 = new Primitive;
     pr1->SET(3,4,5);
 
-    std::cout << pr1->PUBL << std::endl;
+    std::cout << pr1->PROT << std::endl;
     // std::cout << pr1->PUBL_FCN() << std::endl;
     // Derived* der1 = new Derived;
     // der1->set(6,7,8);
@@ -51,5 +51,4 @@ public:
     
     // std::cout << der1->priv << std::endl;
 
-    return 0;
   }
