@@ -17,11 +17,11 @@ private:
   Double_t init_speed[3]; //initial speed vector
   Double_t time_interval; //time parameter value at the end of the magnetic field zone
   Double_t p3[3], p4[3]; //After magnetic field points
-  Double_t omega, radius;
-  static Double_t L; 
-  static Double_t Delta_z; //Distance between last detectors
+  Double_t omega, radius, omegaT;
 
 public:
+  static Double_t L; 
+  static Double_t Delta_z; //Distance between last detectors
   B_event();
   B_event(Double_t*, Double_t*, Double_t, Double_t);
   void SetB_event(Double_t*, Double_t*, Double_t, Double_t);
@@ -31,7 +31,11 @@ public:
   Double_t GetPhi_in();
   Double_t GetPhi_out();
   Double_t GetTimeInterval();
+  Double_t GetOmega();
+  Double_t GetOmegaT();
   Double_t GetRadius();
+  void GetP3(Double_t*);
+  void GetP4(Double_t*);
 };
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef MYSTRING_H
-#define MYSTRING_H
+#ifndef GETELEMENT_H
+#define GETELEMENT_H
 
 #include <string>
 #include <sstream>
@@ -9,14 +9,8 @@
 
 using namespace std;
 
-class String : public string {
- public:
-  double GetElement(unsigned int);
-};
-
 // n = 0 first element
-double String::GetElement(unsigned int n) {
-  string str = *this;
+Double_t GetElement(string str, unsigned int n) {
   string str_buff = "";
   bool isValid = false;
   char ch_el[1];
@@ -28,7 +22,8 @@ double String::GetElement(unsigned int n) {
   for (unsigned int i = 0; i < str.size() + 1; i++) {
     str_el = str.substr(i,1);
 
-    if (strcmp(str_el.c_str(), ".") != 0 && strcmp(str_el.c_str(), "-") != 0 && strcmp(str_el.c_str(), " ") != 0 && strcmp(str_el.c_str(), "\t") != 0 && !isdigit(str_el[0])) continue;
+    // Previous check: list of allowed characters
+    if (strcmp(str_el.c_str(), ".") != 0 && strcmp(str_el.c_str(), "-") != 0 && strcmp(str_el.c_str(), " ") != 0 && strcmp(str_el.c_str(), "\t") != 0 && !isdigit(str_el[0]) && strcmp(str_el.c_str(), "\0") != 0) continue;
 
     ss << str_el;
     ss >> ch_el;
@@ -37,7 +32,8 @@ double String::GetElement(unsigned int n) {
 
     str_buff += str_el;
     
-    if (strcmp(str_el.c_str(), " ") == 0 || strcmp(str_el.c_str(), "\t") == 0 || strcmp(str_el.c_str(), "\n") == 0 || strcmp(str_el.c_str(), "\0") == 0) {
+    // List of delimitators
+    if (strcmp(str_el.c_str(), " ") == 0 || strcmp(str_el.c_str(), "\t") == 0 || strcmp(str_el.c_str(), "\0") == 0) {
       
 	if (j == n) {isValid = true; stringstream(str_buff) >> return_val; break;}
 	
@@ -53,12 +49,5 @@ double String::GetElement(unsigned int n) {
   isValid = false;  
   return return_val;
 }
-      
-	
-	
-    
-
-
-
 
 #endif

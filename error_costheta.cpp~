@@ -1,0 +1,32 @@
+#include "ReadEvent.h"
+#include "B_event.h"
+#include <fstream>
+#include <TMath.h>
+#include <string>
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+void error_costheta() {
+
+  ifstream in_file("../Spettrometro_Files/events.dat");
+  string str;
+  getline(in_file,str);
+  getline(in_file,str);
+  getline(in_file,str);
+  getline(in_file,str);
+  getline(in_file,str);
+
+  Int_t ev_no;
+  Double_t z_dec, K_p;
+  Double_t pi_plus_modp, pi_plus_theta, pi_plus_phi;
+  Double_t pi_min_modp, pi_min_theta, pi_min_phi;
+  
+
+
+  ReadEvent(in_file, ev_no, z_dec, K_p, pi_plus_modp, pi_plus_theta, pi_plus_phi,pi_min_modp, pi_min_theta, pi_min_phi);
+ 
+    
+
+}

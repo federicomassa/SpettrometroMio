@@ -1,0 +1,69 @@
+
+# DO NOT DELETE
+
+./detectorB_cpp.so: ReadEvent.h B_event.h B_event.cpp line.h line.cpp
+./detectorB_cpp.so: /home/federico/root/include/TMath.h
+./detectorB_cpp.so: /home/federico/root/include/Rtypes.h
+./detectorB_cpp.so: /home/federico/root/include/RConfig.h
+./detectorB_cpp.so: /home/federico/root/include/RVersion.h
+./detectorB_cpp.so: /home/federico/root/include/DllImport.h
+./detectorB_cpp.so: /home/federico/root/include/Rtypeinfo.h
+./detectorB_cpp.so: /home/federico/root/include/snprintf.h
+./detectorB_cpp.so: /home/federico/root/include/strlcpy.h
+./detectorB_cpp.so: /home/federico/root/include/TGenericClassInfo.h
+./detectorB_cpp.so: /home/federico/root/include/TSchemaHelper.h
+./detectorB_cpp.so: /home/federico/root/include/TMathBase.h
+./detectorB_cpp.so: /home/federico/root/include/TError.h helix.h helix.cpp
+./detectorB_cpp.so: /home/federico/root/include/TGraph2D.h
+./detectorB_cpp.so: /home/federico/root/include/TNamed.h
+./detectorB_cpp.so: /home/federico/root/include/TObject.h
+./detectorB_cpp.so: /home/federico/root/include/TStorage.h
+./detectorB_cpp.so: /home/federico/root/include/TVersionCheck.h
+./detectorB_cpp.so: /home/federico/root/include/Riosfwd.h
+./detectorB_cpp.so: /home/federico/root/include/TBuffer.h
+./detectorB_cpp.so: /home/federico/root/include/TString.h
+./detectorB_cpp.so: /home/federico/root/include/TVirtualHistPainter.h
+./detectorB_cpp.so: /home/federico/root/include/TAttLine.h
+./detectorB_cpp.so: /home/federico/root/include/TAttFill.h
+./detectorB_cpp.so: /home/federico/root/include/TAttMarker.h
+./detectorB_cpp.so: /home/federico/root/include/TFitResultPtr.h
+./detectorB_cpp.so: /home/federico/root/include/TCanvas.h
+./detectorB_cpp.so: /home/federico/root/include/TPad.h
+./detectorB_cpp.so: /home/federico/root/include/TVirtualPad.h
+./detectorB_cpp.so: /home/federico/root/include/TAttPad.h
+./detectorB_cpp.so: /home/federico/root/include/TVirtualX.h
+./detectorB_cpp.so: /home/federico/root/include/TAttText.h
+./detectorB_cpp.so: /home/federico/root/include/GuiTypes.h
+./detectorB_cpp.so: /home/federico/root/include/Buttons.h
+./detectorB_cpp.so: /home/federico/root/include/TQObject.h
+./detectorB_cpp.so: /home/federico/root/include/TAttCanvas.h
+./detectorB_cpp.so: /home/federico/root/include/TCanvasImp.h
+./detectorB_cpp.so: /home/federico/root/include/TH1F.h
+./detectorB_cpp.so: /home/federico/root/include/TH1.h
+./detectorB_cpp.so: /home/federico/root/include/TAxis.h
+./detectorB_cpp.so: /home/federico/root/include/TAttAxis.h
+./detectorB_cpp.so: /home/federico/root/include/TArrayD.h
+./detectorB_cpp.so: /home/federico/root/include/TArray.h
+./detectorB_cpp.so: /home/federico/root/include/TArrayC.h
+./detectorB_cpp.so: /home/federico/root/include/TArrayS.h
+./detectorB_cpp.so: /home/federico/root/include/TArrayI.h
+./detectorB_cpp.so: /home/federico/root/include/TArrayF.h
+./detectorB_cpp.so: /home/federico/root/include/Foption.h
+./detectorB_cpp.so: /home/federico/root/include/TVectorFfwd.h
+./detectorB_cpp.so: /home/federico/root/include/TVectorDfwd.h
+./detectorB_cpp.so: /home/federico/root/include/TFile.h
+./detectorB_cpp.so: /home/federico/root/include/TDirectoryFile.h
+./detectorB_cpp.so: /home/federico/root/include/TDirectory.h
+./detectorB_cpp.so: /home/federico/root/include/TList.h
+./detectorB_cpp.so: /home/federico/root/include/TSeqCollection.h
+./detectorB_cpp.so: /home/federico/root/include/TCollection.h
+./detectorB_cpp.so: /home/federico/root/include/TIterator.h
+./detectorB_cpp.so: /home/federico/root/include/TDatime.h
+./detectorB_cpp.so: /home/federico/root/include/TUUID.h
+./detectorB_cpp.so: /home/federico/root/include/TMap.h
+./detectorB_cpp.so: /home/federico/root/include/THashTable.h
+./detectorB_cpp.so: /home/federico/root/include/TUrl.h
+./detectorB_cpp.so: /home/federico/root/include/TRandom3.h
+./detectorB_cpp.so: /home/federico/root/include/TRandom.h
+./detectorB_cpp.so: /home/federico/root/include/cintdictversion.h /home/federico/root/include/RVersion.h
+detectorB_cpp__ROOTBUILDVERSION= 5.34/08

@@ -100,7 +100,7 @@ void helix::GetPoint(Double_t par, Double_t* p) {
 }
 
 ////////// EXPERIMENTAL SETUP //////////////////
-Double_t helix::mass = 0.13957; // [GeV/c^2]
+Double_t helix::mass = 0.13957018; // [GeV/c^2]
 Double_t helix::B = 1; // [T]
 
 #endif

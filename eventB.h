@@ -1,5 +1,5 @@
-#ifndef EVENT_H
-#define EVENT_H
+#ifndef EVENTB_H
+#define EVENTB_H
 
 #include <TH1F.h>
 #include <TH2F.h>
@@ -14,7 +14,7 @@
 
 using namespace std;
 
-class event {
+class eventB {
  public:
 
 static Double_t y2_plus_k_func(Double_t *par) {
@@ -63,14 +63,12 @@ static Double_t z_k(Double_t *par) {
   static Double_t K_z, K_p, 
     pi_plus_modp, pi_plus_theta, pi_plus_phi,
     pi_min_modp, pi_min_theta, pi_min_phi,
-    x1_plus, y1_plus, z1_plus, 
-    x1_min, y1_min, z1_min,
-    x2_plus, y2_plus, z2_plus,
-    x2_min, y2_min, z2_min,
-    x1_plus_k, y1_plus_k, z1_plus_k, 
-    x1_min_k, y1_min_k, z1_min_k,
-    x2_plus_k, y2_plus_k, z2_plus_k,
-    x2_min_k, y2_min_k, z2_min_k,
+    x1_plus, y1_plus, z1_plus, x1_min, y1_min, z1_min,
+    x2_plus, y2_plus, z2_plus, x2_min, y2_min, z2_min,
+    x3_plus, y3_plus, z3_plus, x3_min, y3_min, z3_min,
+    x4_plus, y4_plus, z4_plus, x4_min, y4_min, z4_min,
+    x1_plus_k, y1_plus_k, z1_plus_k, x1_min_k, y1_min_k, z1_min_k,
+    x2_plus_k, y2_plus_k, z2_plus_k, x2_min_k, y2_min_k, z2_min_k,
     K_z_k, sigma;
   Double_t measures[8];
   Double_t impr_measures[8];
@@ -78,7 +76,7 @@ static Double_t z_k(Double_t *par) {
   Bool_t isFirstIteration;
   Bool_t isValid;
 
-  event() {
+  eventB() {
     dec_no = ev_no =
     K_z =  K_p =  
     pi_plus_modp =  pi_plus_theta =  pi_plus_phi = 
@@ -97,8 +95,11 @@ static Double_t z_k(Double_t *par) {
 		Double_t x1plus, Double_t y1plus, Double_t z1plus, 
 		Double_t x1min, Double_t y1min, Double_t z1min,
 		Double_t x2plus, Double_t y2plus, Double_t z2plus,
-		Double_t x2min, Double_t y2min, Double_t z2min)
-		 {
+		Double_t x2min, Double_t y2min, Double_t z2min,
+		Double_t x3plus, Double_t y3plus, Double_t z3plus, 
+		Double_t x3min, Double_t y3min, Double_t z3min,
+		Double_t x4plus, Double_t y4plus, Double_t z4plus,
+		Double_t x4min, Double_t y4min, Double_t z4min) {
     
     if (Kz > z1plus || Kz > z1min || Kz > z2plus || Kz > z2min)
       cout << "ERROR: decay after detector" << endl;
@@ -154,6 +155,23 @@ static Double_t z_k(Double_t *par) {
     coord_init[7] = (z2min - Kz)*TMath::Tan(pimintheta)*TMath::Sin(piminphi);
 
     z2_min = z2min;
+    
+    x3_plus = x3plus;
+    y3_plus = y3plus;
+    z3_plus = z3plus;
+
+    x3_min = x3min;
+    y3_min = y3min;
+    z3_min = z3min;
+
+    x4_plus = x4plus;
+    y4_plus = y4plus;
+    z4_plus = z4plus;
+
+    x4_min = x4min;
+    y4_min = y4min;
+    z4_min = z4min;
+
 
     isFirstIteration = true;
     isValid = true;
@@ -165,7 +183,7 @@ static Double_t z_k(Double_t *par) {
   
     
 
-  void Reconstruction(ofstream &out, TH1F* CDA_plus_hist, TH1F* CDA_min_hist, TH1F* CDA_mean_hist, TH1F* kinematic_z_hist, TH1F* iteration_hist, TH1F* iteration_cut_hist, TH1F* iteration_no_hist, TH2F* z_itno_iter_corr_hist, TH1F* kin_iter_diff_hist, TH2F* kin_iter_zz_hist, TH1F* chi2_init_hist, TH2F* chi2_corr_hist, TH1F* chi2_kin_hist, TH1F* chi2_iter_hist, TH2F* z_theta_corr_hist, TH1F* costheta_plus_reco_hist, TH1F* costheta_min_reco_hist, TH1F* tanphi_plus_reco_hist, TH1F* tanphi_min_reco_hist) {
+  void Reconstruction(TH1F* CDA_plus_hist, TH1F* CDA_min_hist, TH1F* CDA_mean_hist, TH1F* kinematic_z_hist, TH1F* iteration_hist, TH1F* iteration_cut_hist, TH1F* iteration_no_hist, TH2F* z_itno_iter_corr_hist, TH1F* kin_iter_diff_hist, TH2F* kin_iter_zz_hist, TH1F* chi2_init_hist, TH2F* chi2_corr_hist, TH1F* chi2_kin_hist, TH1F* chi2_iter_hist, TH2F* z_theta_corr_hist, TH1F* costheta_plus_reco_hist, TH1F* costheta_min_reco_hist, TH1F* tanphi_plus_reco_hist, TH1F* tanphi_min_reco_hist) {
     
     //Types of reconstruction: 1) Using the CDA of just one of the particles (pi+ or pi-) 2) Using both CDA
     Double_t chi2_val;
@@ -184,28 +202,7 @@ static Double_t z_k(Double_t *par) {
 
     Double_t pars[5];
     IterationCycle(impr_measures);
-  
-
     
-    // OUT FILE
-    out << ev_no << '\t';
-    out << fixed << setprecision(8);
-    out << K_z << '\t' 
-	<< K_p << '\t' 
-	<< pi_plus_modp << '\t' 
-	<< pi_plus_theta << '\t'
-	<< pi_plus_phi << '\t'
-	<< pi_min_modp << '\t'
-	<< pi_min_theta << '\t'
-	<< pi_min_phi;
-    for (int i = 0; i < 8; i++) {
-      out << '\t' << impr_measures[i];
-    }
-    
-    out << endl;
-    ////////////
-
-
     pars[0] = impr_measures[0];
     pars[1] = impr_measures[1];
     pars[2] = impr_measures[4];
@@ -663,43 +660,55 @@ void kinematic_z_reco() {
 
 };
 
-int event::dec_no = 0;
-int event::ev_no = 0;
-Double_t event::K_z = 0;
-Double_t event::K_p = 0; 
-Double_t event::pi_plus_modp = 0; 
-Double_t event::pi_plus_theta = 0; 
-Double_t event::pi_plus_phi = 0;
-Double_t event::pi_min_modp = 0;
-Double_t event::pi_min_theta = 0; 
-Double_t event::pi_min_phi = 0;
-Double_t event::x1_plus = 0; 
-Double_t event::y1_plus = 0; 
-Double_t event::z1_plus = 0; 
-Double_t event::x1_min = 0; 
-Double_t event::y1_min = 0; 
-Double_t event::z1_min = 0;
-Double_t event::x2_plus = 0; 
-Double_t event::y2_plus = 0; 
-Double_t event::z2_plus = 0; 
-Double_t event::x2_min = 0; 
-Double_t event::y2_min = 0; 
-Double_t event::z2_min = 0;
-Double_t event::x1_plus_k = 0; 
-Double_t event::y1_plus_k = 0; 
-Double_t event::z1_plus_k = 0; 
-Double_t event::x1_min_k = 0; 
-Double_t event::y1_min_k = 0; 
-Double_t event::z1_min_k = 0;
-Double_t event::x2_plus_k = 0; 
-Double_t event::y2_plus_k = 0; 
-Double_t event::z2_plus_k = 0; 
-Double_t event::x2_min_k = 0; 
-Double_t event::y2_min_k = 0; 
-Double_t event::z2_min_k = 0;
-Double_t event::K_z_k = 0;
+int eventB::dec_no = 0;
+int eventB::ev_no = 0;
+Double_t eventB::K_z = 0;
+Double_t eventB::K_p = 0; 
+Double_t eventB::pi_plus_modp = 0; 
+Double_t eventB::pi_plus_theta = 0; 
+Double_t eventB::pi_plus_phi = 0;
+Double_t eventB::pi_min_modp = 0;
+Double_t eventB::pi_min_theta = 0; 
+Double_t eventB::pi_min_phi = 0;
+Double_t eventB::x1_plus = 0; 
+Double_t eventB::y1_plus = 0; 
+Double_t eventB::z1_plus = 0; 
+Double_t eventB::x1_min = 0; 
+Double_t eventB::y1_min = 0; 
+Double_t eventB::z1_min = 0;
+Double_t eventB::x2_plus = 0; 
+Double_t eventB::y2_plus = 0; 
+Double_t eventB::z2_plus = 0; 
+Double_t eventB::x2_min = 0; 
+Double_t eventB::y2_min = 0; 
+Double_t eventB::z2_min = 0;
+Double_t eventB::x3_plus = 0; 
+Double_t eventB::y3_plus = 0; 
+Double_t eventB::z3_plus = 0; 
+Double_t eventB::x3_min = 0; 
+Double_t eventB::y3_min = 0; 
+Double_t eventB::z3_min = 0;
+Double_t eventB::x4_plus = 0; 
+Double_t eventB::y4_plus = 0; 
+Double_t eventB::z4_plus = 0; 
+Double_t eventB::x4_min = 0; 
+Double_t eventB::y4_min = 0; 
+Double_t eventB::z4_min = 0;
+Double_t eventB::x1_plus_k = 0; 
+Double_t eventB::y1_plus_k = 0; 
+Double_t eventB::z1_plus_k = 0; 
+Double_t eventB::x1_min_k = 0; 
+Double_t eventB::y1_min_k = 0; 
+Double_t eventB::z1_min_k = 0;
+Double_t eventB::x2_plus_k = 0; 
+Double_t eventB::y2_plus_k = 0; 
+Double_t eventB::z2_plus_k = 0; 
+Double_t eventB::x2_min_k = 0; 
+Double_t eventB::y2_min_k = 0; 
+Double_t eventB::z2_min_k = 0;
+Double_t eventB::K_z_k = 0;
 
-Double_t event::sigma = 0.001;
+Double_t eventB::sigma = 0.001;
 
 #endif 
 

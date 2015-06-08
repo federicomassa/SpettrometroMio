@@ -1,0 +1,5 @@
+Int_t func(Double_t* c) {
+
+  Int_t num = Int_t(c[0]+c[1]);
+  return num;
+}

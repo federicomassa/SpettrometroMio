@@ -1,6 +1,6 @@
 // Histogramming and writing events into a file
 
-#include "KGen.h"
+#include "KGenB.h"
 #include <TH1F.h>
 #include <TH2F.h>
 #include <TFile.h>
@@ -13,7 +13,7 @@
 using namespace std;
 
 void generation(const char* filename = "events", const char* gen_option = "") {
-  int imax = 1E5;
+  int imax = 1E6;
   string z_gen_str, z_gen_val_str;
   string path = "../Spettrometro_Files/";
   string dat_ext = ".dat";
@@ -28,16 +28,14 @@ void generation(const char* filename = "events", const char* gen_option = "") {
   ss >> z_gen_str;
   ss.clear();
 
-  if (strcmp(gen_option, "CONST Z") == 0) {
   z_gen_val_str = z_gen_str.substr(8,2);
   ss << z_gen_val_str;
   ss >> z_gen_val;
   ss.clear();
-  }
 
   complete_filename = path + z_gen_str + dat_ext;
   complete_root = path + z_gen_str + root_ext;
-
+ 
   // if (strcmp(gen_option,"CONST Z") == 0)
   // cout << '\n' << "Starting generation... z = " << z_gen_val << endl;
   
@@ -99,7 +97,6 @@ void generation(const char* filename = "events", const char* gen_option = "") {
   // Event cycle
   for (int i = 0; i < imax; i++) {
     if (i % (imax/20) == 0) std::cout << double(i)/double(imax)*100 << "% completed..." << std::endl;
-
     event.Generate(gen_option, z_gen_val);
     K_z_hist->Fill(event.GetK_z());
     K_p_hist->Fill(event.GetK_p());

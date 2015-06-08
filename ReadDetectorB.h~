@@ -1,0 +1,49 @@
+#ifndef READDETECTORB_H
+#define READDETECTORB_H
+
+#include "GetElement.h"
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <iomanip>
+
+using namespace std;
+
+void ReadDetectorB(ifstream &detector_file, Int_t &dec_no, Int_t &ev_no, Double_t &x1_plus, Double_t &y1_plus, Double_t &z1_plus, Double_t &x1_min, Double_t &y1_min, Double_t &z1_min, Double_t &x2_plus, Double_t &y2_plus, Double_t &z2_plus, Double_t &x2_min, Double_t &y2_min, Double_t &z2_min, Double_t &x3_plus, Double_t &y3_plus, Double_t &z3_plus, Double_t &x3_min, Double_t &y3_min, Double_t &z3_min, Double_t &x4_plus, Double_t &y4_plus, Double_t &z4_plus, Double_t &x4_min, Double_t &y4_min, Double_t &z4_min) {
+
+  string str;
+  
+
+  getline(detector_file,str);
+
+  dec_no = Int_t(GetElement(str,1));
+  ev_no = Int_t(GetElement(str,2));
+  x1_plus = GetElement(str,3);
+  y1_plus = GetElement(str,4);
+  z1_plus = GetElement(str,5);
+  x1_min = GetElement(str,6);
+  y1_min = GetElement(str,7);
+  z1_min = GetElement(str,8);
+  x2_plus = GetElement(str,9);
+  y2_plus = GetElement(str,10);
+  z2_plus = GetElement(str,11);
+  x2_min = GetElement(str,12);
+  y2_min = GetElement(str,13);
+  z2_min = GetElement(str,14);
+  x3_plus = GetElement(str,15);
+  y3_plus = GetElement(str,16);
+  z3_plus = GetElement(str,17);
+  x3_min = GetElement(str,18);
+  y3_min = GetElement(str,19);
+  z3_min = GetElement(str,20);
+  x4_plus = GetElement(str,21);
+  y4_plus = GetElement(str,22);
+  z4_plus = GetElement(str,23);
+  x4_min = GetElement(str,24);
+  y4_min = GetElement(str,25);
+  z4_min = GetElement(str,26);
+
+}
+
+#endif

@@ -76,10 +76,10 @@ class KGen {
   ///////////////// K parameters ////////////
   
   K_tau0 = 0.08954; // K mean lifetime [ns]
-  K_meanP = 100; // K mean momentum [GeV]
-  K_sigmaP = 5; // K ean momentum deviation [GeV]
-  K_Mass = 0.497614; // K mass [GeV]
-  pi_Mass = 0.13957018; // Pi mass [GeV]
+  K_meanP = 100; // K mean momentum [GeV/c]
+  K_sigmaP = 0.5; // K ean momentum deviation [GeV/c]
+  K_Mass = 0.497614; // K mass [GeV/c^2]
+  pi_Mass = 0.13957018; // Pi mass [GeV/c^2]
   
   K_z = -100;
   pi_plus_theta_star = -100;
@@ -233,7 +233,7 @@ class KGen {
   // Writes event on a ASCII file. To view correctly, change your editor tab settings to at least 10 spaces
   void WriteEvent (ofstream &out, int ev_no = 0) { //out = output file, ev_no = event number
     if (ev_no == 1) out << "Event" << '\t'  << "z_dec" << '\t'  << "K_p" << '\t'  << "Pi+_p" << '\t'  << "Pi+_Th" << '\t'  << "Pi+_Phi" << '\t'  << "Pi-_p" << '\t'  << "Pi-_Th" << '\t'  << "Pi-_Phi" << '\n' << '\n'; 
-    out << ev_no << fixed << setprecision(8) << '\t'  << K_z << '\t'  << K_p << '\t'  << pi_plus_modp << '\t'  << pi_plus_theta << '\t'  << pi_plus_phi << '\t'  << pi_min_modp << '\t'  << pi_min_theta << '\t'  << pi_min_phi << '\n'; 
+    out << ev_no << fixed << setprecision(5) << '\t'  << K_z << '\t'  << K_p << '\t'  << pi_plus_modp << '\t'  << pi_plus_theta << '\t'  << pi_plus_phi << '\t'  << pi_min_modp << '\t'  << pi_min_theta << '\t'  << pi_min_phi << '\n'; 
   }
 
   //Functions to get event variables

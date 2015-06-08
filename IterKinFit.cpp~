@@ -1,0 +1,27 @@
+#ifndef ITERKINFIT_CPP
+#define ITERKINFIT_CPP
+
+#include <TMatrixD.h>
+
+class IterKinFit { 
+private:
+  UInt_t fNVar, fNConstr; //variables, constraint number
+  Bool_t isDefined;
+  TMatrixD VarMatrix;
+  TMatrixD (*Constr_FCN)(Double_t*); //Constraint Vector Function
+  TMatrixD (*Der_FCN)(Double_t*); //Derivative Matrix function
+public:
+  IterKinFit();
+  void SetIterKinFit(Int_t, Int_t);
+  void SetInit_Phi_D_Err(TMatrixD (*)(Double_t*), TMatrixD (*)(Double_t*), Double_t*);
+  TMatrixD GetConstraintVector(Double_t*);
+  TMatrixD GetDerivativeMatrix(Double_t*);
+  TMatrixD GetVarianceMatrix();
+  
+  
+  
+  
+
+};
+
+#endif

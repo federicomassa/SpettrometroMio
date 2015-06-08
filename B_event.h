@@ -52,15 +52,15 @@ B_event::B_event(Double_t* p10, Double_t* p20, Double_t charge0, Double_t gamma0
 
   /* time_interval = L/TMath::C()*1/TMath::Sqrt(1-TMath::Power(TMath::Sin(theta_in)*TMath::Cos(phi_in),2)); //APPROXIMATION at small theta */
 
-  Double_t omega_t = (TMath::ASin((L/radius)*TMath::Sign(1.0,charge0) + TMath::Sin(theta_in)*TMath::Sin(phi_in)/TMath::Sqrt(1-TMath::Power(TMath::Sin(theta_in)*TMath::Cos(phi_in),2))) - TMath::ATan(TMath::Tan(theta_in)*TMath::Sin(phi_in)));
+  omegaT = (TMath::ASin((L/radius)*TMath::Sign(1.0,charge0*helix::B) + TMath::Sin(theta_in)*TMath::Sin(phi_in)/TMath::Sqrt(1-TMath::Power(TMath::Sin(theta_in)*TMath::Cos(phi_in),2))) - TMath::ATan(TMath::Tan(theta_in)*TMath::Sin(phi_in)));
 
-  time_interval = omega_t/omega;
+  time_interval = omegaT/omega;
 
   h.GetPoint(time_interval, p3);
   
   vector_out[0] = init_speed[0]/beta ;
-  vector_out[1] = (init_speed[1]*TMath::Cos(omega_t) + init_speed[2]*TMath::Sin(omega_t))/beta;
-  vector_out[2] = (init_speed[2]*TMath::Cos(omega_t) - init_speed[1]*TMath::Sin(omega_t))/beta;
+  vector_out[1] = (init_speed[1]*TMath::Cos(omegaT) + init_speed[2]*TMath::Sin(omegaT))/beta;
+  vector_out[2] = (init_speed[2]*TMath::Cos(omegaT) - init_speed[1]*TMath::Sin(omegaT))/beta;
 
   //THETA-PHI OUT//
   theta_out = TMath::ACos(vector_out[2]);
@@ -114,20 +114,18 @@ void B_event::SetB_event(Double_t* p10, Double_t* p20, Double_t charge0, Double_
 
   omega = h.GetOmega();
   radius = h.GetRadius();
-  
-  cout << "OMEGA: " << omega << endl;
 
   /* time_interval = L/TMath::C()*1/TMath::Sqrt(1-TMath::Power(TMath::Sin(theta_in)*TMath::Cos(phi_in),2)); //APPROXIMATION at small theta */
 
-  Double_t omega_t = (TMath::ASin((L/radius)*TMath::Sign(1.0,charge0) + TMath::Sin(theta_in)*TMath::Sin(phi_in)/TMath::Sqrt(1-TMath::Power(TMath::Sin(theta_in)*TMath::Cos(phi_in),2))) - TMath::ATan(TMath::Tan(theta_in)*TMath::Sin(phi_in)));
+  omegaT = (TMath::ASin((L/radius)*TMath::Sign(1.0,charge0*helix::B) + TMath::Sin(theta_in)*TMath::Sin(phi_in)/TMath::Sqrt(1-TMath::Power(TMath::Sin(theta_in)*TMath::Cos(phi_in),2))) - TMath::ATan(TMath::Tan(theta_in)*TMath::Sin(phi_in)));
 
-  time_interval = omega_t/omega;
+  time_interval = omegaT/omega;
 
   h.GetPoint(time_interval, p3);
   
   vector_out[0] = init_speed[0]/beta ;
-  vector_out[1] = (init_speed[1]*TMath::Cos(omega_t) + init_speed[2]*TMath::Sin(omega_t))/beta;
-  vector_out[2] = (init_speed[2]*TMath::Cos(omega_t) - init_speed[1]*TMath::Sin(omega_t))/beta;
+  vector_out[1] = (init_speed[1]*TMath::Cos(omegaT) + init_speed[2]*TMath::Sin(omegaT))/beta;
+  vector_out[2] = (init_speed[2]*TMath::Cos(omegaT) - init_speed[1]*TMath::Sin(omegaT))/beta;
 
   //THETA-PHI OUT//
   theta_out = TMath::ACos(vector_out[2]);
@@ -207,10 +205,29 @@ Double_t B_event::GetTimeInterval() {
   return time_interval;
 }
 
+Double_t B_event::GetOmega() {
+  return omega;
+}
+
+Double_t B_event::GetOmegaT() {
+  return omegaT;
+}
+
 Double_t B_event::GetRadius() {
   return radius;
 }
 
+void B_event::GetP3(Double_t* p30) {
+  p30[0] = p3[0];
+  p30[1] = p3[1];
+  p30[2] = p3[2];
+}
+
+void B_event::GetP4(Double_t* p40) {
+  p40[0] = p4[0];
+  p40[1] = p4[1];
+  p40[2] = p4[2];
+}
 
 Double_t B_event::L = 3;
 Double_t B_event::Delta_z = 10;
