@@ -40,7 +40,7 @@ void p_reco(const char* impr_meas_name = "impr_measures") {
   Double_t p_reco_init[6], p_reco_final[6], p_reco_err[6], p_true[6];
   p_reco_err[0] = p_reco_err[3] = 0.00365;
   p_reco_err[1] = p_reco_err[4] = 0.00345;
-  p_reco_err[2] = p_reco_err[5] = 0.047;
+  p_reco_err[2] = p_reco_err[5] = 0.47;
 
   Double_t gamma_plus, gamma_min;
   Double_t theta_plus_in_t, theta_plus_out_t;
@@ -90,6 +90,8 @@ void p_reco(const char* impr_meas_name = "impr_measures") {
   TH1F* K_reco_hist = new TH1F("K_reco_hist", "K_true - K_reco; True-Meas", 1000, 1, 0);
   TH1F* K_final_hist = new TH1F("K_final_hist", "K_true - K_reco; True-Meas", 1000, 1, 0);
   TH1F* K_final2_hist = new TH1F("K_final2_hist", "K_true - K_reco; True-Meas", 1000, 1, 0);
+  TH1F* K_final3_hist = new TH1F("K_final3_hist", "K_true - K_reco; True-Meas", 1000, 1, 0);
+
 
   ////////////
 
@@ -260,6 +262,8 @@ void p_reco(const char* impr_meas_name = "impr_measures") {
 
     K_final_hist->Fill(K_p - p_reco_final[2] - p_reco_final[5]);
     K_final2_hist->Fill(K_p - pi_plus_p_final*Cos(theta_plus_in) - pi_min_p_final*Cos(theta_min_in));
+    K_final3_hist->Fill(K_p - Sqrt((Power(p_reco_final[0],2)+Power(p_reco_final[1],2))/Power(Sin(theta_plus_in),2))*Cos(theta_plus_in) - Sqrt((Power(p_reco_final[3],2)+Power(p_reco_final[4],2))/Power(Sin(theta_min_in),2))*Cos(theta_min_in));
+
     delete iter;
     
 
@@ -287,6 +291,7 @@ void p_reco(const char* impr_meas_name = "impr_measures") {
   K_reco_hist->Write();
   K_final_hist->Write();
   K_final2_hist->Write();
+  K_final3_hist->Write();
   for (int i = 0; i < 6; i++)
     graph[i].Write();
 
