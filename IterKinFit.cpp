@@ -7,7 +7,7 @@
 class IterKinFit { 
 private:
   UInt_t fNVar, fNConstr; //variables, constraint number
-  Bool_t isDefined, isInitialized, isFirstIteration, isFinal;
+  Bool_t isInitialized, isFirstIteration, isFinal;
   Double_t step_parameter; //default = 0.5 (new_coord = old_coord + step_parameter*(x_vector-x_guess)
   Double_t threshold;
   TMatrixD VarMatrix;
@@ -24,8 +24,7 @@ private:
   void Iterate(Double_t*, Double_t*);
 public:
   IterKinFit();
-  void SetIterKinFit(UInt_t, UInt_t, Double_t*);
-  void Initialize(TMatrixD (*Phi_FCN)(Double_t*), TMatrixD (*D_FCN)(Double_t*), Double_t* err);
+  void Initialize(UInt_t, UInt_t, Double_t*, TMatrixD (*)(Double_t*), TMatrixD (*)(Double_t*), Double_t* );
   void Reset();
   void SetStepParameter(Double_t);
   void SetThreshold(Double_t);
@@ -35,9 +34,9 @@ public:
   Double_t GetChi2(Double_t*);
   Double_t GetRDeterminant(Double_t*);
   Double_t GetRDeterminant(TMatrixD);
-  void Minimize(Double_t*, UInt_t&);
-  void Minimize(Double_t*, UInt_t&, TGraph*);
-  
+  void Minimize(Double_t*);
+  void Minimize(Double_t*, TGraph*);
+  UInt_t GetIterationNumber();
 
 };
 

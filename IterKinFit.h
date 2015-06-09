@@ -10,7 +10,6 @@
 #include <sstream>
  
 IterKinFit::IterKinFit() {
-  isDefined = false;
   isInitialized = false;
   isFirstIteration = true;
   isFinal = true;
@@ -22,7 +21,9 @@ IterKinFit::IterKinFit() {
   threshold = 1E-5;
 }
 
-void IterKinFit::SetIterKinFit(UInt_t nvar, UInt_t nconstr, Double_t* init) {
+// Set constraint function, constraint derivative function, sigmas
+void IterKinFit::Initialize(UInt_t nvar, UInt_t nconstr, Double_t* init, TMatrixD (*Phi_FCN)(Double_t*), TMatrixD (*D_FCN)(Double_t*), Double_t* err) {
+
   fNVar = nvar;
   fNConstr = nconstr;
   init_meas = new Double_t[fNVar];
@@ -32,20 +33,20 @@ void IterKinFit::SetIterKinFit(UInt_t nvar, UInt_t nconstr, Double_t* init) {
   }
   
   isFirstIteration = true;
-  isDefined = true;
-}
-
-// Set constraint function, constraint derivative function, sigmas
-void IterKinFit::Initialize(TMatrixD (*Phi_FCN)(Double_t*), TMatrixD (*D_FCN)(Double_t*), Double_t* err) {
-
   isInitialized = true;
-  if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
 
   Constr_FCN = Phi_FCN;
   Der_FCN = D_FCN;
 
-  TMatrixD VarMatrix(fNVar, fNVar);
+  VarMatrix.ResizeTo(fNVar,fNVar);
 
+  //initialize at zero
+  for (UInt_t i = 0; i < fNVar; i++) {
+    for (UInt_t j = 0; j < fNVar; j++) {
+      VarMatrix(i,j) = 0.0;
+    }
+  }
+  
   for (UInt_t i = 0; i < fNVar; i++) {
     VarMatrix(i,i) = err[i]*err[i];
   }
@@ -54,7 +55,8 @@ void IterKinFit::Initialize(TMatrixD (*Phi_FCN)(Double_t*), TMatrixD (*D_FCN)(Do
 
 void IterKinFit::Reset() {
 
-  isDefined = false;
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+
   isInitialized = false;
   isFirstIteration = true;
   
@@ -66,17 +68,20 @@ void IterKinFit::Reset() {
 }
 
 void IterKinFit::SetStepParameter(Double_t step) {
+
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
   step_parameter = step;
 }
 
 void IterKinFit::SetThreshold(Double_t th) {
+
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
   threshold = th;
 }
 
 TMatrixD IterKinFit::GetConstraintVector(Double_t* var) {
   
-  if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
 
   return Constr_FCN(var);
 
@@ -84,8 +89,7 @@ TMatrixD IterKinFit::GetConstraintVector(Double_t* var) {
 
 TMatrixD IterKinFit::GetDerivativeMatrix(Double_t* var) {
 
-  if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
 
   return Der_FCN(var);
 
@@ -93,8 +97,7 @@ TMatrixD IterKinFit::GetDerivativeMatrix(Double_t* var) {
 
 TMatrixD IterKinFit::GetVarianceMatrix() {
 
-  if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
 
   return VarMatrix;
 }
@@ -102,13 +105,12 @@ TMatrixD IterKinFit::GetVarianceMatrix() {
 Double_t IterKinFit::chi2(Double_t* var)  
  {
    
-  if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
 
   Double_t chi = 0;
   
   for (UInt_t i = 0; i < fNVar; i++)
-    chi += TMath::Power((var[i] - init_meas[i])/TMath::Sqrt(VarMatrix(i,i)),2);
+    chi += TMath::Power((var[i] - init_meas[i]),2)/VarMatrix(i,i);
   
   return chi;
   
@@ -116,8 +118,8 @@ Double_t IterKinFit::chi2(Double_t* var)
 
 Double_t IterKinFit::GetChi2(Double_t* var) {
 
-  if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
  
   return chi2(var);
   
@@ -126,8 +128,7 @@ Double_t IterKinFit::GetChi2(Double_t* var) {
  // R = (D_t V D)
 TMatrixD IterKinFit::GetRMatrix(Double_t* var) {
 
-  if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
   
   TMatrixD D(fNVar, fNConstr);
   D = Der_FCN(var);
@@ -147,13 +148,12 @@ TMatrixD IterKinFit::GetRMatrix(Double_t* var) {
  // R = (D_t V D)
 TMatrixD IterKinFit::GetRMatrix(TMatrixD D) {
 
-  if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
   
 
   TMatrixD D_t(fNConstr, fNVar);
   D_t.Transpose(D);
-
+  
   TMatrixD Temp_Matrix(fNVar,fNConstr);
   Temp_Matrix.Mult(VarMatrix, D);
 
@@ -165,8 +165,7 @@ TMatrixD IterKinFit::GetRMatrix(TMatrixD D) {
 
 Double_t IterKinFit::GetRDeterminant(Double_t* var) {
 
- if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+ if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
 
   TMatrixD R = GetRMatrix(var);
 
@@ -175,8 +174,7 @@ Double_t IterKinFit::GetRDeterminant(Double_t* var) {
 
 Double_t IterKinFit::GetRDeterminant(TMatrixD D) {
 
- if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+ if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
 
   TMatrixD R = GetRMatrix(D);
 
@@ -187,8 +185,7 @@ Double_t IterKinFit::GetRDeterminant(TMatrixD D) {
 
 TMatrixD IterKinFit::x_Guess(Double_t* var) {
 
- if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+ if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
    
    TMatrixD x_G(fNVar,1);
    
@@ -203,8 +200,7 @@ TMatrixD IterKinFit::x_Guess(Double_t* var) {
 
 TMatrixD IterKinFit::x_Vector (Double_t* var) {
 
- if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+ if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
    
    TMatrixD x_V(fNVar,1);
    TMatrixD D(fNVar, fNConstr);
@@ -213,18 +209,19 @@ TMatrixD IterKinFit::x_Vector (Double_t* var) {
    D = GetDerivativeMatrix(var);
    TMatrixD D_t(fNConstr,fNVar);
    D_t.Transpose(D);
-
    R = GetRMatrix(D);
    if (R.Determinant() == 0) std::cout << "ERROR: R determinant = 0" << std::endl;
-
    TMatrixD Temp_Matrix1(fNVar,fNConstr);
-   Temp_Matrix1 = D;
+   Temp_Matrix1.Mult(VarMatrix,D);
+   
+   if (fNConstr > 1)
    Temp_Matrix1 *= R.InvertFast();
-   Temp_Matrix1.Mult(VarMatrix, Temp_Matrix1);
-
+   else if(fNConstr == 1)
+   Temp_Matrix1 *= R.Invert();
+   
    TMatrixD Temp_Matrix2(fNConstr,1); //D_t x_G
    Temp_Matrix2.Mult(D_t,x_Guess(var));
-   
+
    Temp_Matrix2 -= Constr_FCN(var);
 
    x_V.Mult(Temp_Matrix1,Temp_Matrix2);
@@ -236,8 +233,7 @@ TMatrixD IterKinFit::x_Vector (Double_t* var) {
    
 void IterKinFit::Iterate(Double_t* old_var, Double_t* new_var) {
   
- if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+ if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
 
    TMatrixD x_G(fNVar,1);
    TMatrixD x_V(fNVar,1);
@@ -257,10 +253,9 @@ void IterKinFit::Iterate(Double_t* old_var, Double_t* new_var) {
  }
    
 
-void IterKinFit::Minimize(Double_t* final_var, UInt_t& iter_no) {
+void IterKinFit::Minimize(Double_t* final_var) {
    
- if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+ if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
    
    Double_t old_var[fNVar];
    Double_t new_var[fNVar];
@@ -292,35 +287,36 @@ void IterKinFit::Minimize(Double_t* final_var, UInt_t& iter_no) {
      
      while (!isFinal);
      
-     
+     iteration_no -= 1; //last iteration did not change anything above threshold
    
    for (UInt_t i = 0; i < fNVar; i++) {
      final_var[i] = new_var[i];
    }
 
-   iter_no = iteration_no;
-
  }
 
 
-void IterKinFit::Minimize(Double_t* final_var, UInt_t& iter_no, TGraph* graph) {
+void IterKinFit::Minimize(Double_t* final_var, TGraph* graph) {
    
- if (!isDefined) std::cout << "ERROR: First call SetIterKinFit" << std::endl;
-  else if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
-   
+ if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+
+ 
    Double_t old_var[fNVar];
    Double_t new_var[fNVar];
    iteration_no = 0;     
 
    TGraph* g = new TGraph[fNVar];
-   string graph_title;
+   string graph_title = "Iteration plot of var ";
+   string graph_name = "iter_graph";
+   string graph_number;
    stringstream ss;
 
    for (UInt_t i = 0; i < fNVar; i++) {
      ss << i;
-     ss >> graph_title;
+     ss >> graph_number;
      ss.clear();
-     g[i].SetTitle(graph_title.c_str());
+     g[i].SetTitle((graph_title+graph_number).c_str());
+     g[i].SetName((graph_name + graph_number).c_str());
    }
 
 
@@ -329,7 +325,7 @@ void IterKinFit::Minimize(Double_t* final_var, UInt_t& iter_no, TGraph* graph) {
        if (isFirstIteration) {
 
 	 for (UInt_t i = 0; i < fNVar; i++) {
-	   g[i].SetPoint(1, 0.0, init_meas[i]);
+	   g[i].SetPoint(0, 0.0, init_meas[i]);
 	 }
 
 
@@ -342,10 +338,6 @@ void IterKinFit::Minimize(Double_t* final_var, UInt_t& iter_no, TGraph* graph) {
        Iterate(old_var, new_var);
        iteration_no++;
 
-       // fill graph array
-       for (UInt_t i = 0; i < fNVar; i++) {
-	 g[i].SetPoint(iteration_no+1, Double_t(iteration_no), new_var[i]);
-       }
 
        //reset after check
        isFinal = true;
@@ -355,21 +347,31 @@ void IterKinFit::Minimize(Double_t* final_var, UInt_t& iter_no, TGraph* graph) {
 	 isFinal = isFinal && TMath::Abs((new_var[i] - old_var[i])/old_var[i]) < threshold;
        }
        
+       if (!isFinal) {        // fill graph array
+	 for (UInt_t i = 0; i < fNVar; i++) {
+	   g[i].SetPoint(iteration_no, Double_t(iteration_no), new_var[i]);
+	 }
+       }
      
        for (UInt_t i = 0; i < fNVar; i++) old_var[i] = new_var[i];
      }
      
      while (!isFinal);
      
-     
+     iteration_no -= 1; //last iteration did not change anything above threshold
    
    for (UInt_t i = 0; i < fNVar; i++) {
      final_var[i] = new_var[i];
+     graph[i] = g[i];
    }
 
-   iter_no = iteration_no;
+}
 
- }
+UInt_t IterKinFit::GetIterationNumber() {
+    if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+
+    return iteration_no;
+}
 
 #endif 
 
