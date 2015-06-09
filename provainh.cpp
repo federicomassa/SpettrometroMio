@@ -11,24 +11,29 @@ public:
   int PUBL_FCN() {return PRIV;}
 };
 
-// class Derived : public Primitive {
-// private:
-//   int priv;
-// protected:
-//   int prot;
-// public:
-//   Primitive A;
-//   int publ;
-//   void set(int a, int b, int c) {priv = a; prot = b; publ = c;}
-//   int publ_fcn() {return A.PRIV;}
-// };
+class Derived : public Primitive {
+private:
+  int priv;
+protected:
+  int prot;
+public:
+  int publ;
+  void set(int a, int b, int c) {priv = a; prot = b; publ = c;}
+  int publ_fcn() {return PUBL;}
+};
 
   void provainh() {
 
     Primitive* pr1 = new Primitive;
     pr1->SET(3,4,5);
 
-    std::cout << pr1->PROT << std::endl;
+    Derived* der1 = new Derived;
+    der1->SET(6,7,8);
+    
+    std::cout << der1->publ_fcn() << std::endl;
+
+
+    
     // std::cout << pr1->PUBL_FCN() << std::endl;
     // Derived* der1 = new Derived;
     // der1->set(6,7,8);

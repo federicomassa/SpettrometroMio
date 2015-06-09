@@ -10,6 +10,7 @@ private:
   Bool_t isInitialized, isFirstIteration, isFinal;
   Double_t step_parameter; //default = 0.5 (new_coord = old_coord + step_parameter*(x_vector-x_guess)
   Double_t threshold;
+  UInt_t MaxIterationNumber;
   TMatrixD VarMatrix;
   TMatrixD (*Constr_FCN)(Double_t*); //Constraint Vector Function
   TMatrixD (*Der_FCN)(Double_t*); //Derivative Matrix function
@@ -28,6 +29,7 @@ public:
   void Reset();
   void SetStepParameter(Double_t);
   void SetThreshold(Double_t);
+  void SetMaxIterationNumber(UInt_t);
   TMatrixD GetConstraintVector(Double_t*);
   TMatrixD GetDerivativeMatrix(Double_t*);
   TMatrixD GetVarianceMatrix();
@@ -37,6 +39,7 @@ public:
   void Minimize(Double_t*);
   void Minimize(Double_t*, TGraph*);
   UInt_t GetIterationNumber();
+  void PrintResult();
 
 };
 

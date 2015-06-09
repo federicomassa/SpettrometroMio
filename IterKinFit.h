@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <iomanip>
  
 IterKinFit::IterKinFit() {
   isInitialized = false;
@@ -17,8 +18,9 @@ IterKinFit::IterKinFit() {
   fNVar = 0;
   fNConstr = 0;
   init_meas = 0;
-  step_parameter = 0.5;
+  step_parameter = 0.2;
   threshold = 1E-5;
+  MaxIterationNumber = 2000;
 }
 
 // Set constraint function, constraint derivative function, sigmas
@@ -77,6 +79,10 @@ void IterKinFit::SetThreshold(Double_t th) {
 
   if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
   threshold = th;
+}
+
+void IterKinFit::SetMaxIterationNumber(UInt_t max) {
+  MaxIterationNumber = max;
 }
 
 TMatrixD IterKinFit::GetConstraintVector(Double_t* var) {
@@ -291,6 +297,7 @@ void IterKinFit::Minimize(Double_t* final_var) {
    
    for (UInt_t i = 0; i < fNVar; i++) {
      final_var[i] = new_var[i];
+     final_meas[i] = new_var[i];
    }
 
  }
@@ -356,12 +363,13 @@ void IterKinFit::Minimize(Double_t* final_var, TGraph* graph) {
        for (UInt_t i = 0; i < fNVar; i++) old_var[i] = new_var[i];
      }
      
-     while (!isFinal);
+     while (!isFinal && iteration_no <= MaxIterationNumber);
      
      iteration_no -= 1; //last iteration did not change anything above threshold
    
    for (UInt_t i = 0; i < fNVar; i++) {
      final_var[i] = new_var[i];
+     final_meas[i] = new_var[i];
      graph[i] = g[i];
    }
 
@@ -371,6 +379,36 @@ UInt_t IterKinFit::GetIterationNumber() {
     if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
 
     return iteration_no;
+}
+
+
+void IterKinFit::PrintResult() {
+
+  std::cout << std::fixed << std::setprecision(10);
+
+  std::cout << "---------------------------" << std::endl;
+  std::cout << "Minimization result" << std::endl;
+  std::cout << "---------------------------" << std::endl;
+
+  std::cout << "Vars: " << fNVar << std::endl;
+  std::cout << "Constr: " << fNConstr << std::endl;
+  std::cout << "---------------------------" << std::endl;
+
+  if (iteration_no != MaxIterationNumber)
+  std::cout << "Converged after " << iteration_no << " iterations." << std::endl;
+  else
+    std::cout << "WARNING: Maximum iteration number reached." << std::endl;
+
+  std::cout << "---------------------------" << std::endl;
+  std::cout << "Chi2: " << '\t' << GetChi2(final_meas) << std::endl;
+  std::cout << "---------------------------" << std::endl;
+
+  for (UInt_t i = 0; i < fNVar; i++) {
+    std::cout << "Var" << i << ": " << '\t' << final_meas[i] << std::endl;
+  }
+
+  std::cout << "---------------------------" << std::endl;
+  
 }
 
 #endif 

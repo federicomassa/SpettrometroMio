@@ -119,7 +119,7 @@ class KGen {
     
     K_p = rndgen.Gaus(K_meanP, K_sigmaP);
     K_E = TMath::Sqrt(K_p*K_p + K_Mass*K_Mass);
-    K_beta = 1 - 0.5*K_Mass*K_Mass/(K_p*K_p); // Second order Taylor expansion
+    K_beta = K_p/K_E;
     K_gamma = K_E/K_Mass;
     K_lambda = K_p/K_Mass*c*K_tau0;
     if (strcmp(gen_option,"") == 0)
@@ -169,16 +169,18 @@ class KGen {
     pi_plus_modp = 0; // need to reset because the constructor is called just once in the main program
     pi_min_modp = 0;
 
+    Double_t pi_plus_modp2 = 0, pi_min_modp2 = 0;
+
     for (int i = 0; i < 3; i++) {
-      pi_plus_modp += pi_plus_p[i]*pi_plus_p[i];
-      pi_min_modp += pi_min_p[i]*pi_min_p[i];
+      pi_plus_modp2 += pi_plus_p[i]*pi_plus_p[i];
+      pi_min_modp2 += pi_min_p[i]*pi_min_p[i];
   }
     
-    pi_plus_E = TMath::Sqrt(pi_plus_modp + pi_Mass*pi_Mass); //p still squared
-    pi_min_E = TMath::Sqrt(pi_min_modp + pi_Mass*pi_Mass);
+    pi_plus_E = TMath::Sqrt(pi_plus_modp2 + pi_Mass*pi_Mass);
+    pi_min_E = TMath::Sqrt(pi_min_modp2 + pi_Mass*pi_Mass);
     
-    pi_plus_modp = TMath::Sqrt(pi_plus_modp); //now take the sqrt
-    pi_min_modp = TMath::Sqrt(pi_min_modp);
+    pi_plus_modp = TMath::Sqrt(pi_plus_modp2); //now take the sqrt
+    pi_min_modp = TMath::Sqrt(pi_min_modp2);
 
     pi_plus_theta = TMath::ACos(pi_plus_p[2]/pi_plus_modp); // cos(theta) = p_z/|p|
     pi_min_theta = TMath::ACos(pi_min_p[2]/pi_min_modp);
@@ -235,6 +237,7 @@ class KGen {
     if (ev_no == 1) out << "Event" << '\t'  << "z_dec" << '\t'  << "K_p" << '\t'  << "Pi+_p" << '\t'  << "Pi+_Th" << '\t'  << "Pi+_Phi" << '\t'  << "Pi-_p" << '\t'  << "Pi-_Th" << '\t'  << "Pi-_Phi" << '\n' << '\n'; 
     out << ev_no << fixed << setprecision(8) << '\t'  << K_z << '\t'  << K_p << '\t'  << pi_plus_modp << '\t'  << pi_plus_theta << '\t'  << pi_plus_phi << '\t'  << pi_min_modp << '\t'  << pi_min_theta << '\t'  << pi_min_phi << '\n'; 
   }
+
 
   //Functions to get event variables
 

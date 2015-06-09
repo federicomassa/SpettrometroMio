@@ -4,7 +4,6 @@
 class helix {
 private:
   static Double_t mass;
-  static Double_t B;
   
   Double_t init_point[3];
   Double_t init_speed[3];
@@ -13,6 +12,7 @@ private:
   Double_t omega;
   
 public:
+  static Double_t B;
   helix();
   helix(Double_t*, Double_t*, Double_t, Double_t);
   void SetHelix(Double_t*, Double_t*, Double_t, Double_t);
