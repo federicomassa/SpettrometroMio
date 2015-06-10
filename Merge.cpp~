@@ -1,0 +1,16 @@
+#include "MergeNtuples.h"
+
+#include <TNtupleD.h>
+#include <TFile.h>
+
+void Merge() {
+
+  TFile* in1 = new TFile("../Spettrometro_Files/reconstruction.root");
+  TFile* in2 = new TFile("../Spettrometro_Files/p_reco.root");
+  TNtupleD* n1 = (TNtupleD*) in1->Get("impr_meas");
+  TNtupleD* n2 = (TNtupleD*) in2->Get("nt_out");
+
+  n1->Print();
+  n2->Print();
+
+}

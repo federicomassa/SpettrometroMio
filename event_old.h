@@ -11,7 +11,6 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-#include <TNtupleD.h>
 
 using namespace std;
 
@@ -166,7 +165,7 @@ static Double_t z_k(Double_t *par) {
   
     
 
-  void Reconstruction(TNtupleD* nt, TH1F* CDA_plus_hist, TH1F* CDA_min_hist, TH1F* CDA_mean_hist, TH1F* kinematic_z_hist, TH1F* iteration_hist, TH1F* iteration_cut_hist, TH1F* iteration_no_hist, TH2F* z_itno_iter_corr_hist, TH1F* kin_iter_diff_hist, TH2F* kin_iter_zz_hist, TH1F* chi2_init_hist, TH2F* chi2_corr_hist, TH1F* chi2_kin_hist, TH1F* chi2_iter_hist, TH2F* z_theta_corr_hist, TH1F* costheta_plus_reco_hist, TH1F* costheta_min_reco_hist, TH1F* tanphi_plus_reco_hist, TH1F* tanphi_min_reco_hist) {
+  void Reconstruction(ofstream &out, TH1F* CDA_plus_hist, TH1F* CDA_min_hist, TH1F* CDA_mean_hist, TH1F* kinematic_z_hist, TH1F* iteration_hist, TH1F* iteration_cut_hist, TH1F* iteration_no_hist, TH2F* z_itno_iter_corr_hist, TH1F* kin_iter_diff_hist, TH2F* kin_iter_zz_hist, TH1F* chi2_init_hist, TH2F* chi2_corr_hist, TH1F* chi2_kin_hist, TH1F* chi2_iter_hist, TH2F* z_theta_corr_hist, TH1F* costheta_plus_reco_hist, TH1F* costheta_min_reco_hist, TH1F* tanphi_plus_reco_hist, TH1F* tanphi_min_reco_hist) {
     
     //Types of reconstruction: 1) Using the CDA of just one of the particles (pi+ or pi-) 2) Using both CDA
     Double_t chi2_val;
@@ -189,21 +188,21 @@ static Double_t z_k(Double_t *par) {
 
     
     // OUT FILE
-    Double_t impr_meas_array[16];
-    impr_meas_array[0] = K_z;
-    impr_meas_array[1] = K_p;
-    impr_meas_array[2] = pi_plus_modp;
-    impr_meas_array[3] = pi_plus_theta;
-    impr_meas_array[4] = pi_plus_phi;
-    impr_meas_array[5] = pi_min_modp;
-    impr_meas_array[6] = pi_min_theta;
-    impr_meas_array[7] = pi_min_phi;
-
+    out << ev_no << '\t';
+    out << fixed << setprecision(8);
+    out << K_z << '\t' 
+	<< K_p << '\t' 
+	<< pi_plus_modp << '\t' 
+	<< pi_plus_theta << '\t'
+	<< pi_plus_phi << '\t'
+	<< pi_min_modp << '\t'
+	<< pi_min_theta << '\t'
+	<< pi_min_phi;
     for (int i = 0; i < 8; i++) {
-      impr_meas_array[i+8] = impr_measures[i];
+      out << '\t' << impr_measures[i];
     }
     
-    nt->Fill(impr_meas_array);
+    out << endl;
     ////////////
 
 

@@ -70,7 +70,21 @@
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TCanvasImp.h
 ./p_reco_cpp.so: GetThetaPhi.h ReadImpr.h GetElement.h
 ./p_reco_cpp.so: /usr/include/c++/4.8/sstream /usr/include/c++/4.8/cstring
-./p_reco_cpp.so: /usr/include/c++/4.8/cctype /usr/include/c++/4.8/fstream
+./p_reco_cpp.so: /usr/include/c++/4.8/cctype
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TNtupleD.h
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TTree.h
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TBranch.h
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TObjArray.h
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TDataType.h
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TArrayD.h
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TArray.h
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TArrayI.h
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TClass.h
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TObjString.h
+./p_reco_cpp.so: /usr/include/c++/4.8/map /usr/include/c++/4.8/set
+./p_reco_cpp.so: /usr/include/c++/4.8/unordered_set
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/ThreadLocalStorage.h
+./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TVirtualTreePlayer.h
 ./p_reco_cpp.so: IterKinFit.h IterKinFit.cpp
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TMatrixD.h
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TMatrixT.h
@@ -84,16 +98,13 @@
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TMatrixDUtils.h
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TMatrixDUtilsfwd.h
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TGraph.h
-./p_reco_cpp.so: momentum_constraint.h
+./p_reco_cpp.so: momentum_constraint.h /usr/include/c++/4.8/fstream
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TH1F.h
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TH1.h
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TAxis.h
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TAttAxis.h
-./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TArrayD.h
-./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TArray.h
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TArrayC.h
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TArrayS.h
-./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TArrayI.h
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TArrayF.h
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/Foption.h
 ./p_reco_cpp.so: /home/federico/Scaricati/root/root-6.04.00/include/TFile.h
