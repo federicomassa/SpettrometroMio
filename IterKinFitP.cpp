@@ -46,6 +46,7 @@ private:
   Double_t* final_pars;
 
   UInt_t iteration_no;
+  Double_t chi2();
   Double_t chi2(Double_t*);
   void SetAMatrix();
   void SetBMatrix();
@@ -63,6 +64,7 @@ public:
   void SetThreshold(Double_t);
   void SetMaxIterationNumber(UInt_t);
   TMatrixD GetVarianceMatrix();
+  Double_t GetChi2();
   Double_t GetChi2(Double_t*);
   void SetAMatrix();
   void SetBMatrix();

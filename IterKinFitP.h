@@ -135,6 +135,29 @@ Double_t IterKinFitP::GetChi2(Double_t* var) {
   
 }
 
+Double_t IterKinFitP::chi2()  
+ {
+   
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+
+  Double_t chi = 0;
+  
+  for (UInt_t i = 0; i < fNvar; i++)
+    chi += TMath::Power((curr_meas[i] - init_meas[i]),2)/VarMatrix(i,i);
+  
+  return chi;
+  
+ }
+
+Double_t IterKinFitP::GetChi2() {
+
+
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+ 
+  return chi2();
+  
+}
+
 void IterKinFitP::SetAMatrix() {
   AMatrix = PDer_FCN(curr_pars);
 }
@@ -302,7 +325,7 @@ void IterKinFitP::Minimize(Double_t* final_var) {
  }
 
 
-void IterKinFitP::Minimize(Double_t* final_var, TGraph* graph) {
+ void IterKinFitP::Minimize(Double_t* final_v, Double_t* final_p, TGraph* graph) {
    
  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
 
@@ -311,9 +334,11 @@ void IterKinFitP::Minimize(Double_t* final_var, TGraph* graph) {
    Double_t new_var[fNvar];
    iteration_no = 0;     
 
-   TGraph* g = new TGraph[fNvar];
-   string graph_title = "Iteration plot of var ";
-   string graph_name = "iter_graph";
+   TGraph* g = new TGraph[fNvar + fNpar];
+   string graph_title_v = "Iteration plot of var ";
+   string graph_name_v = "iter_graph_v";
+   string graph_title_p = "Iteration plot of par ";
+   string graph_name_p = "iter_graph_p";
    string graph_number;
    stringstream ss;
 
@@ -321,8 +346,16 @@ void IterKinFitP::Minimize(Double_t* final_var, TGraph* graph) {
      ss << i;
      ss >> graph_number;
      ss.clear();
-     g[i].SetTitle((graph_title+graph_number).c_str());
-     g[i].SetName((graph_name + graph_number).c_str());
+     g[i].SetTitle((graph_title_v+graph_number).c_str());
+     g[i].SetName((graph_name_v + graph_number).c_str());
+   }
+
+   for (UInt_t i = fNvar; i < fNvar + fNpar; i++) {
+     ss << i;
+     ss >> graph_number;
+     ss.clear();
+     g[i].SetTitle((graph_title_p +graph_number).c_str());
+     g[i].SetName((graph_name_p + graph_number).c_str());
    }
 
 
@@ -391,6 +424,7 @@ void IterKinFitP::PrintResult() {
 
   std::cout << "Vars: " << fNvar << std::endl;
   std::cout << "Constr: " << fNconstr << std::endl;
+  std::cout << "Pars: " << fNpar << std::endl;
   std::cout << "---------------------------" << std::endl;
 
   if (iteration_no != MaxIterationNumber)
@@ -404,6 +438,10 @@ void IterKinFitP::PrintResult() {
 
   for (UInt_t i = 0; i < fNvar; i++) {
     std::cout << "Var" << i << ": " << '\t' << final_meas[i] << std::endl;
+  }
+
+  for (UInt_t i = 0; i < fNpar; i++) {
+    std::cout << "Par" << i << ": " << '\t' << final_pars[i] << std::endl;
   }
 
   std::cout << "---------------------------" << std::endl;
