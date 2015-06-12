@@ -15,7 +15,7 @@
 #include <TMatrixD.h>
 #include <TGraph.h>
 
-class IterKinFit { 
+class IterKinFitP { 
 private:
   UInt_t fNvar, fNconstr, fNpar;
   Bool_t isInitialized, isFirstIteration, isFinal;
@@ -24,17 +24,18 @@ private:
   UInt_t MaxIterationNumber;
   TMatrixD VarMatrix;
   TMatrixD ConstrVector;
-  TMatrixD AMatrix; //matrices to be set in order
+  TMatrixD AMatrix; 
   TMatrixD BMatrix;
   TMatrixD RMatrix; //B_t V B
   TMatrixD RinvMatrix;
   TMatrixD PMatrix; // A R^-1 A_t
   TMatrixD PinvMatrix;
+  TMatrixD Delta_y;
   TMatrixD Delta_a;
   TMatrixD Lambda;
   TMatrixD (*Constr_FCN)(Double_t*, Double_t*); //Constraint Vector Function
-  TMatrixD (*Der_FCN)(Double_t*); //Derivative Matrix of measured vars
-  TMatrixD (*PDer_FCN)(Double_t*); //Derivative Matrix of unmeasured pars
+  TMatrixD (*Der_FCN)(Double_t*, Double_t*); //Derivative Matrix of measured vars
+  TMatrixD (*PDer_FCN)(Double_t*, Double_t*); //Derivative Matrix of unmeasured pars
 
   Double_t* init_meas; //Measured
   Double_t* init_pars;
@@ -48,17 +49,19 @@ private:
   UInt_t iteration_no;
   Double_t chi2();
   Double_t chi2(Double_t*);
+  void SetConstrVector(); //to be set in order
   void SetAMatrix();
   void SetBMatrix();
   void SetRMatrix();
   void SetPMatrix();
-  TMatrixD SetDelta_a_Vector();
-  TMatrixD SetLambda_Vector();
-  TMatrixD SetDelta_y_Vector();
+  void SetDelta_a();
+  void SetLambda();
+  void SetDelta_y();
+  void SetMatrices();
   void Iterate();
 public:
-  IterKinFit();
-  void Initialize(UInt_t, UInt_t, UInt_t, Double_t*, Double_t*, TMatrixD (*)(Double_t*), TMatrixD (*)(Double_t*), Double_t* );
+  IterKinFitP();
+  void Initialize(UInt_t, UInt_t, UInt_t, Double_t*, Double_t*, TMatrixD (*)(Double_t*, Double_t*), TMatrixD (*)(Double_t*, Double_t*), TMatrixD (*)(Double_t*, Double_t*), Double_t*);
   void Reset();
   void SetStepParameter(Double_t);
   void SetThreshold(Double_t);
@@ -66,14 +69,10 @@ public:
   TMatrixD GetVarianceMatrix();
   Double_t GetChi2();
   Double_t GetChi2(Double_t*);
-  void SetAMatrix();
-  void SetBMatrix();
-  void SetRMatrix();
-  void SetPMatrix();
   Double_t GetRDeterminant();
   Double_t GetPDeterminant();
-  void Minimize(Double_t*);
-  void Minimize(Double_t*, TGraph*);
+  void Minimize(Double_t*, Double_t*);
+  void Minimize(Double_t*, Double_t*, TGraph*);
   UInt_t GetIterationNumber();
   void PrintResult();
 

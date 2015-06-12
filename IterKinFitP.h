@@ -26,7 +26,7 @@ IterKinFitP::IterKinFitP() {
 }
 
 // Set constraint function, constraint derivative function, sigmas
-void IterKinFitP::Initialize(UInt_t nvar, UInt_t nconstr, UInt_t npar, Double_t* init_m, Double_t* init_p, TMatrixD (*Phi_FCN)(Double_t*), TMatrixD (*B_FCN)(Double_t*), TMatrixD (*A_FCN)(Double_t*), Double_t* err) {
+void IterKinFitP::Initialize(UInt_t nvar, UInt_t nconstr, UInt_t npar, Double_t* init_m, Double_t* init_p, TMatrixD (*Phi_FCN)(Double_t*, Double_t*), TMatrixD (*B_FCN)(Double_t*, Double_t*), TMatrixD (*A_FCN)(Double_t*, Double_t*), Double_t* err) {
 
   fNvar = nvar;
   fNconstr = nconstr;
@@ -37,11 +37,17 @@ void IterKinFitP::Initialize(UInt_t nvar, UInt_t nconstr, UInt_t npar, Double_t*
   init_meas = new Double_t[fNvar];
   init_pars = new Double_t[fNpar];
 
+  curr_meas = new Double_t[fNvar];
+  curr_pars = new Double_t[fNpar];
+
   final_meas = new Double_t[fNvar];
   final_pars = new Double_t[fNpar];
 
   for (UInt_t i = 0; i < fNvar; i++) {
     init_meas[i] = init_m[i];
+  }
+
+  for (UInt_t i = 0; i < fNpar; i++) {
     init_pars[i] = init_p[i];
   }
   
@@ -100,11 +106,6 @@ void IterKinFitP::SetMaxIterationNumber(UInt_t max) {
   MaxIterationNumber = max;
 }
 
-
-void IterKinFitP::SetConstrVector(Double_t* var, Double_t* par) {
-  ConstrVector = Constr_FCN(var,par);
-}
-
 TMatrixD IterKinFitP::GetVarianceMatrix() {
 
   if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
@@ -158,12 +159,20 @@ Double_t IterKinFitP::GetChi2() {
   
 }
 
+void IterKinFitP::SetConstrVector() {
+  ConstrVector.ResizeTo(fNconstr, 1);
+  ConstrVector = Constr_FCN(curr_meas,curr_pars);
+}
+
 void IterKinFitP::SetAMatrix() {
-  AMatrix = PDer_FCN(curr_pars);
+  AMatrix.ResizeTo(fNpar, fNconstr);
+  AMatrix = PDer_FCN(curr_meas, curr_pars);
 }
 
 void IterKinFitP::SetBMatrix() {
-  BMatrix = Der_FCN(curr_meas);
+
+  BMatrix.ResizeTo(fNvar, fNconstr);
+  BMatrix = Der_FCN(curr_meas, curr_pars);
 }
 
 
@@ -182,8 +191,18 @@ void IterKinFitP::SetRMatrix() {
   TMatrixD R(fNconstr, fNconstr);
   R.Mult(BMatrix_t, Temp_Matrix);
 
+  RMatrix.ResizeTo(fNconstr, fNconstr);
+  RinvMatrix.ResizeTo(fNconstr, fNconstr);
+  
   RMatrix = R;
-  RinvMatrix = R.InvertFast();
+
+  if (RMatrix.Determinant() != 0) 
+    if (fNconstr > 1)
+      RinvMatrix = RMatrix.InvertFast();
+    else 
+      RinvMatrix = RMatrix.Invert();
+  
+  else return;
  }
 
 void IterKinFitP::SetPMatrix() {
@@ -196,19 +215,22 @@ void IterKinFitP::SetPMatrix() {
   TMatrixD AMatrix_t(fNconstr, fNpar);
   AMatrix_t.Transpose(AMatrix);
 
-  TMatrixD R_inv(fNconstr, fNconstr);
-  
-  if (RMatrix.Determinant() != 0) 
-  R_inv = RMatrix.InvertFast();
+  Temp_Matrix1.Mult(RinvMatrix, AMatrix_t);
 
-  else return;
-
-  Temp_Matrix1.Mult(R_inv, AMatrix_t);
+  PMatrix.ResizeTo(fNpar, fNpar);
+  PinvMatrix.ResizeTo(fNpar, fNpar);
 
   P.Mult(AMatrix,Temp_Matrix1);
-    
+
   PMatrix = P;
-  PinvMatrix = P.InvertFast();
+
+if (PMatrix.Determinant() != 0) 
+    if (fNpar > 1)
+      PinvMatrix = PMatrix.InvertFast();
+    else 
+      PinvMatrix = PMatrix.Invert();
+  
+  else return;
 }
 
     
@@ -222,83 +244,125 @@ Double_t IterKinFitP::GetPDeterminant() {
 }
    
 
-TMatrixD IterKinFitP::SetDelta_a_Vector() {
-
-  TMatrixD Delta_a_V(fNpar,1);
-  TMatrixD Temp_Constr_V(fNconstr, 1);
+void IterKinFitP::SetDelta_a() {
   
-  Temp_Constr_V.Mult(RinvMatrix, 
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
 
+ Delta_a.ResizeTo(fNpar, 1);
+
+ TMatrixD Temp_Matrix1(fNconstr, 1);
+ TMatrixD Temp_Matrix2(fNpar, 1);
+ TMatrixD Temp_Matrix3(fNpar, 1);
+
+ Temp_Matrix1.Mult(RinvMatrix, ConstrVector);
+ Temp_Matrix2.Mult(AMatrix, Temp_Matrix1);
+ Temp_Matrix3.Mult(PinvMatrix, Temp_Matrix2);
+
+ for (UInt_t i = 0; i < fNpar; i++)
+   Temp_Matrix3(i,0) = -Temp_Matrix3(i,0);
+
+ Delta_a = Temp_Matrix3;
+  
 }
 
-TMatrixD IterKinFitP::Delta_y_Vector (Double_t* var) {
+void IterKinFitP::SetLambda() {
 
- if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
-   
-   TMatrixD x_V(fNvar,1);
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+  
+  Lambda.ResizeTo(fNconstr, 1);
+  
+  TMatrixD Temp_Matrix(fNconstr,1);
+  TMatrixD AMatrix_t(fNconstr, fNpar);
+  
+  AMatrix_t.Transpose(AMatrix);
+  Temp_Matrix.Mult(AMatrix_t, Delta_a);
+  
+  TMatrixD Sum(fNconstr, 1);
+  Sum.Plus(ConstrVector, Temp_Matrix);
 
-   TMatrixD BMatrix_t(fNconstr,fNvar);
-   BMatrix_t.Transpose(BMatrix);
-
-   if (RMatrix.Determinant() == 0) std::cout << "ERROR: R determinant = 0" << std::endl;
-
-   TMatrixD Temp_Matrix1(fNvar,fNconstr);
-   Temp_Matrix1.Mult(VarMatrix,BMatrix);
-   
-   Temp_Matrix1 *= R.InvertFast();
-   
-   TMatrixD Temp_Matrix2(fNconstr,1); //D_t x_G
-   Temp_Matrix2.Mult(D_t,x_Guess(var));
-
-   Temp_Matrix2 -= Constr_FCN(var);
-
-   x_V.Mult(Temp_Matrix1,Temp_Matrix2);
-   
-   return x_V;
+  Lambda.Mult(RinvMatrix, Sum);
  }  
 
+
+void IterKinFitP::SetDelta_y() {
+
+  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+  
+  Delta_y.ResizeTo(fNvar, 1);
+  
+  TMatrixD TempVar(fNvar, fNvar);
+  TMatrixD Temp_y(fNvar, 1);
+
+  for (UInt_t i = 0; i < fNvar; i++) {
+      for (UInt_t j = 0; j < fNvar; j++) {
+	TempVar(i,j) = -VarMatrix(i,j);
+      }
+  }
+  
+
+  Temp_y.Mult(BMatrix, Lambda);
+  Delta_y.Mult(TempVar, Temp_y);
+
+ }  
+
+void IterKinFitP::SetMatrices() {
+  
+       SetConstrVector();
+       SetAMatrix();
+       SetBMatrix();
+       SetRMatrix();
+       SetPMatrix();
+       SetDelta_a();
+       SetLambda();
+       SetDelta_y();
+}
    
    
-void IterKinFitP::Iterate(Double_t* old_var, Double_t* new_var) {
+void IterKinFitP::Iterate() {
   
  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
 
-   TMatrixD x_G(fNvar,1);
-   TMatrixD x_V(fNvar,1);
-   TMatrixD D(fNvar,fNconstr);
-
-   TMatrixD constr_V(fNconstr,1);
-
-   x_G = x_Guess(old_var);
-   constr_V = GetConstraintVector(old_var);
-
-   x_V = x_Vector(old_var);
-   for (UInt_t i = 0; i < fNvar; i++) {
-     new_var[i] = old_var[i] + step_parameter*(x_V(i,0) - x_G(i,0));
-   }
-
-
+ for (UInt_t i = 0; i < fNvar; i++) {
+   curr_meas[i] += step_parameter*Delta_y(i,0);
  }
+
+ for (UInt_t i = 0; i < fNpar; i++) {
+   curr_pars[i] += step_parameter*Delta_a(i,0);
+ }
+ 
+
+}
    
 
-void IterKinFitP::Minimize(Double_t* final_var) {
+void IterKinFitP::Minimize(Double_t* final_m, Double_t* final_p) {
    
  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
    
    Double_t old_var[fNvar];
-   Double_t new_var[fNvar];
+   Double_t old_par[fNpar];
+
    iteration_no = 0;     
 
-
      do {
+
        
        if (isFirstIteration) {
 	 for (UInt_t i = 0; i < fNvar; i++) {
-	   old_var[i] = init_meas[i];}
+	   curr_meas[i] = init_meas[i];
+	   old_var[i] = curr_meas[i];
+	 }
+
+	 for (UInt_t i = 0; i < fNpar; i++) {
+	   curr_pars[i] = init_pars[i];
+	   old_par[i] = curr_pars[i];
+	 }
+	 
 	 isFirstIteration = false;
        }
        
-       Iterate(old_var, new_var);
+       // Computer matrices
+       SetMatrices();
+       Iterate();
        iteration_no++;
 
        //reset after check
@@ -306,11 +370,15 @@ void IterKinFitP::Minimize(Double_t* final_var) {
        
        //check if something's changed
        for (UInt_t i = 0; i < fNvar; i++) {
-	 isFinal = isFinal && TMath::Abs((new_var[i] - old_var[i])/old_var[i]) < threshold;
+	 isFinal = isFinal && TMath::Abs((curr_meas[i] - old_var[i])/old_var[i]) < threshold;
        }
        
-     
-       for (UInt_t i = 0; i < fNvar; i++) old_var[i] = new_var[i];
+       for (UInt_t i = 0; i < fNpar; i++) {
+	 isFinal = isFinal && TMath::Abs((curr_pars[i] - old_par[i])/old_par[i]) < threshold;
+       }
+       
+       for (UInt_t i = 0; i < fNvar; i++) old_var[i] = curr_meas[i];
+       for (UInt_t i = 0; i < fNpar; i++) old_par[i] = curr_pars[i];
      }
      
      while (!isFinal);
@@ -318,23 +386,26 @@ void IterKinFitP::Minimize(Double_t* final_var) {
      iteration_no -= 1; //last iteration did not change anything above threshold
    
    for (UInt_t i = 0; i < fNvar; i++) {
-     final_var[i] = new_var[i];
-     final_meas[i] = new_var[i];
+     final_meas[i] = curr_meas[i];
+     final_m[i] = curr_meas[i];
+   }
+
+   for (UInt_t i = 0; i < fNpar; i++) {
+     final_pars[i] = curr_pars[i];
+     final_p[i] = curr_pars[i];
    }
 
  }
 
-
- void IterKinFitP::Minimize(Double_t* final_v, Double_t* final_p, TGraph* graph) {
+void IterKinFitP::Minimize(Double_t* final_m, Double_t* final_p, TGraph* graph) {
    
  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
-
- 
+   
    Double_t old_var[fNvar];
-   Double_t new_var[fNvar];
+   Double_t old_par[fNpar];
+
    iteration_no = 0;     
 
-   TGraph* g = new TGraph[fNvar + fNpar];
    string graph_title_v = "Iteration plot of var ";
    string graph_name_v = "iter_graph_v";
    string graph_title_p = "Iteration plot of par ";
@@ -346,66 +417,84 @@ void IterKinFitP::Minimize(Double_t* final_var) {
      ss << i;
      ss >> graph_number;
      ss.clear();
-     g[i].SetTitle((graph_title_v+graph_number).c_str());
-     g[i].SetName((graph_name_v + graph_number).c_str());
+     graph[i].SetTitle((graph_title_v+graph_number).c_str());
+     graph[i].SetName((graph_name_v + graph_number).c_str());
    }
 
    for (UInt_t i = fNvar; i < fNvar + fNpar; i++) {
      ss << i;
      ss >> graph_number;
      ss.clear();
-     g[i].SetTitle((graph_title_p +graph_number).c_str());
-     g[i].SetName((graph_name_p + graph_number).c_str());
+     graph[i].SetTitle((graph_title_p +graph_number).c_str());
+     graph[i].SetName((graph_name_p + graph_number).c_str());
    }
 
 
      do {
        
        if (isFirstIteration) {
-
 	 for (UInt_t i = 0; i < fNvar; i++) {
-	   g[i].SetPoint(0, 0.0, init_meas[i]);
+	   curr_meas[i] = init_meas[i];
+	   old_var[i] = curr_meas[i];
+	   graph[i].SetPoint(0, 0.0, curr_meas[i]);
 	 }
 
+	 for (UInt_t i = 0; i < fNpar; i++) {
+	   curr_pars[i] = init_pars[i];
+	   old_par[i] = curr_pars[i];
+	   graph[i+fNvar].SetPoint(0, 0.0, curr_pars[i]);
+	 }
 
-	 for (UInt_t i = 0; i < fNvar; i++) {
-	   old_var[i] = init_meas[i];}
-	 
 	 isFirstIteration = false;
        }
        
-       Iterate(old_var, new_var);
+       //Compute matrices
+       SetMatrices();
+
+       Iterate();
        iteration_no++;
 
+       for (UInt_t i = 0; i < fNvar; i++) {
+	 graph[i].SetPoint(iteration_no, Double_t(iteration_no), curr_meas[i]);
+	 }
+
+	 for (UInt_t i = 0; i < fNpar; i++) {
+	   graph[i+fNvar].SetPoint(iteration_no, Double_t(iteration_no), curr_pars[i]);
+	 }
 
        //reset after check
        isFinal = true;
        
        //check if something's changed
        for (UInt_t i = 0; i < fNvar; i++) {
-	 isFinal = isFinal && TMath::Abs((new_var[i] - old_var[i])/old_var[i]) < threshold;
+	 isFinal = isFinal && TMath::Abs((curr_meas[i] - old_var[i])/old_var[i]) < threshold;
+       } 
+       
+       for (UInt_t i = 0; i < fNpar; i++) {
+	 isFinal = isFinal && TMath::Abs((curr_pars[i] - old_par[i])/old_par[i]) < threshold;
        }
        
-       if (!isFinal) {        // fill graph array
-	 for (UInt_t i = 0; i < fNvar; i++) {
-	   g[i].SetPoint(iteration_no, Double_t(iteration_no), new_var[i]);
-	 }
-       }
-     
-       for (UInt_t i = 0; i < fNvar; i++) old_var[i] = new_var[i];
+       for (UInt_t i = 0; i < fNvar; i++) old_var[i] = curr_meas[i];
+       for (UInt_t i = 0; i < fNpar; i++) old_par[i] = curr_pars[i];
      }
      
-     while (!isFinal && iteration_no <= MaxIterationNumber);
+     while (!isFinal);
      
      iteration_no -= 1; //last iteration did not change anything above threshold
    
    for (UInt_t i = 0; i < fNvar; i++) {
-     final_var[i] = new_var[i];
-     final_meas[i] = new_var[i];
-     graph[i] = g[i];
+     final_meas[i] = curr_meas[i];
+     final_m[i] = curr_meas[i];
+   }
+
+   for (UInt_t i = 0; i < fNpar; i++) {
+     final_pars[i] = curr_pars[i];
+     final_p[i] = curr_pars[i];
    }
 
 }
+
+
 
 UInt_t IterKinFitP::GetIterationNumber() {
     if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
