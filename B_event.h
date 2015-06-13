@@ -229,7 +229,7 @@ void B_event::GetP4(Double_t* p40) {
   p40[2] = p4[2];
 }
 
-Double_t B_event::L = 3;
+Double_t B_event::L = 0.35;
 Double_t B_event::Delta_z = 10;
 
 
