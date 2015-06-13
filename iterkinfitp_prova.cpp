@@ -29,13 +29,6 @@ void iterkinfitp_prova() {
 
   *init_pars_t = z_true;
 
-  std::cout << "TRUE MEAS: " << std::endl;
-  
-  for (UInt_t i = 0; i < 4; i++) {
-    std::cout << init_meas_t[i] << std::endl;
-  }
-
-  std::cout << "//////////////////////" << std::endl;
 
   Double_t* init_meas = new Double_t[4];
   Double_t* init_pars = new Double_t;
@@ -47,7 +40,13 @@ void iterkinfitp_prova() {
 
   *init_pars = (init_meas[2]*z1 - init_meas[0]*z2)/(init_meas[2]-init_meas[0]);
 
-  std::cout << "INIT Z: " << *init_pars << std::endl;
+  std::cout << "TRUE MEAS: " << std::endl;
+
+  for (UInt_t i = 0; i < 4; i++) 
+    std::cout << init_meas_t[i] << std::endl;
+
+  std::cout << *init_pars_t << std::endl;
+  std::cout << std::endl;
 
   iter.Initialize(4,2,1, init_meas, init_pars, Constr, Der_Matrix, PDer_Matrix, err);
 

@@ -526,11 +526,11 @@ void IterKinFitP::PrintResult() {
   std::cout << "---------------------------" << std::endl;
 
   for (UInt_t i = 0; i < fNvar; i++) {
-    std::cout << "Var" << i << ": " << '\t' << final_meas[i] << std::endl;
+    std::cout << "Var" << i << ": " << '\t' << init_meas[i] << '\t' << "->" << '\t' << final_meas[i] << std::endl;
   }
 
   for (UInt_t i = 0; i < fNpar; i++) {
-    std::cout << "Par" << i << ": " << '\t' << final_pars[i] << std::endl;
+    std::cout << "Par" << i << ": " << '\t' << init_pars[i] << '\t' << "->" << '\t' << final_pars[i] << std::endl;
   }
 
   std::cout << "---------------------------" << std::endl;
