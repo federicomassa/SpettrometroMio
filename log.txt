@@ -1,0 +1,505 @@
+Info in <TUnixSystem::ACLiC>: creating shared library /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB_cpp.so
+Error: Redefinition of default argument B_event_approx.h:104:
+Warning: Error occurred during reading source files
+Warning: Error occurred during dictionary source generation
+!!!Removing /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/provaB_cpp_ACLiC_dict.cxx /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/provaB_cpp_ACLiC_dict.h !!!
+Error: /home/federico/root/bin/rootcint: error loading headers...
+Error in <ACLiC>: Dictionary generation failed!
+Info in <ACLiC>: Invoking compiler to check macro's validity
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:20:3: error: ‘Double_t’ does not name a type
+   Double_t init_point[3]; 
+   ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:21:3: error: ‘Double_t’ does not name a type
+   Double_t coeff[3];
+   ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:22:3: error: ‘Double_t’ does not name a type
+   Double_t theta, phi;
+   ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:25:16: error: expected ‘)’ before ‘*’ token
+   line(Double_t*, Double_t*);
+                ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:26:16: error: expected ‘)’ before ‘*’ token
+   line(Double_t*, Double_t, Double_t);
+                ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:16: error: ‘Double_t’ has not been declared
+   void SetLine(Double_t*, Double_t*);
+                ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:27: error: ‘Double_t’ has not been declared
+   void SetLine(Double_t*, Double_t*);
+                           ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:16: error: ‘Double_t’ has not been declared
+   void SetLine(Double_t*, Double_t, Double_t);
+                ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:27: error: ‘Double_t’ has not been declared
+   void SetLine(Double_t*, Double_t, Double_t);
+                           ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:37: error: ‘Double_t’ has not been declared
+   void SetLine(Double_t*, Double_t, Double_t);
+                                     ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:29:3: error: ‘Double_t’ does not name a type
+   Double_t GetParameterAtZ(Double_t);
+   ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:17: error: ‘Double_t’ has not been declared
+   void GetPoint(Double_t, Double_t*);
+                 ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:27: error: ‘Double_t’ has not been declared
+   void GetPoint(Double_t, Double_t*);
+                           ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:31:22: error: ‘Double_t’ has not been declared
+   void GetInitCoords(Double_t*);
+                      ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:32:24: error: ‘Double_t’ has not been declared
+   void GetCoefficients(Double_t*);
+                        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:33:3: error: ‘Double_t’ does not name a type
+   Double_t GetTheta();
+   ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:34:3: error: ‘Double_t’ does not name a type
+   Double_t GetPhi();
+   ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:10:1: error: prototype for ‘line::line(Double_t*, Double_t*)’ does not match any in class ‘line’
+ line::line(Double_t* p1, Double_t* p2) {
+ ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:18:7: error: candidates are: line::line(const line&)
+ class line {
+       ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:7:1: error:                 line::line()
+ line::line() {
+ ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:34:1: error: prototype for ‘line::line(Double_t*, Double_t, Double_t)’ does not match any in class ‘line’
+ line::line(Double_t* p, Double_t theta0, Double_t phi0) {
+ ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:18:7: error: candidates are: line::line(const line&)
+ class line {
+       ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:7:1: error:                 line::line()
+ line::line() {
+ ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:47:6: error: prototype for ‘void line::SetLine(Double_t*, Double_t*)’ does not match any in class ‘line’
+ void line::SetLine(Double_t* p1, Double_t* p2) {
+      ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: error: candidates are: void line::SetLine(int*, int, int)
+   void SetLine(Double_t*, Double_t, Double_t);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: error:                 void line::SetLine(int*, int*)
+   void SetLine(Double_t*, Double_t*);
+        ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:71:6: error: prototype for ‘void line::SetLine(Double_t*, Double_t, Double_t)’ does not match any in class ‘line’
+ void line::SetLine(Double_t* p, Double_t theta0, Double_t phi0) {
+      ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: error: candidates are: void line::SetLine(int*, int, int)
+   void SetLine(Double_t*, Double_t, Double_t);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: error:                 void line::SetLine(int*, int*)
+   void SetLine(Double_t*, Double_t*);
+        ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:86:42: error: no ‘Double_t line::GetParameterAtZ(Double_t)’ member function declared in class ‘line’
+ Double_t line::GetParameterAtZ(Double_t z) {
+                                          ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:90:6: error: prototype for ‘void line::GetPoint(Double_t, Double_t*)’ does not match any in class ‘line’
+ void line::GetPoint(Double_t t, Double_t* p)  {
+      ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: error: candidate is: void line::GetPoint(int, int*)
+   void GetPoint(Double_t, Double_t*);
+        ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:96:6: error: prototype for ‘void line::GetInitCoords(Double_t*)’ does not match any in class ‘line’
+ void line::GetInitCoords(Double_t* p0) {
+      ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:31:8: error: candidate is: void line::GetInitCoords(int*)
+   void GetInitCoords(Double_t*);
+        ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:102:6: error: prototype for ‘void line::GetCoefficients(Double_t*)’ does not match any in class ‘line’
+ void line::GetCoefficients(Double_t* coeff0) {
+      ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:32:8: error: candidate is: void line::GetCoefficients(int*)
+   void GetCoefficients(Double_t*);
+        ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:108:25: error: no ‘Double_t line::GetTheta()’ member function declared in class ‘line’
+ Double_t line::GetTheta() {
+                         ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:112:23: error: no ‘Double_t line::GetPhi()’ member function declared in class ‘line’
+ Double_t line::GetPhi() {
+                       ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./helix.h:5:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:5,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h: In constructor ‘B_event_approx::B_event_approx(Double_t*, Double_t*, Double_t, Double_t)’:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:26:27: error: no matching function for call to ‘line::SetLine(Double_t*&, Double_t*&)’
+   line_in.SetLine(p10, p20);
+                           ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:26:27: note: candidates are:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note: void line::SetLine(int*, int*)
+   void SetLine(Double_t*, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note:   no known conversion for argument 1 from ‘Double_t* {aka double*}’ to ‘int*’
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note: void line::SetLine(int*, int, int)
+   void SetLine(Double_t*, Double_t, Double_t);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note:   candidate expects 3 arguments, 2 provided
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./helix.h:5:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:5,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:28:22: error: ‘class line’ has no member named ‘GetTheta’
+   theta_in = line_in.GetTheta();
+                      ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:29:20: error: ‘class line’ has no member named ‘GetPhi’
+   phi_in = line_in.GetPhi();
+                    ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:50:25: error: no matching function for call to ‘line::SetLine(Double_t [3], Double_t [3])’
+   line_out.SetLine(p3,p4);
+                         ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:50:25: note: candidates are:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note: void line::SetLine(int*, int*)
+   void SetLine(Double_t*, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note:   no known conversion for argument 1 from ‘Double_t [3] {aka double [3]}’ to ‘int*’
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note: void line::SetLine(int*, int, int)
+   void SetLine(Double_t*, Double_t, Double_t);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note:   candidate expects 3 arguments, 2 provided
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./helix.h:5:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:5,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:52:24: error: ‘class line’ has no member named ‘GetTheta’
+   theta_out = line_out.GetTheta();
+                        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:53:22: error: ‘class line’ has no member named ‘GetPhi’
+   phi_out = line_out.GetPhi();
+                      ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h: In member function ‘void B_event_approx::SetB_event_approx(Double_t*, Double_t*, Double_t, Double_t)’:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:73:27: error: no matching function for call to ‘line::SetLine(Double_t*&, Double_t*&)’
+   line_in.SetLine(p10, p20);
+                           ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:73:27: note: candidates are:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note: void line::SetLine(int*, int*)
+   void SetLine(Double_t*, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note:   no known conversion for argument 1 from ‘Double_t* {aka double*}’ to ‘int*’
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note: void line::SetLine(int*, int, int)
+   void SetLine(Double_t*, Double_t, Double_t);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note:   candidate expects 3 arguments, 2 provided
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./helix.h:5:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:5,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:75:22: error: ‘class line’ has no member named ‘GetTheta’
+   theta_in = line_in.GetTheta();
+                      ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:76:20: error: ‘class line’ has no member named ‘GetPhi’
+   phi_in = line_in.GetPhi();
+                    ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:96:25: error: no matching function for call to ‘line::SetLine(Double_t [3], Double_t [3])’
+   line_out.SetLine(p3,p4);
+                         ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:96:25: note: candidates are:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note: void line::SetLine(int*, int*)
+   void SetLine(Double_t*, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note:   no known conversion for argument 1 from ‘Double_t [3] {aka double [3]}’ to ‘int*’
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note: void line::SetLine(int*, int, int)
+   void SetLine(Double_t*, Double_t, Double_t);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note:   candidate expects 3 arguments, 2 provided
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./helix.h:5:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:5,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:98:24: error: ‘class line’ has no member named ‘GetTheta’
+   theta_out = line_out.GetTheta();
+                        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:99:22: error: ‘class line’ has no member named ‘GetPhi’
+   phi_out = line_out.GetPhi();
+                      ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h: At global scope:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:104:11: error: default argument missing for parameter 2 of ‘TGraph2D* B_event_approx::GetEventGraph(const char*, const char*)’
+ TGraph2D* B_event_approx::GetEventGraph(const char* name = "name", const char* title) {
+           ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h: In member function ‘TGraph2D* B_event_approx::GetEventGraph(const char*, const char*)’:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:112:49: error: no matching function for call to ‘line::GetPoint(Double_t&, Double_t [3])’
+   line_out.GetPoint(line_out_length, final_point);
+                                                 ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:112:49: note: candidate is:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note: void line::GetPoint(int, int*)
+   void GetPoint(Double_t, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note:   no known conversion for argument 2 from ‘Double_t [3] {aka double [3]}’ to ‘int*’
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./helix.h:5:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:5,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:117:24: error: ‘class line’ has no member named ‘GetParameterAtZ’
+   par_in_max = line_in.GetParameterAtZ(0.5*p2[2] + 0.5*p3[2]);
+                        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:118:35: error: ‘class line’ has no member named ‘GetParameterAtZ’
+   Double_t par_out_min = line_out.GetParameterAtZ(0.5*p2[2] + 0.5*p3[2]);
+                                   ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:119:26: error: ‘class line’ has no member named ‘GetParameterAtZ’
+   par_out_max = line_out.GetParameterAtZ(final_point[2]);
+                          ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:123:74: error: no matching function for call to ‘line::GetPoint(Double_t, Double_t [3])’
+     line_in.GetPoint(par_in_max/Double_t(npoints)*Double_t(i), point_buff);
+                                                                          ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:123:74: note: candidate is:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note: void line::GetPoint(int, int*)
+   void GetPoint(Double_t, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note:   no known conversion for argument 2 from ‘Double_t [3] {aka double [3]}’ to ‘int*’
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./helix.h:5:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:5,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:129:106: error: no matching function for call to ‘line::GetPoint(Double_t, Double_t [3])’
+     line_out.GetPoint(par_out_min + (par_out_max - par_out_min)*Double_t(i)/Double_t(npoints), point_buff);
+                                                                                                          ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event_approx.h:129:106: note: candidate is:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note: void line::GetPoint(int, int*)
+   void GetPoint(Double_t, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note:   no known conversion for argument 2 from ‘Double_t [3] {aka double [3]}’ to ‘int*’
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:0:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h: In constructor ‘B_event::B_event(Double_t*, Double_t*, Double_t, Double_t)’:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:32:27: error: no matching function for call to ‘line::SetLine(Double_t*&, Double_t*&)’
+   line_in.SetLine(p10, p20);
+                           ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:32:27: note: candidates are:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note: void line::SetLine(int*, int*)
+   void SetLine(Double_t*, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note:   no known conversion for argument 1 from ‘Double_t* {aka double*}’ to ‘int*’
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note: void line::SetLine(int*, int, int)
+   void SetLine(Double_t*, Double_t, Double_t);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note:   candidate expects 3 arguments, 2 provided
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:0:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:34:22: error: ‘class line’ has no member named ‘GetTheta’
+   theta_in = line_in.GetTheta();
+                      ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:35:20: error: ‘class line’ has no member named ‘GetPhi’
+   phi_in = line_in.GetPhi();
+                    ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:52:3: error: ‘cout’ was not declared in this scope
+   cout << "OMEGA: " << omega << endl;
+   ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:52:3: note: suggested alternative:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./helix.h:7:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:5,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/usr/include/c++/4.8/iostream:61:18: note:   ‘std::cout’
+   extern ostream cout;  /// Linked to standard output
+                  ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:0:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:52:33: error: ‘endl’ was not declared in this scope
+   cout << "OMEGA: " << omega << endl;
+                                 ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:52:33: note: suggested alternative:
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./helix.h:7,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:5,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/usr/include/c++/4.8/ostream:564:5: note:   ‘std::endl’
+     endl(basic_ostream<_CharT, _Traits>& __os)
+     ^
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:0:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:74:42: error: no matching function for call to ‘line::SetLine(Double_t [3], Double_t&, Double_t&)’
+   line_out.SetLine(p3, theta_out, phi_out);  
+                                          ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:74:42: note: candidates are:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note: void line::SetLine(int*, int*)
+   void SetLine(Double_t*, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note:   candidate expects 2 arguments, 3 provided
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note: void line::SetLine(int*, int, int)
+   void SetLine(Double_t*, Double_t, Double_t);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note:   no known conversion for argument 1 from ‘Double_t [3] {aka double [3]}’ to ‘int*’
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:0:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:76:30: error: ‘class line’ has no member named ‘GetParameterAtZ’
+   line_out.GetPoint(line_out.GetParameterAtZ(p2[2]+L+Delta_z), p4);
+                              ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h: In member function ‘void B_event::SetB_event(Double_t*, Double_t*, Double_t, Double_t)’:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:99:27: error: no matching function for call to ‘line::SetLine(Double_t*&, Double_t*&)’
+   line_in.SetLine(p10, p20);
+                           ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:99:27: note: candidates are:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note: void line::SetLine(int*, int*)
+   void SetLine(Double_t*, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note:   no known conversion for argument 1 from ‘Double_t* {aka double*}’ to ‘int*’
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note: void line::SetLine(int*, int, int)
+   void SetLine(Double_t*, Double_t, Double_t);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note:   candidate expects 3 arguments, 2 provided
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:0:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:101:22: error: ‘class line’ has no member named ‘GetTheta’
+   theta_in = line_in.GetTheta();
+                      ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:102:20: error: ‘class line’ has no member named ‘GetPhi’
+   phi_in = line_in.GetPhi();
+                    ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:139:42: error: no matching function for call to ‘line::SetLine(Double_t [3], Double_t&, Double_t&)’
+   line_out.SetLine(p3, theta_out, phi_out);  
+                                          ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:139:42: note: candidates are:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note: void line::SetLine(int*, int*)
+   void SetLine(Double_t*, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:27:8: note:   candidate expects 2 arguments, 3 provided
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note: void line::SetLine(int*, int, int)
+   void SetLine(Double_t*, Double_t, Double_t);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:28:8: note:   no known conversion for argument 1 from ‘Double_t [3] {aka double [3]}’ to ‘int*’
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:0:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:141:30: error: ‘class line’ has no member named ‘GetParameterAtZ’
+   line_out.GetPoint(line_out.GetParameterAtZ(p2[2]+L+Delta_z), p4);
+                              ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h: In member function ‘TGraph2D* B_event::GetEventGraph()’:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:153:49: error: no matching function for call to ‘line::GetPoint(Double_t&, Double_t [3])’
+   line_out.GetPoint(line_out_length, final_point);
+                                                 ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:153:49: note: candidate is:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note: void line::GetPoint(int, int*)
+   void GetPoint(Double_t, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note:   no known conversion for argument 2 from ‘Double_t [3] {aka double [3]}’ to ‘int*’
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:0:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:158:24: error: ‘class line’ has no member named ‘GetParameterAtZ’
+   par_in_max = line_in.GetParameterAtZ(p2[2]);
+                        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:159:26: error: ‘class line’ has no member named ‘GetParameterAtZ’
+   par_out_max = line_out.GetParameterAtZ(final_point[2]);
+                          ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:165:74: error: no matching function for call to ‘line::GetPoint(Double_t, Double_t [3])’
+     line_in.GetPoint(par_in_max/Double_t(npoints)*Double_t(i), point_buff);
+                                                                          ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:165:74: note: candidate is:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note: void line::GetPoint(int, int*)
+   void GetPoint(Double_t, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note:   no known conversion for argument 2 from ‘Double_t [3] {aka double [3]}’ to ‘int*’
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:0:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:179:76: error: no matching function for call to ‘line::GetPoint(Double_t, Double_t [3])’
+     line_out.GetPoint(par_out_max/Double_t(npoints)*Double_t(i), point_buff);
+                                                                            ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:179:76: note: candidate is:
+In file included from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.h:4:0,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.cpp:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./B_event.h:4,
+                 from /home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./provaB.cpp:1:
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note: void line::GetPoint(int, int*)
+   void GetPoint(Double_t, Double_t*);
+        ^
+/home/federico/Scrivania/Universita/MonteCarlo/Spettrometro/./line.cpp:30:8: note:   no known conversion for argument 2 from ‘Double_t [3] {aka double [3]}’ to ‘int*’

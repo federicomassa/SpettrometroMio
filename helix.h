@@ -2,6 +2,7 @@
 #define HELIX_H
 
 #include "helix.cpp"
+#include "B_event_approx.h"
 #include <TMath.h>
 #include <iostream>
 
@@ -101,6 +102,9 @@ void helix::GetPoint(Double_t par, Double_t* p) {
 
 ////////// EXPERIMENTAL SETUP //////////////////
 Double_t helix::mass = 0.13957018; // [GeV/c^2]
-Double_t helix::B = 1; // [T]
+
+// to compare B_event with B_event_approx.. divide for charge in units of e if q != 1
+
+Double_t helix::B = B_event_approx::p_kick/B_event_approx::L/0.299792458; // [T]
 
 #endif

@@ -2,6 +2,7 @@
 #define B_EVENT_H
 
 #include "B_event.cpp"
+#include "B_event_approx.h"
 #include "line.h"
 #include "helix.h"
 #include <TMath.h>
@@ -229,8 +230,8 @@ void B_event::GetP4(Double_t* p40) {
   p40[2] = p4[2];
 }
 
-Double_t B_event::L = 0.35;
-Double_t B_event::Delta_z = 10;
+Double_t B_event::L = B_event_approx::L;
+Double_t B_event::Delta_z = B_event_approx::Delta_z;
 
 
 

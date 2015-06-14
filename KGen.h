@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <TNtupleD.h>
 
 using namespace std;
 
@@ -238,6 +239,8 @@ class KGen {
     out << ev_no << fixed << setprecision(8) << '\t'  << K_z << '\t'  << K_p << '\t'  << pi_plus_modp << '\t'  << pi_plus_theta << '\t'  << pi_plus_phi << '\t'  << pi_min_modp << '\t'  << pi_min_theta << '\t'  << pi_min_phi << '\n'; 
   }
 
+  void WriteNtuple(TNtupleD &nt) {
+    Double_t* 
 
   //Functions to get event variables
 
