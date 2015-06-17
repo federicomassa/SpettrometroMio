@@ -7,7 +7,6 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
-#include <TNtupleD.h>
 
 using namespace std;
 
@@ -236,11 +235,8 @@ class KGen {
   // Writes event on a ASCII file. To view correctly, change your editor tab settings to at least 10 spaces
   void WriteEvent (ofstream &out, int ev_no = 0) { //out = output file, ev_no = event number
     if (ev_no == 1) out << "Event" << '\t'  << "z_dec" << '\t'  << "K_p" << '\t'  << "Pi+_p" << '\t'  << "Pi+_Th" << '\t'  << "Pi+_Phi" << '\t'  << "Pi-_p" << '\t'  << "Pi-_Th" << '\t'  << "Pi-_Phi" << '\n' << '\n'; 
-    out << ev_no << fixed << setprecision(8) << '\t'  << K_z << '\t'  << K_p << '\t'  << pi_plus_modp << '\t'  << pi_plus_theta << '\t'  << pi_plus_phi << '\t'  << pi_min_modp << '\t'  << pi_min_theta << '\t'  << pi_min_phi << '\n'; 
+    out << ev_no << fixed << setprecision(12) << '\t'  << K_z << '\t'  << K_p << '\t'  << pi_plus_modp << '\t'  << pi_plus_theta << '\t'  << pi_plus_phi << '\t'  << pi_min_modp << '\t'  << pi_min_theta << '\t'  << pi_min_phi << '\n'; 
   }
-
-  void WriteNtuple(TNtupleD &nt) {
-    Double_t* 
 
   //Functions to get event variables
 

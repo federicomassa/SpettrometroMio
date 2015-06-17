@@ -1,0 +1,22 @@
+#include "InitializeZPP.h"
+#include "const_double.h"
+#include <TFile.h>
+#include <TNtupleD.h>
+
+void iterkinfit_prova2() {
+
+  TFile* in = new TFile("../Spettrometro_Files/measures.root");
+  TNtupleD* nt = (TNtupleD*) in->Get("measures");
+  Double_t* args = new Double_t[36];
+  nt->GetEntry(0);
+  args = nt->GetArgs();
+  
+  Double_t* init_measures = new Double_t[16];
+  Double_t* init_pars = new Double_t[3];
+  for (UInt_t i = 0; i < 16; i++) {
+    init_measures[i] = args[20+i];
+  }
+
+  InitializeZPP(init_measures, init_pars);
+
+}

@@ -1,0 +1,62 @@
+#include "combinatorial.h"
+#include "B_event_approx.h"
+#include <TFile.h>
+#include <TNtupleD.h>
+#include <iostream>
+ 
+void comb_prova() {
+
+  TFile* in = new TFile("../Spettrometro_Files/measures.root");
+  TNtupleD* nt = (TNtupleD*) in->Get("measures");
+  
+  Double_t* args = new Double_t[nt->GetNbranches()];
+  Double_t* x1_init = new Double_t[4];
+  Double_t* x2_init = new Double_t[4];
+  Double_t* x1_final = new Double_t[4];
+  Double_t* x2_final = new Double_t[4];
+  Double_t* z = new Double_t[4];
+
+  z[0] = 50;
+  z[1] = 60;
+  z[2] = z[1] + B_event_approx::L;
+  z[3] = z[2] + B_event_approx::Delta_z;
+
+  nt->GetEntry(0);
+  args = nt->GetArgs();
+
+  for (UInt_t i = 0; i < 4; i++) {
+    x1_init[i] = args[20 + 2*i];
+    x2_init[i] = args[28 + 2*i];
+  }
+
+  
+
+  combinatorial comb;
+  comb.SetPoints(4, z, x1_init, x2_init);
+  comb.GetCombination(x1_final, x2_final);
+
+  for (UInt_t i = 0; i < 4; i++) {
+    std::cout << x1_init[i] << '\t';
+  }
+
+  std::cout << std::endl;
+
+  for (UInt_t i = 0; i < 4; i++) {
+    std::cout << x1_final[i] << '\t';
+  }
+
+  std::cout << "\n//////////////\n";
+
+  for (UInt_t i = 0; i < 4; i++) {
+    std::cout << x2_init[i] << '\t';
+  }
+
+  std::cout << std::endl;
+
+  for (UInt_t i = 0; i < 4; i++) {
+    std::cout << x2_final[i] << '\t';
+  }
+
+  std::cout << "\n CHI2: " << c.GetBestChi2() << std::endl;
+
+}

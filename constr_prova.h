@@ -2,9 +2,11 @@
 #define CONSTR_PROVA_H
 
 #include <TMatrixD.h>
+#include "B_event_approx.h"
 
 Double_t z1 = 50;
 Double_t z2 = 60;
+
 
 TMatrixD Constr(Double_t* vars, Double_t* pars) {
 
@@ -12,7 +14,7 @@ TMatrixD Constr(Double_t* vars, Double_t* pars) {
 
   c(0,0) = vars[0]*(z2 - pars[0]) - vars[2]*(z1 - pars[0]);
   c(1,0) = vars[1]*(z2 - pars[0]) - vars[3]*(z1 - pars[0]);
-
+  
   return c;
 }
 

@@ -11,16 +11,11 @@
 #include <TFile.h>
 #include <TRandom3.h>
 #include <TGraph.h>
+#include <TNtupleD.h>
 
 using namespace TMath;
 
 void p_reco(const char* impr_meas_name = "impr_measures") {
-
-  string path = "../Spettrometro_Files/";
-  string dat_ext = ".dat";
-  string impr_str;
-  string complete_impr_name;
-  string str;
 
   TRandom3 rndgen;
 
@@ -28,7 +23,6 @@ void p_reco(const char* impr_meas_name = "impr_measures") {
   Double_t P1_plus_t[3], P1_min_t[3], P2_plus_t[3], P2_min_t[3], P3_plus_t[3], P3_min_t[3], P4_plus_t[3], P4_min_t[3];
   Double_t det1 = 50;
   Double_t det2 = 60;
-  Int_t ev_no;
   Double_t K_z, K_p, pi_plus_modp, pi_min_modp;
   
   TGraph* graph = new TGraph[6];
@@ -41,6 +35,8 @@ void p_reco(const char* impr_meas_name = "impr_measures") {
   p_reco_err[0] = p_reco_err[3] = 0.00365;
   p_reco_err[1] = p_reco_err[4] = 0.00345;
   p_reco_err[2] = p_reco_err[5] = 0.465;
+
+  Double_t p_total[12];
 
   Double_t gamma_plus, gamma_min;
   Double_t theta_plus_in_t, theta_plus_out_t;
@@ -65,7 +61,6 @@ void p_reco(const char* impr_meas_name = "impr_measures") {
   B_event ev_min;
   IterKinFit* iter;
 
-  int count = 0;
   //HISTOGRAMS
   TH1F* p_plus_reco_hist = new TH1F("p_plus_reco", "Pi+ p Reco; True-Meas", 1000, 1, 0);
   TH1F* p_min_reco_hist = new TH1F("p_min_reco", "Pi- p Reco; True-Meas", 1000, 1, 0);
@@ -96,7 +91,7 @@ void p_reco(const char* impr_meas_name = "impr_measures") {
   TH1F* Invariant_Mass3_hist = new TH1F("Inv_mass3", "Final invariant mass", 1000, 1, 0);
 
   TH1F* K_p_hist = new TH1F("K_p_hist", "K_p; Gev/c", 250, 75,125);
-  TH1F* K_abs_reco_hist = new TH1F("K_reco_hist", "K_p; GeV/c", 250, 75,125);
+  TH1F* K_abs_reco_hist = new TH1F("K_abs_reco_hist", "K_p; GeV/c", 250, 75,125);
   
 
   ////////////
@@ -107,29 +102,22 @@ void p_reco(const char* impr_meas_name = "impr_measures") {
 
   P1_plus[2] = P1_min[2] = det1;
   P2_plus[2] = P2_min[2] = det2;
-  
-  stringstream ss;
-  ss << impr_meas_name;
-  ss >> impr_str;
-  ss.clear();
-  
-  complete_impr_name = path + impr_str + dat_ext;
-
-  ifstream impr_file(complete_impr_name.c_str());
+    
+  TFile* root_in = new TFile("../Spettrometro_Files/reconstruction.root");
   TFile* root_out = new TFile("../Spettrometro_Files/p_reco.root","recreate");
   
-  getline(impr_file,str);
-  getline(impr_file,str);
-  getline(impr_file,str);
-  getline(impr_file,str);
-  getline(impr_file,str);
+  TNtupleD* nt_in = (TNtupleD*) root_in->Get("impr_meas");
+
+  const char* nt_out_list = "px_plus:py_plus:pz_plus:px_min:py_min:pz_min:px_it_plus:py_it_plus:pz_it_plus:px_it_min:py_it_min:pz_it_min";
+
+    TNtupleD* nt_out = new TNtupleD("nt_out", "Reconstructed_momentum", nt_out_list);
+
     
-  ReadImpr(impr_file, ev_no, K_z, K_p, pi_plus_modp, theta_plus_in_t, phi_plus_in_t, pi_min_modp, theta_min_in_t, phi_min_in_t, P1_plus, P1_min, P2_plus, P2_min);
+  ReadImpr(nt_in, 0, K_z, K_p, pi_plus_modp, theta_plus_in_t, phi_plus_in_t, pi_min_modp, theta_min_in_t, phi_min_in_t, P1_plus, P1_min, P2_plus, P2_min);
 
-  do {
+  for (Int_t i = 0; i < nt_in->GetEntries(); i++) {
 
-    count++;
-    if (count % 20000 == 0) cout << count << " events..." << endl;
+    if (i % Nint(Double_t(nt_in->GetEntries())/100*5) == 0) cout << Nint(Double_t(i)/Double_t(nt_in->GetEntries())*100) << "% completed..." << endl;
 
     P1_plus_t[0] = (det1-K_z)*Tan(theta_plus_in_t)*Cos(phi_plus_in_t);
     P1_plus_t[1] = (det1-K_z)*Tan(theta_plus_in_t)*Sin(phi_plus_in_t);
@@ -237,16 +225,16 @@ void p_reco(const char* impr_meas_name = "impr_measures") {
     ////////// ITERATIVE KINEMATIC FIT //////////////
 
     iter = new IterKinFit;
-    iter->Initialize(6,2,p_reco_init, Momentum_Constr_Vector, Momentum_Constr_Derivative, p_reco_err);
+    iter->Initialize(6,3,p_reco_init, Momentum_Constr_Vector, Momentum_Constr_Derivative, p_reco_err);
     iter->SetThreshold(1E-6);
     iter->SetStepParameter(0.5);
     
-    if(ev_no == 1)
+    if(i == 1)
       iter->Minimize(p_reco_final, graph);
     else 
       iter->Minimize(p_reco_final);
 
-    if (ev_no == 1) {
+    if (i == 1) {
       iter->GetConstraintVector(p_reco_init).Print();
       iter->GetConstraintVector(p_reco_final).Print();      
       iter->PrintResult();
@@ -278,14 +266,30 @@ void p_reco(const char* impr_meas_name = "impr_measures") {
     K_p_hist->Fill(K_p);
     K_abs_reco_hist->Fill(p_reco_init[2] + p_reco_init[5]);
 
+    p_total[0] = p_reco_init[0];
+    p_total[1] = p_reco_init[1];
+    p_total[2] = p_reco_init[2];
+    p_total[3] = p_reco_init[3];
+    p_total[4] = p_reco_init[4];
+    p_total[5] = p_reco_init[5];
+
+    p_total[6] = p_reco_final[0];
+    p_total[7] = p_reco_final[1];
+    p_total[8] = p_reco_final[2];
+    p_total[9] = p_reco_final[3];
+    p_total[10] = p_reco_final[4];
+    p_total[11] = p_reco_final[5];
+
+    nt_out->Fill(p_total);
+
     delete iter;
     
 
-    ReadImpr(impr_file, ev_no, K_z, K_p, pi_plus_modp, theta_plus_in_t, phi_plus_in_t, pi_min_modp, theta_min_in_t, phi_min_in_t, P1_plus, P1_min, P2_plus, P2_min);
+    ReadImpr(nt_in, i+1, K_z, K_p, pi_plus_modp, theta_plus_in_t, phi_plus_in_t, pi_min_modp, theta_min_in_t, phi_min_in_t, P1_plus, P1_min, P2_plus, P2_min);
+
   }
-  while (!impr_file.eof());
 
-
+  nt_out->Write();
   p_plus_reco_hist->Write();
   p_min_reco_hist->Write();
   px_plus_reco_hist->Write();

@@ -14,7 +14,6 @@ IterKinFit::IterKinFit() {
   isInitialized = false;
   isFirstIteration = true;
   isFinal = true;
-  
   fNVar = 0;
   fNConstr = 0;
   init_meas = 0;

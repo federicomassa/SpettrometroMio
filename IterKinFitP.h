@@ -14,7 +14,9 @@ IterKinFitP::IterKinFitP() {
   isInitialized = false;
   isFirstIteration = true;
   isFinal = true;
-
+  isRValid = true;
+  isPValid = true;
+  isValid = true;
   fNvar = 0;
   fNconstr = 0;
   fNpar = 0;
@@ -53,6 +55,9 @@ void IterKinFitP::Initialize(UInt_t nvar, UInt_t nconstr, UInt_t npar, Double_t*
   
   isFirstIteration = true;
   isInitialized = true;
+  isRValid = true;
+  isPValid = true;
+  isValid = true;
 
   Constr_FCN = Phi_FCN;
   Der_FCN = B_FCN;
@@ -202,38 +207,44 @@ void IterKinFitP::SetRMatrix() {
     else 
       RinvMatrix = RMatrix.Invert();
   
-  else return;
+  else {isRValid = false; return;}
  }
 
 void IterKinFitP::SetPMatrix() {
 
-  if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
-
-  TMatrixD P(fNpar, fNpar);
-
-  TMatrixD Temp_Matrix1(fNconstr, fNpar);
-  TMatrixD AMatrix_t(fNconstr, fNpar);
-  AMatrix_t.Transpose(AMatrix);
-
-  Temp_Matrix1.Mult(RinvMatrix, AMatrix_t);
-
-  PMatrix.ResizeTo(fNpar, fNpar);
-  PinvMatrix.ResizeTo(fNpar, fNpar);
-
-  P.Mult(AMatrix,Temp_Matrix1);
-
-  PMatrix = P;
-
-if (PMatrix.Determinant() != 0) 
-    if (fNpar > 1)
-      PinvMatrix = PMatrix.InvertFast();
-    else 
-      PinvMatrix = PMatrix.Invert();
-  
-  else return;
-}
-
+  if (isRValid) {
     
+    if (!isInitialized) std::cout << "ERROR: First call Initialize" << std::endl;
+    
+    TMatrixD P(fNpar, fNpar);
+    
+    TMatrixD Temp_Matrix1(fNconstr, fNpar);
+    TMatrixD AMatrix_t(fNconstr, fNpar);
+    AMatrix_t.Transpose(AMatrix);
+    
+    Temp_Matrix1.Mult(RinvMatrix, AMatrix_t);
+    
+    PMatrix.ResizeTo(fNpar, fNpar);
+    PinvMatrix.ResizeTo(fNpar, fNpar);
+    
+    P.Mult(AMatrix,Temp_Matrix1);
+    
+    PMatrix = P;
+    
+    if (PMatrix.Determinant() != 0) 
+      if (fNpar > 1)
+	PinvMatrix = PMatrix.InvertFast();
+      else 
+	PinvMatrix = PMatrix.Invert();
+    
+    else {isPValid = false; return;}
+  }
+
+  else return;
+
+  }
+  
+  
  
 Double_t IterKinFitP::GetRDeterminant() {
   return RMatrix.Determinant();
@@ -312,9 +323,11 @@ void IterKinFitP::SetMatrices() {
        SetBMatrix();
        SetRMatrix();
        SetPMatrix();
+       if (isRValid && isPValid) {
        SetDelta_a();
        SetLambda();
-       SetDelta_y();
+       SetDelta_y(); }
+       else {isValid = false; return;}
 }
    
    
@@ -362,40 +375,46 @@ void IterKinFitP::Minimize(Double_t* final_m, Double_t* final_p) {
        
        // Computer matrices
        SetMatrices();
-       Iterate();
-       iteration_no++;
+       if (isValid) {
+	 Iterate();
+	 iteration_no++;
+	 
+	 //reset after check
+	 isFinal = true;
+	 
+	 //check if something's changed
+	 for (UInt_t i = 0; i < fNvar; i++) {
+	   isFinal = isFinal && TMath::Abs((curr_meas[i] - old_var[i])/old_var[i]) < threshold;
+	 }
+	 
+	 for (UInt_t i = 0; i < fNpar; i++) {
+	   isFinal = isFinal && TMath::Abs((curr_pars[i] - old_par[i])/old_par[i]) < threshold;
+	 }
+	 
+	 for (UInt_t i = 0; i < fNvar; i++) old_var[i] = curr_meas[i];
+	 for (UInt_t i = 0; i < fNpar; i++) old_par[i] = curr_pars[i];
 
-       //reset after check
-       isFinal = true;
-       
-       //check if something's changed
-       for (UInt_t i = 0; i < fNvar; i++) {
-	 isFinal = isFinal && TMath::Abs((curr_meas[i] - old_var[i])/old_var[i]) < threshold;
        }
+       else break;
        
-       for (UInt_t i = 0; i < fNpar; i++) {
-	 isFinal = isFinal && TMath::Abs((curr_pars[i] - old_par[i])/old_par[i]) < threshold;
-       }
-       
-       for (UInt_t i = 0; i < fNvar; i++) old_var[i] = curr_meas[i];
-       for (UInt_t i = 0; i < fNpar; i++) old_par[i] = curr_pars[i];
+
      }
      
      while (!isFinal);
      
      iteration_no -= 1; //last iteration did not change anything above threshold
-   
-   for (UInt_t i = 0; i < fNvar; i++) {
-     final_meas[i] = curr_meas[i];
-     final_m[i] = curr_meas[i];
-   }
-
-   for (UInt_t i = 0; i < fNpar; i++) {
-     final_pars[i] = curr_pars[i];
-     final_p[i] = curr_pars[i];
-   }
-
- }
+     
+       for (UInt_t i = 0; i < fNvar; i++) {
+	 final_meas[i] = curr_meas[i];
+	 final_m[i] = curr_meas[i];
+       }
+       
+       for (UInt_t i = 0; i < fNpar; i++) {
+	 final_pars[i] = curr_pars[i];
+	 final_p[i] = curr_pars[i];
+       }
+       
+}
 
 void IterKinFitP::Minimize(Double_t* final_m, Double_t* final_p, TGraph* graph) {
    
