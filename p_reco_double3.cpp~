@@ -1,5 +1,5 @@
 #include "IterKinFitP.h"
-#include "const_double.h"
+#include "const_double3.h"
 #include "InitializeZPP.h"
 #include "MergeNtuples.h"
 #include <TNtupleD.h>
@@ -13,7 +13,7 @@ void p_reco() {
   const char* nt_iter_list = "chi2:z_r:p_plus_r:p_min_r:x1_plus_r:y1_plus_r:x2_plus_r:y2_plus_r:x3_plus_r:y3_plus_r:x4_plus_r:y4_plus_r:x1_min_r:y1_min_r:x2_min_r:y2_min_r:x3_min_r:y3_min_r:x4_min_r:y4_min_r:W_r";
 
   TFile* root_in = new TFile("../Spettrometro_Files/measures.root");
-  TFile* root_out = new TFile("../Spettrometro_Files/measures_final_double.root", "recreate");
+  TFile* root_out = new TFile("../Spettrometro_Files/measures_final_double3.root", "recreate");
   TNtupleD* nt_gen = (TNtupleD*) root_in->Get("measures");
   TNtupleD* nt_iter = new TNtupleD("nt_iter", "Iterative KinFit", nt_iter_list);
   TNtupleD* nt_final = new TNtupleD;
@@ -32,8 +32,8 @@ void p_reco() {
   
 
   for (UInt_t i = 0; i < nt_gen->GetEntries(); i++) {
-
-    if (i % TMath::Nint(double(nt_gen->GetEntries())/100*5) == 0) std::cout << TMath::Nint(double(i)/double(nt_gen->GetEntries())*100) << "% completed..." << std::endl;
+  // for (UInt_t i = 0; i < 3000; i++) {
+    if (i % TMath::Nint(double(nt_gen->GetEntries())/100*1) == 0) std::cout << TMath::Nint(double(i)/double(nt_gen->GetEntries())*100) << "% completed..." << std::endl;
 
     nt_gen->GetEntry(i);
     args_gen = nt_gen->GetArgs();
@@ -45,7 +45,9 @@ void p_reco() {
     InitializeZPP(init_meas, init_pars);
 
     iter = new IterKinFitP;
-    iter->Initialize(16,12,3,init_meas,init_pars,Constr, Der, PDer, err);
+    iter->Initialize(16,14,3,init_meas,init_pars,Constr, Der, PDer, err);
+    iter->SetStepParameter(0.1);
+    iter->SetThreshold(1E-7);
     iter->Minimize(final_meas, final_pars);
     chi2 = iter->GetChi2();
 
@@ -65,7 +67,7 @@ void p_reco() {
   }
 
 
-  nt_final =  MergeNtuples(nt_gen, nt_iter, "measures_final_double", "Complete Ntuple");
+  nt_final =  MergeNtuples(nt_gen, nt_iter, "measures_final_double3", "Complete Ntuple");
 
   nt_final->Write();
   root_in->Close();

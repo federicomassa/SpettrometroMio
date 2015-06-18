@@ -18,7 +18,7 @@
 class IterKinFitP { 
 private:
   UInt_t fNvar, fNconstr, fNpar;
-  Bool_t isInitialized, isFirstIteration, isFinal, isRValid, isPValid, isValid;
+  Bool_t isInitialized, isFirstIteration, isFinal, isRValid, isPValid, isValid, isOverMax;
   Double_t step_parameter; //default = 0.5 (new_coord = old_coord + step_parameter*(x_vector-x_guess)
   Double_t threshold;
   UInt_t MaxIterationNumber;
@@ -74,6 +74,7 @@ public:
   void Minimize(Double_t*, Double_t*);
   void Minimize(Double_t*, Double_t*, TGraph*);
   UInt_t GetIterationNumber();
+  Bool_t IsOverMax();
   void PrintResult();
 
 };

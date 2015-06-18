@@ -17,6 +17,7 @@ IterKinFitP::IterKinFitP() {
   isRValid = true;
   isPValid = true;
   isValid = true;
+  isOverMax = false;
   fNvar = 0;
   fNconstr = 0;
   fNpar = 0;
@@ -58,6 +59,7 @@ void IterKinFitP::Initialize(UInt_t nvar, UInt_t nconstr, UInt_t npar, Double_t*
   isRValid = true;
   isPValid = true;
   isValid = true;
+  isOverMax = false;
 
   Constr_FCN = Phi_FCN;
   Der_FCN = B_FCN;
@@ -400,7 +402,9 @@ void IterKinFitP::Minimize(Double_t* final_m, Double_t* final_p) {
 
      }
      
-     while (!isFinal);
+     while (!isFinal && iteration_no != MaxIterationNumber);
+     
+     if (iteration_no == MaxIterationNumber) isOverMax = true;
      
      iteration_no -= 1; //last iteration did not change anything above threshold
      
@@ -497,8 +501,10 @@ void IterKinFitP::Minimize(Double_t* final_m, Double_t* final_p, TGraph* graph) 
        for (UInt_t i = 0; i < fNpar; i++) old_par[i] = curr_pars[i];
      }
      
-     while (!isFinal);
-     
+     while (!isFinal && iteration_no != MaxIterationNumber);
+
+     if (iteration_no == MaxIterationNumber) isOverMax = true;
+
      iteration_no -= 1; //last iteration did not change anything above threshold
    
    for (UInt_t i = 0; i < fNvar; i++) {
@@ -521,6 +527,9 @@ UInt_t IterKinFitP::GetIterationNumber() {
     return iteration_no;
 }
 
+Bool_t IterKinFitP::IsOverMax() {
+  return isOverMax;
+}
 
 void IterKinFitP::PrintResult() {
 
