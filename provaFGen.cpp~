@@ -1,0 +1,7 @@
+#include <FGenPhaseSpace.h>
+
+void provaFGen() {
+
+  FGenPhaseSpace event;
+
+}

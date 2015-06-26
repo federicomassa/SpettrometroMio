@@ -203,7 +203,7 @@ void IterKinFitP::SetRMatrix() {
   
   RMatrix = R;
 
-  if (RMatrix.Determinant() != 0) 
+  if (TMath::Abs(RMatrix.Determinant()) > 1E-300) //zero signature 
     if (fNconstr > 1)
       RinvMatrix = RMatrix.InvertFast();
     else 
@@ -233,7 +233,7 @@ void IterKinFitP::SetPMatrix() {
     
     PMatrix = P;
     
-    if (PMatrix.Determinant() != 0) 
+    if (TMath::Abs(PMatrix.Determinant()) > 1E-300) //zero signature
       if (fNpar > 1)
 	PinvMatrix = PMatrix.InvertFast();
       else 
