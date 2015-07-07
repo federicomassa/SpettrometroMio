@@ -110,8 +110,33 @@ $\mathbf{\sigma_x}(m)$ & 0.001 \\
 \label{tab:apparato}
 \end{table}
 
+\section{Struttura del codice} \label{sec:script}
+Il codice, scritto in C++, presenta una struttura modulare rappresentata in un diagramma in Fig.\ref{fig:script_structure}.
 
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.4]{script_structure}
+		\caption{Diagramma di flusso del funzionamento del codice. Ogni modulo riceve in input e/o produce in output una \textit{ntupla}.}
+		\label{fig:script_structure}
+	\end{center}
+\end{figure}
 
+Esso si basa sull'uso di una classe di ROOT, \textit{TNtupleD}, che permette di salvare in un file tutte le caratteristiche desiderate per un evento in forma di variabili in doppia precisione.
 
+\section{Generazione dell'evento} \label{sec:generation}
+
+\section{Simulazione della risposta dei rivelatori} \label{sec:detector}
+\subsection{Coordinate degli hit: linearità e approssimazione di kick}
+\subsubsection{Applicazione dello smeering del rivelatore}
+
+\section{Ricostruzione dell'evento} \label{sec:reconstruction}
+\subsection{Identificazione della carica}
+\subsection{Problema combinatoriale}
+\subsection{La classe IterKinFitP}
+\subsection{Inizializzazione delle variabili e dei parametri}
+\subsection{Misura della risoluzione con quattro rivelatori}
+\subsection{Misura della risoluzione con tre rivelatori}
+
+\section{Conclusioni} \label{sec:conclusioni}
 
 \end{document}

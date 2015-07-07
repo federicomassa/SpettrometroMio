@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.6)  7 JUL 2015 19:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.6)  7 JUL 2015 23:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -485,15 +485,8 @@ Overfull \hbox (18.64021pt too wide) in paragraph at lines 74--75
  []
 
 
-LaTeX Warning: Reference `sec:detector' on page 2 undefined on input line 80.
-
-
 LaTeX Warning: Reference `subsec:raggio_interno' on page 2 undefined on input l
 ine 80.
-
-
-LaTeX Warning: Reference `sec:generation' on page 2 undefined on input line 80.
-
 
 
 Overfull \hbox (1.04727pt too wide) in paragraph at lines 100--100
@@ -503,7 +496,14 @@ Overfull \hbox (1.04727pt too wide) in paragraph at lines 100--100
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[2] [3 <./apparato_3d.png> <./apparato_2d.png>] [4] (./spettrometro.aux)
+<script_structure.png, id=16, 517.935pt x 404.51125pt>
+File: script_structure.png Graphic file (type png)
+
+<use script_structure.png>
+Package pdftex.def Info: script_structure.png used on input line 118.
+(pdftex.def)             Requested size: 207.17032pt x 161.80162pt.
+ [2] [3 <./apparato_3d.png> <./apparato_2d.png>]
+[4 <./script_structure.png>] [5] (./spettrometro.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -512,11 +512,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5890 strings out of 493093
- 89340 string characters out of 6134996
- 165157 words of memory out of 5000000
- 9244 multiletter control sequences out of 15000+600000
- 21607 words of font info for 86 fonts, out of 8000000 for 9000
+ 5911 strings out of 493093
+ 89734 string characters out of 6134996
+ 166205 words of memory out of 5000000
+ 9263 multiletter control sequences out of 15000+600000
+ 21959 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,12n,40p,1374b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
@@ -537,11 +537,12 @@ ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on spettrometro.pdf (4 pages, 305861 bytes).
+-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on spettrometro.pdf (5 pages, 363928 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 105 PDF objects out of 1000 (max. 8388607)
+ 73 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
