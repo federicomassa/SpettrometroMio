@@ -29,7 +29,7 @@ void p_reco() {
   for (UInt_t i = 0; i < 16; i++) {
     err[i] = 0.001;
   }
-  
+ 
 
   for (UInt_t i = 0; i < nt_gen->GetEntries(); i++) {
 
@@ -37,6 +37,8 @@ void p_reco() {
 
     nt_gen->GetEntry(i);
     args_gen = nt_gen->GetArgs();
+
+
 
     for (UInt_t j = 0; j < 16; j++) {
       init_meas[j] = args_gen[20 + j];
@@ -53,6 +55,7 @@ void p_reco() {
     args_iter[1] = final_pars[0];
     args_iter[2] = 1.0/final_pars[1];
     args_iter[3] = -1.0/final_pars[2]; // negative charge
+
 
     for (UInt_t j = 4; j < 20; j++) {
       args_iter[j] = final_meas[j-4];

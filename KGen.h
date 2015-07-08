@@ -77,7 +77,7 @@ class KGen {
   
   K_tau0 = 0.08954; // K mean lifetime [ns]
   K_meanP = 100; // K mean momentum [GeV]
-  K_sigmaP = 0.5; // K ean momentum deviation [GeV]
+  K_sigmaP = 5; // K mean momentum deviation [GeV]
   K_Mass = 0.497614; // K mass [GeV]
   pi_Mass = 0.13957018; // Pi mass [GeV]
   

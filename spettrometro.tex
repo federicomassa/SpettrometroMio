@@ -48,7 +48,7 @@ Sergio \textsc{Giudici}
 
 \section{Introduzione} \label{sec:intro}
 \justify
-Il presente progetto consiste nella simulazione di uno spettrometro per la ricostruzione dell'impulso di un fascio puro di $K^0$ di impulso $100 \pm 5 \ GeV$, distribuito gaussianamente.
+Il presente progetto consiste nella simulazione di uno spettrometro per la ricostruzione dell'impulso di un fascio puro di $K^0$ di impulso $100 \pm 5 \ GeV/c$, distribuito gaussianamente.
 \medskip
 
 !!!!!!!!!!!!!NOTA: NON CONSIDERIAMO L'IMPURITà DI KL, MA QUANTO AVREBBE INFLUITO ALLA DISTANZA Z1 SCELTA?!!!!!!!!!!!!!!!!!!!!!!! MAGARI SCRIVERE NELLE CONCLUSIONI, COME LIMITI DELLA SIMULAZIONE\\
@@ -121,22 +121,277 @@ Il codice, scritto in C++, presenta una struttura modulare rappresentata in un d
 	\end{center}
 \end{figure}
 
-Esso si basa sull'uso di una classe di ROOT, \textit{TNtupleD}, che permette di salvare in un file tutte le caratteristiche desiderate per un evento in forma di variabili in doppia precisione.
+Esso si basa sull'uso di una classe di ROOT, \textit{TNtupleD},  alle cui istanze ci riferiremo con il nome \textit{ntuple}, che permette di salvare in un file tutte le caratteristiche desiderate per un evento in forma di variabili in doppia precisione. \\
+
+Il codice consiste di tre moduli: \\
+\begin{itemize}
+\item \textit{Generation}: grazie all'uso di un generatore di numeri pseudocasuali (\textit{TRandom3}), si serve di una classe chiamata \textit{KGen} per generare le caratteristiche di un singolo evento. Iterando questo procedimento, vengono generati tutti gli eventi e salvati in una ntupla chiamata \textit{ntuple\_gen}.
+\item \textit{Detector}: utilizzando come input \textit{ntuple\_gen}, si occupa di trovare i punti di passaggio dei prodotti di decadimento nei rivelatori e di effettuare uno \textit{smeering} gaussiano per simulare la risposta del rivelatore. Si serve della classe \textit{B\_event} per simulare l'effetto del campo magnetico. Gli hit trovati vengono salvati nella ntupla \textit{ntuple\_det}.
+\item \textit{Reconstruction}: utilizzando come input \textit{ntuple\_det}, che contiene solo le informazioni fruibili allo sperimentatore, si occupa di effettuare un fit cinematico con vincoli e parametri non misurati per trovare delle misure migliorate, che vengono scritte in \textit{ntuple\_reco}.
+\end{itemize}
+
+Le informazioni provenienti dalle tre ntuple vengono infine unite in una sola, chiamata \textit{ntuple\_final}, che permette di studiare la risoluzione dello spettrometro confrontando la misura migliorata dell'impulso con quella generata. Nelle prossime sezioni analizzeremo nel dettaglio i tre moduli. \\
 
 \section{Generazione dell'evento} \label{sec:generation}
 
+Il modulo \textit{Generation} si basa sulla classe \textit{KGen}, che genera i singoli eventi tramite il metodo \textit{Generate} e su un main, che richiama un numero predeterminato di volte questo metodo e ne salva i risultati volta per volta su \textit{ntuple\_gen}. Il main ha anche a disposizione l'opzione per generare eventi con punto di decadimento costante. \medskip
+Da questo momento le variabili contrassegnate da $*$ si intendono nel sistema del centro di massa, mentre quelle senza in quello del laboratorio.
+Nel decadimento preso in esame la particella madre, il $K^0$, è scalare, per cui non vi può essere alcuna direzione privilegiata nel decadimento nel sistema del centro di massa. Questo comporta che i prodotti di decadimento presentino una distribuzione angolare piatta in $\mathit{\cos{\theta^*}}$ e $\mathit{\phi^*}$, dove il sistema di coordinate scelto è quello polare con polo nel punto di decadimento. $\theta^*$ è dunque calcolato come $cos^{-1}(\cos{\theta^*})_{gen}$ ed è dunque compreso tra $0$ e $\pi$, mentre $\phi$ è generato uniformemente tra $0$ e $2\pi$. Una volta generata la direzione del primo prodotto, il secondo è automaticamente determinato dalla legge di conservazione dell'impulso. Risulta: \\
+$$
+\theta_2^* = \pi - \theta_1^*
+$$
+$$
+\phi_2^* = \phi_1^* + \pi
+$$
+
+dove a $\phi_2^*$ si sottrae $2\pi$ se $\phi_2^* > 2\pi$. 
+
+
+Essendo un decadimento a due corpi identici in massa, inoltre, l'energia dei prodotti ha un valore ben preciso ed uguale per i due prodotti, così come quello degli impulsi: 
+$$
+E_1^* = E_2^* = \frac{M_K}{2}
+$$
+$$
+p_i^* = \sqrt{E_i^{2*} - M_\pi^2}
+$$
+
+Si procede dunque a generare l'impulso del K secondo una distribuzione gaussiana con media $100\ GeV/c$ e deviazione standard $5\ GeV/c$, e si calcola la sua $\beta$ come
+$$
+\beta = p_K/E_K \approx 1 - \frac{1}{2} \frac{M_K^2}{p_K^2}
+$$
+
+Con questo valore si possono trovare gli impulsi nel sistema del laboratorio con un boost lungo z con $\beta_{boost} = -\beta$. 
+Per quanto riguarda gli angoli, sono calcolati tramite: 
+
+$$
+\cos{\theta_i} = \frac{p_{zi}}{p_i}
+$$
+$$
+\phi_i = atan2(p_{ix}, p_{iy}) = \phi_i^*
+$$
+
+Per quanto riguarda la z di decadimento, viene generata con distribuzione esponenziale e lunghezza di decadimento dipendente dall'energia del $K^0$ generato:
+$$
+z_v \sim Exp(z_v | \lambda = \beta\gamma c \tau)
+$$
+
+Queste funzionalità sono accessibili dal main tramite i metodi pubblici \textit{GetTheta}, \textit{GetP}, ... della classe \textit{KGen}.
+
+In Fig. \ref{fig:gen_pK}, \ref{fig:gen_z}, \ref{fig:gen_theta}, \ref{fig:gen_phi}, \ref{fig:gen_p}, \ref{fig:gen_thetatheta}, \ref{fig:gen_thetap} sono rappresentate alcune distribuzioni degli eventi generati.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3]{gen_pK} 
+		\caption{Distribuzione dell'impulso generato del $K^0$ e fit gaussiano.}
+		\label{fig:gen_pK}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3]{gen_z} 
+		\caption{Distribuzione della z di decadimento e fit esponenziale. In realtà la distribuzione vera si discosta da un'esponenziale a causa della distribuzione dell'impulso del $K^0$.}
+		\label{fig:gen_z}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3]{gen_theta} 
+		\caption{Distribuzione dell'angolo $\theta$ nel caso del $\pi^+$. La distribuzione è limitata superiormente ad un valore inferiore a $\pi$ a causa del boost. Nel caso del $\pi^-$ la distribuzione è analoga.}
+		\label{fig:gen_theta}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3]{gen_phi} 
+		\caption{Distribuzione dell'angolo $\pi$ nel caso del $\pi^+$. Essendo quest'angolo invariato dopo il boost, la distribuzione risulta uniforme tra $0$ e $2\pi$. In figura è mostrato il fit della funzione costante. Nel caso del $\pi^-$ la distribuzione è analoga.}
+		\label{fig:gen_phi}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3]{gen_p} 
+		\caption{Distribuzione del modulo dell'impulso del $\pi^+$. La distribuzione è limitata inferiormente e superiormente per ragioni cinematiche. Nel caso del $\pi^-$ la distribuzione è analoga.}
+		\label{fig:gen_p}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3]{gen_thetatheta} 
+		\caption{Correlazione tra gli angoli $\theta$ delle due particelle. Si nota che quando uno è massimo l'altro è piccolo e viceversa.}
+		\label{fig:gen_thetatheta}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3]{gen_thetap} 
+		\caption{Correlazione tra l'angolo $\theta$ del $\pi^+$ e il suo impulso.}
+		\label{fig:gen_thetap}
+	\end{center}
+\end{figure}
+
+Le curve ricalcano il comportamento aspettato e i fit restituiscono un valore di $\chi^2$ accettabile con una fiducia del $1\%$. I parametri ottenuti dai fit sono compatibili con quelli generati.
+
 \section{Simulazione della risposta dei rivelatori} \label{sec:detector}
+Il secondo modulo (\textit{Detector}) calcola i punti di passaggio della particella nel rivelatore, escludendo dal salvataggio in memoria quelli che non superano il taglio geometrico imposto dalla struttura del rivelatore. Questo modulo fa uso della classe \textit{B\_event} per simulare l'effetto del campo magnetico e calcolare i punti di passaggio nei piani di rivelatore $3$ e $4$.
+
+\subsection{Raggio interno} \label{subsec:raggio_interno}
+La scelta del raggio interno si basa su tre aspetti principali:
+\begin{itemize}
+\item \textit{Larghezza del fascio};
+\item \textit{Risoluzione e algoritmi di ricostruzione};
+\item \textit{Accettanza}.
+\end{itemize}
+
+Per quanto riguarda la \textbf{larghezza del fascio}, essa non è stata presa in considerazione nella simulazione. Ciò nonostante,affinché quest'ultima abbia validità, occorre specificare un raggio interno minimo ragionevole, che collochiamo sui $10\ cm$. \medskip	
+
+Il secondo aspetto riguarda la \textbf{risoluzione} e gli \textbf{algoritmi di ricostruzione}. Per quanto il fit cinematico utilizzato non faccia uso esclusivo della curvatura della traccia prima e dopo il campo magnetico, nel calcolo dei parametri e nella loro inizializzazione appaiono spesso  al denominatore differenze tra le coordinate di due rivelatori. Questo si riflette su un peggioramento del calcolo dei parametri nei casi in cui la differenza delle coordinate sia prossima allo zero, ovvero quando l'angolo $\theta$ delle tracce è piccolo. Prevedere un raggio interno non nullo permette quindi di escludere dall'analisi eventi troppo piatti che comporterebbero un peggioramento complessivo della risoluzione dello spettrometro e/o un eventuale fallimento del fit per tali eventi. \medskip
+
+Il raggio interno non può tuttavia approcciare indefinitamente il massimo teorico (quello per cui solo i decadimenti prodotti nell'origine possono essere rivelati) poiché l'\textbf{accettanza} del sistema tende a zero. Tipicamente infatti si può cercare un compromesso tra la risoluzione e il tempo di misura necessario per ricostruire i parametri dello spettro ($\mu$ e $\sigma$ di una gaussiana in questo caso) con la precisione desiderata. \medskip
+
+L'accettanza è definita come la probabilità che un evento venga accettato dal sistema rivelante, dato un avvenuto decadimento. In formule, nel nostro caso: \\
+$$
+a = P(x_1^{2+} + y_1^{2+} > R_{int}^2 \cap x_1^{2-} + y_1^{2-} > R_{int}^2\ |\ avvenuto\ decadimento)
+$$
+
+Questa quantità, nota la configurazione sperimentale, potrebbe essere calcolata teoricamente. Tuttavia, molto raramente questo è possibile e si preferisce misurarla dai dati simulati. Essendo il numero di eventi accettati $r$ distribuiti come una binomiale con numero di prove uguali a $N_{gen}$ (numero di eventi generati) e probabilità di successo $a$, un possibile stimatore per l'accettanza è: 
+$$
+\hat{a} = \frac{r}{N_{gen}}
+$$
+$$
+Var(\hat{a}) = \frac{a(1-a)}{N_{gen}} \approx \frac{\hat{a}(1-\hat{a})}{N_{gen}}
+$$
+che risulta essere \textit{unbiased}, di massima verosimiglianza ed efficiente. La sovrastante approssimazione è buona fino a che il numero di eventi accettati è significativamente diverso da zero (o da $N_{gen}$). 
+
+In Fig.\ref{fig:acc_vs_rint} è mostrata la curva di accettanza per il rivelatore, fissate le dimensioni longitudinali a quelle descritte in Sez.\ref{sec:apparato} e al variare del raggio interno.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3]{acc_vs_rint} 
+		\caption{Accettanza del sistema in funzione del raggio interno del rivelatore $1$.}
+		\label{fig:acc_vs_rint}
+	\end{center}
+\end{figure}
+
+
 \subsection{Coordinate degli hit: linearità e approssimazione di kick}
+Noti gli angoli e il punto di decadimento è possibile calcolare facilmente i punti di arrivo delle tracce sui rivelatori $1$ e $2$. Con riferimento a fig.\ref{fig:apparato_2d}, si ricava:
+
+\begin{equation}
+x_{1,2}^{\pm} = (z_{1,2} - z_v) \tan(\theta^{\pm})\cos(\phi^{\pm})
+\end{equation}
+
+\begin{equation}
+y_{1,2}^{\pm} = (z_{1,2} - z_v) \tan(\theta^{\pm})\sin(\phi^{\pm})
+\end{equation}
+
+
+Per la simulazione dell'effetto del campo magnetico si utilizza un'approssimazione che risulta buona quando $p_k = qB\Delta z << p$ e quando $\cos(\theta) \approx 1$. Nel nostro caso (riferimento a fig.\ref{fig:gen_p})
+$$
+|p_k| = 105\ MeV/c << p_{min} \approx 15\ GeV/c
+$$
+
+In queste condizioni, per una particella incidente a $\theta = 0$, vale
+$$
+(\vec{p}_{after}-\vec{p}_{before})^2 = (\Delta p)^2 = (F \Delta t)^2 \approx (qB\Delta z)^2
+$$
+dove $before$ e $after$ si riferiscono al valore assunto prima e dopo il campo magnetico. La precedente relazione, sviluppata usando le approssimazioni porta a
+$$
+\theta = \frac{p_K}{p}
+$$
+
+se $\theta$ non è zero, ma è piccolo, è sufficiente sostituire $\theta \rightarrow \Delta \theta$. 
+
+Usando infine $\Delta \theta \approx \Delta \tan{\theta}$ si ottiene:
+$$
+\frac{\partial y}{\partial z}|_{after} = \frac{\partial y}{\partial z}|_{before} + sign(q)\frac{|p_k|}{p}
+$$
+ovvero
+\begin{equation}
+\frac{y_4^{\pm}-y_3^{\pm}}{z_4-z_3} = \frac{y_2^{\pm}-y_1^{\pm}}{z_2-z_1} + sign(q)\frac{|p_k|}{p}
+\label{eq:curvatura}
+\end{equation}
+
+
+mentre le coordinate x rimangono lineari entro queste approssimazioni: 
+\begin{equation}
+x_{3,4}^{\pm} = (z_{3,4} - z_v) \tan(\theta^{\pm})\cos(\phi^{\pm})
+\end{equation}
+
+In queste condizioni l'effetto del campo magnetico è quello di far variare bruscamente la pendenza della traccia con un \textit{kick}, che supponiamo dato nel punto medio tra i rivelatori, dove si colloca il magnete. Imponendo anche che le tracce entrante e uscente si incontrino nel punto medio si ricava:
+
+\begin{equation}
+y_3^{\pm} = y_1^{\pm} + (y_2^{\pm}-y_1^{\pm})\frac{z_3-z_1}{z_2-z_1} + \frac{z_3-z_2}{2} sign(q) \frac{|p_k|}{p}
+\end{equation}
+
 \subsubsection{Applicazione dello smeering del rivelatore}
+Una volta calcolati i punti di passaggio veri della particella, è stato effettuato uno smeering gaussiano di deviazione standard $\sigma_x$ attorno al punto vero (tab.\ref{tab:apparato}, sez.\ref{sec:apparato}).
+
+I risultati sono stati salvati sulla ntupla $ntuple_det$, che contiene le informazioni fruibili allo sperimentatore.
 
 \section{Ricostruzione dell'evento} \label{sec:reconstruction}
+
+La ricostruzione dell'evento può avvenire su vari livelli di sofisticatezza. Una ricostruzione molto rozza della z di decadimento, per esempio, può essere quella ottenuta invertendo la relazione:
+$$
+\frac{x_4^{\pm}}{z_4-z_v} = \frac{x_1^{\pm}}{z_1-z_v}
+$$
+
+dove sono stati scelti i piani $1$ e $4$ per ridurre l'errore.
+
+Una ricostruzione un po' più sofisticata è rappresentata dalla \textit{Closest Distance of Approach}, ovvero la z corrispondente al punto di minima distanza tra la congiungente degli hit dei rivelatori $1$ e $2$ e l'asse di decadimento. Si ricava in questo caso:
+$$
+z_{CDA}^{\pm} = z_1 - (z_2-z_1)\frac{x_1^{\pm}(x_2^{\pm}-x_1^{\pm}) + y_1^{\pm}(y_2^{\pm} - y_1^{\pm})}{(x_2^{\pm}-x_1^{\pm})^2-(y_2^{\pm}-y_1^{\pm})^2}
+$$
+
+Una ricostruzione migliorata di un fattore $\sqrt{2}$ si può ottenere facilmente semplicemente usando come $z_v$ la media aritmetica dei valori ottenuti per le due tracce. \medskip
+
+Per quanto riguarda l'impulso, una prima ricostruzione può essere ottenuta invertendo l'eq.\ref{eq:curvatura} per trovare $p$. In fig.\ref{fig:reco_zCDA},\ref{fig:reco_p_curvatura}, \ref{fig:reco_pk_curvatura} sono mostrate le distribuzioni delle variabili ricostruite meno il loro valor vero. Il valore del $\chi^2$ mostra che la distribuzione scelta per il fit non è compatibile, ma questo non è un problema in quanto non c'è nessun motivo statistico per cui la variabile sia distribuita gaussianamente e il fit serve solo ad estrarre dei parametri sensati. Si noti che la ricostruzione dell'impulso del $K^0$ con la sola curvatura ha portato ad una risoluzione in impulso di circa $9\ GeV/c$, che nel nostro caso non sono sufficienti a descrivere la forma dello spettro che ha una larghezza pari a circa la metà della risoluzione trovata.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.3]{reco_zCDA} 
+		\caption{Ricostruzione di $z_v$ con la media delle CDA e fit gaussiano.}
+		\label{fig:reco_zCDA}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{reco_p_curvatura} 
+		\caption{Ricostruzione dell'impulso della singola particella con la curvatura.}
+		\label{fig:reco_p_curvatura}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{reco_pk_curvatura} 
+		\caption{Ricostruzione dell'impulso del K con la curvatura.}
+		\label{fig:reco_pk_curvatura}
+	\end{center}
+\end{figure}
+
+\subsection{La classe IterKinFitP}
+Il modo scelto per ricostruire in modo più efficace l'impulso si basa su un metodo iterativo di minimizzazione di un $X^2$ vincolato.  
+
 \subsection{Identificazione della carica}
 \subsection{Problema combinatoriale}
-\subsection{La classe IterKinFitP}
-\subsection{Inizializzazione delle variabili e dei parametri}
+\subsection{Set di vincoli scelti}
 \subsection{Misura della risoluzione con quattro rivelatori}
 \subsection{Misura della risoluzione con tre rivelatori}
 
 \section{Conclusioni} \label{sec:conclusioni}
+\section{Appendice: valori numerici utilizzati}
+\begin{itemize}
+\item $c = 299792458\ m/s$
+\item $M_K = 497.614\ MeV/c^2$
+\item $M_\pi = 139.57018\ MeV/c^2$
+\item $\tau = 8.954\cdot 10^{-11}\ s$
+\end{itemize}
 
 \end{document}

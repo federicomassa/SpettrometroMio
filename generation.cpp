@@ -78,6 +78,8 @@ void generation(const char* filename = "events", const char* gen_option = "") {
   TH1F* pi_min_py_hist = new TH1F("pi_min_py_hist", "Pi- Py Histogram; Py (GeV/c); #", 1000, 1, 0);
   TH1F* pi_min_pz_hist = new TH1F("pi_min_pz_hist", "Pi- Pz Histogram; Pz (GeV/c); #", 1000, 1, 0);
   TH2F* pi_theta_corr_hist = new TH2F("pi_theta_corr_hist", "Theta+ Theta- Hist; Theta+; Theta-", 1000, 1, 0, 1000, 1, 0);
+  TH2F* pi_plus_theta_p_corr_hist = new TH2F("pi_plus_theta_p_corr_hist", "Theta+ p+ Hist; Theta+; p+", 1000, 1, 0, 1000, 1, 0);
+  TH2F* pi_min_theta_p_corr_hist = new TH2F("pi_min_theta_p_corr_hist", "Theta- p- Hist; Theta-; p-", 1000, 1, 0, 1000, 1, 0);
 
   // Write generation details
   time_t t = time(0); 
@@ -134,6 +136,8 @@ void generation(const char* filename = "events", const char* gen_option = "") {
     pi_min_py_hist->Fill(event.GetPi_min_py());
     pi_min_pz_hist->Fill(event.GetPi_min_pz());
     pi_theta_corr_hist->Fill(event.GetPi_plus_theta(), event.GetPi_min_theta());
+    pi_plus_theta_p_corr_hist->Fill(event.GetPi_plus_theta(), event.GetPi_plus_modp());
+    pi_min_theta_p_corr_hist->Fill(event.GetPi_min_theta(), event.GetPi_min_modp());
     event.WriteEvent(ascii_out,i+1);
   }
 
@@ -171,6 +175,8 @@ void generation(const char* filename = "events", const char* gen_option = "") {
   pi_min_py_hist->Write();
   pi_min_pz_hist->Write();
   pi_theta_corr_hist->Write();
+  pi_plus_theta_p_corr_hist->Write();
+  pi_min_theta_p_corr_hist->Write();
   root_out->Close();
   ascii_out.close();
 }
