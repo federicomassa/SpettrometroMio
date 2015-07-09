@@ -72,12 +72,14 @@ L'apparato simulato, nella sua versione normale, appare come in Fig. \ref{fig:ap
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.4]{apparato_2d}
-		\caption{Sezione dell'apparato sperimentale: in viola lungo l'asse z, la traccia del $K^0$ genitore, in blu e rosso rispettivamente le tracce delle particelle decadute $\pi^+$ e $\pi^-$. Il campo magnetico, nella direzione positiva delle $x$, è uscente perpendicolarmente dal piano della figura. Con $z_i$ sono indicate le coordinate $z$ dei quattro piani di rivelatore. Con $R_{int}$, invece, il raggio interno del rivelatore più vicino.}
+		\caption{Sezione dell'apparato sperimentale: in viola lungo l'asse z, la traccia del $K^0$ genitore, in blu una possibile traccia di un $\pi^+$. Il campo magnetico, nella direzione positiva delle $x$, è uscente perpendicolarmente dal piano della figura. Con $z_i$ sono indicate le coordinate $z$ dei quattro piani di rivelatore. Con $R_{int}$, invece, il raggio interno del rivelatore più vicino.}
 		\label{fig:apparato_2d}
 	\end{center}
 \end{figure}
 
 Ogni piano di rivelatore è modellizzato da una corona circolare di raggio interno $R_{int}$ e raggio esterno $R_{ext}$, con risoluzione fissa sugli assi $x$ e $y$ di $1\ mm$\footnote{Come si vedrà in Sez.\ref{sec:detector}, la risposta del rivelatore è assunta gaussiana e la risoluzione indicata è dunque uguale alla deviazione standard di questa distribuzione.}. Sebbene quest'ultimo sia importante a livello pratico nel disegno del rivelatore, ai fini di questa simulazione questo sarà sempre considerabile infinito, poiché scelto in modo tale da contenere l'interezza dei decadimenti. La scelta del raggio interno è invece soggetta a differenti necessità, che saranno discusse più avanti (Sez. \ref{subsec:raggio_interno}!!!!!!!!!!!!. Il campo magnetico è situato in una zona di $0.35\ m$ al centro tra i piani $2$ e $3$, che distano tra loro $3\ m$ e vale $B = 1\ T$. Il $p_{kick}$ corrispondente vale quindi circa $p_k = qB\Delta L = 105\ MeV/c$. La modellizzazione dell'effetto di un magnete come un kick effettuato nel punto medio tra i rivelatori sarà giustificata in sez.\ref{sec:generation} !!!!!!!!!!. In Tab.\ref{tab:apparato} sono riassunte le caratteristiche scelte per l'apparato e la lunghezza media di decadimento, con $\mathbf{<\lambda>} = \frac{<p>}{M_{K}} c \tau$, $\tau = 8.954 \cdot 10^{-11} \ s$.
+
+!!!! SCRITTO DA QUALCHE PARTE COSA SONO X+,Y+?? !!!!
 
 \bigskip
 
@@ -377,11 +379,75 @@ Per quanto riguarda l'impulso, una prima ricostruzione può essere ottenuta inve
 \end{figure}
 
 \subsection{La classe IterKinFitP}
-Il modo scelto per ricostruire in modo più efficace l'impulso si basa su un metodo iterativo di minimizzazione di un $X^2$ vincolato.  
+Il modo scelto per ricostruire in modo più efficace l'impulso si basa su un metodo iterativo di minimizzazione con N variabili misurate, R parametri non misurati, che rispettano C vincoli scrivibili nella forma $\Phi(x) = 0$. che è stato implementato nella classe \textit{IterKinFitP}. Il metodo si basa sull'uso dei moltiplicatori di Lagrange, nella maniera seguente. Chiamate $x_i$ i valori veri delle N variabili misurate, $\hat{x}_i$ i valori misurati delle variabili\footnote{Nel caso in cui il metodo sia utilizzato iterativamente, $\hat{x}_i$ equivale alle misure solo nella prima iterazione, dopodiché è il generico punto di sviluppo.}, $\lambda_\mu$ i moltiplicatori, , $z_r$ i parametri, $\Phi_\mu$ i vincoli, funzioni delle variabili e dei parametri. Definita una funzione delle variabili e dei moltiplicatori: \\
+$$
+F = X^2 + \lambda_\mu \Phi_\mu
+$$
+$$
+X^2 = \frac{(x_i - \hat{x}_i)^2}{\sigma_i^2}
+$$
+
+Le variabili e i parametri \textit{migliorati} sono trovati minimizzando la funzione $F$ rispetto a $x_i$, $z_r$ e $\lambda_\mu$. Si ottengono infatti
+$N+R+C$ equazioni per $N + R+ C$ incognite. Sfortunatamente il punto stazionario della funzione $F$ è tipicamente di sella, il che impedisce l'uso di algoritmi di minimizzazione come ad esempio quello offerto da ROOT nella classe \textit{TMinuit}. Tuttavia, sviluppando al prim'ordine i vincoli attorno ad un punto si può ricavare un sistema lineare risolvibile con un approccio matriciale. Il risultato consiste in due vettori $\Delta_x$ e $\Delta_z$ che andranno aggiunti al punto di sviluppo scelto in precedenza. Nel caso in cui i vincoli siano lineari questo metodo è esatto e il risultato non dipende dal punto di sviluppo scelto, altrimenti dovrà essere iterato fino a che un certo criterio scelto a priori non venga soddisfatto. La scelta del punto iniziale di sviluppo è detta \textit{inizializzazione} e può essere determinante per il successo del metodo nel caso di vincoli non lineari. Nel nostro caso, inoltre, il criterio di convergenza è stato scelto richiedendo che tra un'iterazione e l'altra tutti i parametri e le variabili siano variati, in percentuale, di una quantità inferiore a una certa \textbf{soglia} prefissata. Un metodo che si usa spesso per evitare problemi legati alla non linearità dei vincoli è quello di moltiplicare $\Delta_x$ e $\Delta z$ per un \textbf{coefficiente} minore di 1. Questo potrebbe, per esempio, impedire che il metodo converga su un punto stazionario diverso da quello più vicino all'inizializzazione. \\
+
+La classe \textit{IterKinFitP} implementa questo metodo, richiedendo come inizializzazione il numero di variabili misurate, di parametri e di vincoli, gli errori stimati delle variabili, e le funzioni che restituiscono i vincoli e le loro derivate rispetto alle variabili e ai parametri. Sono stati anche predisposti dei metodi pubblici per modificare ad un valore diverso da quello di default i valori della soglia e del coefficiente di convergenza. Il coefficiente ideale va cercato caso per caso e dipende dall'entità della non linearità e dal tempo di calcolo massimo. \\
+
+Per quanto riguarda la scelta dell'inizializzazione, le variabili vanno inizializzate con le loro misure sperimentali, mentre con i parametri si può normalmente usare una stima ottenuta, ad esempio, dall'inversione di un vincolo, sostituendo alle variabili teoriche quelle misurate.
+
+\subsection{Set di vincoli scelti}
+Nel caso dello spettrometro, abbiamo scelto vari set di vincoli per confrontare la risoluzione ottenuta !!! E IL TEMPO NECESSARIO A RAGGIUNGERE LA CONVERGENZA !!!!!!!!!!. Un problema a più tracce come quello studiato in questo progetto si può affrontare almeno in due modi:
+\begin{itemize}
+\item Approccio a singola traccia;
+\item Approccio esaustivo.
+\end{itemize}
+
+Nell'approccio a singola traccia si esegue il fit su ogni traccia: ha il vantaggio di essere facilmente applicabile al caso generico di un numero arbitrario di tracce, ma, almeno nella sua versione più semplice, non può beneficiare dell'aggiunta di quei vincoli che nascono dalla correlazione tra le tracce (es. stesso vertice), a scapito della risoluzione ottenuta. \\
+Nell'approccio esaustivo, anziché eseguire un fit per ogni traccia si esegue un unico fit su tutte le tracce. Questo ha il vantaggio di poter tenere conto di più vincoli e quindi di migliorare la risoluzione sulle variabili e i parametri, ma deve essere scritto caso per caso e comporta una maggiore onerosità computazionale. \medskip
+
+Abbiamo deciso di confrontare l'approccio a singola traccia con quattro diversi set di vincoli in approccio esaustivo. A seguire sono elencati i 15 possibili vincoli con cui si può effettuare il fit cinematico, i primi 12 lineari e gli ultimi 3 non lineari.
+
+\begin{equation}
+x_1^{\pm} (z_{2,3,4} - z_v) - x_{2,3,4}^{\pm} (z_1 - z_v) = 0
+\end{equation}
+
+\begin{equation}
+y_1^{\pm} (z_{2} - z_v) - y_{2}^{\pm} (z_1 - z_v) = 0
+\end{equation}
+
+\begin{equation}
+y_3^{\pm} - y_1^{\pm} - (y_2^{\pm}-y_1^{\pm})\frac{z_3-z_1}{z_2-z_1} \mp \frac{z_3-z_2}{2} \frac{|p_k|}{p^{\pm}} = 0
+\end{equation}
+
+\begin{equation}
+\frac{y_4^{\pm}-y_3^{\pm}}{z_4-z_3} - \frac{y_2^{\pm}-y_1^{\pm}}{z_2-z_1} \mp \frac{|p_k|}{p^{\pm}} = 0
+\end{equation}
+
+\begin{align}
+\begin{split}
+&(-\frac{1}{p^-}) (x_2^+ - x_1^+) \sqrt{(x_2^- - x_1^-)^2 + (y_2^- - y_1^-)^2 + (z_2 - z_1)^2} + \\
+& - (\frac{1}{p^+}) (x_2^- - x_1^-) \sqrt{(x_2^+ - x_1^+)^2 + (y_2^+ - y_1^+)^2 + (z_2 - z_1)^2} = 0 
+\end{split}
+\end{align}
+
+\begin{align}
+\begin{split}
+&(-\frac{1}{p^-}) (y_2^+ - y_1^+) \sqrt{(x_2^- - x_1^-)^2 + (y_2^- - y_1^-)^2 + (z_2 - z_1)^2} + \\
+& - (\frac{1}{p^+}) (y_2^- - y_1^-) \sqrt{(x_2^+ - x_1^+)^2 + (y_2^+ - y_1^+)^2 + (z_2 - z_1)^2} = 0 
+\end{split}
+\end{align}
+
+\begin{align}
+\begin{split}
+&m_\pi^2 + \sqrt{p^{2+} + m_\pi^2}\sqrt{p^{2-} + m_\pi^2} + p^{2+} \frac{(x_2^+ - x_1^+)^2 + (y_2^+ - y_1^+)^2}{(x_2^+ - x_1^+)^2 + (y_2^+ - y_1^+)^2 + (z_2 - z_1)^2} + \\
+& -p^+ p^- \frac{(z_2-z_1)^2}{\sqrt{(x_2^+ - x_1^+)^2 + (y_2^+ - y_1^+)^2 + (z_2 - z_1)^2}\sqrt{(x_2^- - x_1^-)^2 + (y_2^- - y_1^-)^2 + (z_2 - z_1)^2}} + \\
+& -m_K^2/2 = 0
+\end{split}
+\end{align}
+
 
 \subsection{Identificazione della carica}
 \subsection{Problema combinatoriale}
-\subsection{Set di vincoli scelti}
+
 \subsection{Misura della risoluzione con quattro rivelatori}
 \subsection{Misura della risoluzione con tre rivelatori}
 
