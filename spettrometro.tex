@@ -392,8 +392,9 @@ $N+R+C$ equazioni per $N + R+ C$ incognite. Sfortunatamente il punto stazionario
 
 La classe \textit{IterKinFitP} implementa questo metodo, richiedendo come inizializzazione il numero di variabili misurate, di parametri e di vincoli, gli errori stimati delle variabili, e le funzioni che restituiscono i vincoli e le loro derivate rispetto alle variabili e ai parametri. Sono stati anche predisposti dei metodi pubblici per modificare ad un valore diverso da quello di default i valori della soglia e del coefficiente di convergenza. Il coefficiente ideale va cercato caso per caso e dipende dall'entità della non linearità e dal tempo di calcolo massimo. \\
 
-Per quanto riguarda la scelta dell'inizializzazione, le variabili vanno inizializzate con le loro misure sperimentali, mentre con i parametri si può normalmente usare una stima ottenuta, ad esempio, dall'inversione di un vincolo, sostituendo alle variabili teoriche quelle misurate.
+Per quanto riguarda la scelta dell'inizializzazione, le variabili vanno inizializzate con le loro misure sperimentali, mentre con i parametri si può normalmente usare una stima ottenuta, ad esempio, dall'inversione di un vincolo, sostituendo alle variabili teoriche quelle misurate. \\
 
+Una volta terminata la minimizzazione, si può calcolare la variabile $X^2$ nelle misure migliorate. Si può dimostrare che nel caso di vincoli lineari questa variabile è distribuita come $\chi^2_{C-R}$. \\
 \subsection{Set di vincoli scelti}
 Nel caso dello spettrometro, abbiamo scelto vari set di vincoli per confrontare la risoluzione ottenuta !!! E IL TEMPO NECESSARIO A RAGGIUNGERE LA CONVERGENZA !!!!!!!!!!. Un problema a più tracce come quello studiato in questo progetto si può affrontare almeno in due modi:
 \begin{itemize}
@@ -416,6 +417,7 @@ y_1^{\pm} (z_{2} - z_v) - y_{2}^{\pm} (z_1 - z_v) = 0
 
 \begin{equation}
 y_3^{\pm} - y_1^{\pm} - (y_2^{\pm}-y_1^{\pm})\frac{z_3-z_1}{z_2-z_1} \mp \frac{z_3-z_2}{2} \frac{|p_k|}{p^{\pm}} = 0
+\label{eq:curvaturay3}
 \end{equation}
 
 \begin{equation}
@@ -444,15 +446,245 @@ y_3^{\pm} - y_1^{\pm} - (y_2^{\pm}-y_1^{\pm})\frac{z_3-z_1}{z_2-z_1} \mp \frac{z
 \end{split}
 \end{align}
 
+Le prime due equazioni rappresentano 4 vincoli per ogni traccia e non sono altro che l'imposizione che le due tracce siano originate dallo stesso punto dell'asse z. Le seguenti due equazioni sono legate all'effetto del campo magnetico: la terza è il vincolo che il kick avvenga nel punto medio tra i rivelatori $2$ e $3$, mentre la quarta è il già visto vincolo di curvatura. \\
+Delle seguenti equazioni, le prime due vincolano la componente trasversa dell'impulso totale ad essere zero ($\vec{p}^T = 0$), mentre l'ultima è il vincolo che la massa invariante dei due $\pi$ sia la massa del $K^0$.
 
-\subsection{Identificazione della carica}
-\subsection{Problema combinatoriale}
+Per quanto riguarda i parametri, sono 4 nel caso dell'approccio a singola traccia ($z_v^+, z_v^-, 1/p^+, -1/p^-$\footnote{Il segno meno per l'ultimo parametro è stato scelto in modo da eliminare il $\mp$ dei vincoli di curvatura}), e tre nel caso di approccio esaustivo ($z_v, 1/p^+, -1/p^-$). L'inizializzazione scelta è stata la CDA per quanto riguarda la $z_v$, e l'inversione del vincolo di curvatura per quanto riguarda gli impulsi.
 
-\subsection{Misura della risoluzione con quattro rivelatori}
+In tab.\ref{tab:set_vincoli} sono specificati i set di vincoli scelti con cui è stata effettuata la ricostruzione.
+
+\begin{table} [h!]
+\centering
+\begin{tabular}{||p {2.0 cm}|p {4.5 cm}||}
+\hline
+\textbf{ID set} & \textbf{Tipo} \\
+\hline \hline
+1 & S + LIN + CURV \\
+\hline
+2 & E + LIN + CURV \\
+\hline
+3 & E + LIN + CURV + PT \\
+\hline
+4 & E + LIN + CURV + MK \\
+\hline
+5 & E + LIN + CURV + PT + MK \\
+\hline \hline
+\end{tabular} 
+\caption{Lista dei set di vincoli scelti per confrontare l'efficacia di ricostruzione. S = approccio singola traccia; E = approccio esaustivo; LIN = vincoli di linearità della traccia; CURV = vincoli di curvatura; PT = vincoli di annullamento del vettore di impulso trasverso; MK = vincolo di massa invariante.}
+\label{tab:set_vincoli}
+\end{table}
+
+\subsection{Risultati}
+
+Alcuni dei grafici dei risultati sono riportati in appendice, sez.\ref{subsec:grafici}. In particolare sono riportati gli istogrammi della risoluzione della $x_1^+$, a titolo di esempio, che mostra per tutti i set di !!!!!! vincoli un miglioramento della misura rispetto a quella del rivelatore. Per quanto riguarda la ricostruzione del vertice, la distribuzione appare leggermente asimmetrica verso sinistra, ovvero succede più spesso che $z_{reco} < z$ che il viceversa. Questo è dovuto al fatto che un errore nella determinazione delle coordinate produce un errore asimmetrico sulla z, privilegiando le z piccole a quelle grandi. Per quanto riguarda il $\chi^2$, si noti che nei set di vincoli 1 e 2, dove si utilizzano solo vincoli lineari, il fit è compatibile con la distribuzione attesa, mentre si osserva una deviazione significativa dalla distribuzione aspettata quando si introducono vincoli non lineari. Questo è in linea con quanto atteso. La risoluzione dell'impulso, risultato principale della simulazione, è progressivamente migliore quanti più vincoli si sfruttano, come aspettato. Dal confronto tra le risoluzioni ottenute nei set di vincoli 3, 4, 5 si nota che risulta particolarmente importante il vincolo di massa invariante. !!!! Nei grafici è anche riportato il grafico della massa invariante per il set di vincoli 2, in cui non si utilizzano vincoli per l'impulso. !!! Per ricostruire adeguatamente lo spettro del $K^0$, che ha una larghezza di $5\ GeV/c$, occorre dunque scegliere un algoritmo di ricostruzione che abbia una risoluzione significativamente inferiore. Con un apparato sperimentale come quello simulato non si è quindi in grado di studiare nel dettaglio lo spettro, ma si può trovare una stima della sua larghezza con un errore del $20\%$ utilizzando il set di vincoli numero 5. !!!!!!
+
+\'E stata anche studiata la dipendenza della risoluzione dello spettrometro dal raggio interno del primo rivelatore: non sono state riscontrate dipendenze apprezzabili. 
+
+\subsection{Problema combinatorio}
+Un problema che si incontra sempre sperimentalmente quando si vuole ricostruire un evento a più tracce è quello dovuto all'individuazione degli hit facenti parte della stessa traccia. Nel caso analizzato in questa simulazione questo problema non è particolarmente ostico perché ci sono solo due tracce . Il problema è stato risolto utilizzando il fit cinematico iterativo su tutte le possibili combinazioni (8, perché delle $2^4$ totali la metà sono doppioni) e cercando quella con il $\chi^2$ inferiore. Usando il set di vincoli numero 2 per quest'analisi è stato ottenuto un rate di successi del 100\% su 5000 eventi generati. \'E stato quindi possibile calcolare un limite superiore per il fondo di questi eventi:
+$$
+B/S < 6\cdot 10^{-4}, 95\% CL
+$$
+
 \subsection{Misura della risoluzione con tre rivelatori}
+Per completezza è stato anche analizzato il caso in cui il quarto rivelatore non sia inserito. In questo caso si è scelto di procedere utilizzando tutte le informazioni possibili, e quindi un fit cinematico di tipo esaustivo con tutti i vincoli. Per quanto riguarda l'inizializzazione, si è utilizzata la CDA per la $z_v$, mentre per l'impulso, non potendo più usare il secondo vincolo di curvatura, si è utilizzato il primo (eq.\ref{eq:curvaturay3}). In questo caso l'inizializzazione dell'impulso risulta avere segno errato circa l'!!!!!!!!!!!!!!!!\% delle volte, ma questo problema si può parzialmente risolvere tagliando dall'analisi tutti gli eventi in cui almeno uno dei momenti ricostruiti sia negativo. \'E stato invece riscontrato che nell'1\% dei casi il fit non converge. Rispetto al caso di 4 rivelatori, quindi, sono stati effettuati alcuni tagli sugli eventi. Si è verificato che tagliando gli eventi con $\chi^2 > 50$ o con almeno un impulso negativo si perde il 5$\%$ degli eventi ma si ottiene una buona risoluzione sull'impulso del $K^0$ pari a $2\ GeV/c$, che è comunque circa il doppio rispetto alla migliore ottenuta con 4 rivelatori. !!!!!
+
 
 \section{Conclusioni} \label{sec:conclusioni}
-\section{Appendice: valori numerici utilizzati}
+La simulazione effettuata è da considerarsi fondamentalmente uno studio sulle tecniche di ricostruzione. Il processo fisico è infatti estremamente semplificato rispetto a quello della realtà sperimentale, soprattutto perché non sono stati considerati fondi nè causati da altri decadimenti, né da impurità del fascio. L'uso dei fit cinematici ha permesso di migliorare di un fattore circa 10 la risoluzione ottenuta dal calcolo diretto della curvatura. La risoluzione migliore ottenuta è infatti di circa $1.0\ GeV/c$, rispetto a quella della ricostruzione diretta di $9.3\ GeV/c$. 
+
+\section{Appendice}
+\subsection{Grafici dei risultati} \label{subsec:grafici}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_1_x} 
+		\caption{Risoluzione di $x_1^+$ con il set di vincoli numero 1. La risoluzione è migliorata rispetto a quella del rivelatore (0.001).}
+		\label{fig:set_1_x}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_1_z} 
+		\caption{Risoluzione di $z_v^+$ con il set di vincoli numero 1. Per migliorare la risoluzione si è usata la variabile $0.5(z^+_{reco}+z^-_{reco})$.}
+		\label{fig:set_1_z}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_1_p} 
+		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 1. L'impulso è calcolato come $p^+ + p^-$, la parte angolare è trascurabile apporta un contributo trascurabile a questa risoluzione.}
+		\label{fig:set_1_p}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_1_chi2} 
+		\caption{Distribuzione della funzione $X^2^+$ e fit con una distribuzione $\chi^2_4$}
+		\label{fig:set_1_chi2}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_2_x} 
+		\caption{Risoluzione di $x_1^+$ con il set di vincoli numero 2. La risoluzione è migliorata rispetto a quella del rivelatore (0.001).}
+		\label{fig:set_2_x}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_2_z} 
+		\caption{Risoluzione di $z_v$ con il set di vincoli numero 2.}
+		\label{fig:set_2_z}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_2_p} 
+		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 2. L'impulso è calcolato come $p^+ + p^-$, la parte angolare è trascurabile apporta un contributo trascurabile a questa risoluzione.}
+		\label{fig:set_2_p}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_2_chi2} 
+		\caption{Distribuzione della funzione $X^2$ per il set di vincoli numero 2 e fit con una distribuzione $\chi^2_9$}
+		\label{fig:set_2_chi2}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_2_inv} 
+		\caption{Distribuzione della risoluzione di massa invariante per il set di vincoli numero 2.}
+		\label{fig:set_2_inv}
+	\end{center}
+\end{figure}
+
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_3_x} 
+		\caption{Risoluzione di $x_1^+$ con il set di vincoli numero 3. La risoluzione è migliorata rispetto a quella del rivelatore (0.001).}
+		\label{fig:set_3_x}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_3_z} 
+		\caption{Risoluzione di $z_v$ con il set di vincoli numero 3.}
+		\label{fig:set_3_z}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_3_p} 
+		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 3. L'impulso è calcolato come $p^+ + p^-$, la parte angolare è trascurabile apporta un contributo trascurabile a questa risoluzione.}
+		\label{fig:set_3_p}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_3_chi2} 
+		\caption{Distribuzione della funzione $X^2$ per il set di vincoli numero 3 e fit con una distribuzione $\chi^2_{11}$}
+		\label{fig:set_3_chi2}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_4_x} 
+		\caption{Risoluzione di $x_1^+$ con il set di vincoli numero 4. La risoluzione è migliorata rispetto a quella del rivelatore (0.001).}
+		\label{fig:set_4_x}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_4_z} 
+		\caption{Risoluzione di $z_v$ con il set di vincoli numero 4.}
+		\label{fig:set_4_z}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_4_p} 
+		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 4. L'impulso è calcolato come $p^+ + p^-$, la parte angolare è trascurabile apporta un contributo trascurabile a questa risoluzione.}
+		\label{fig:set_4_p}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_4_chi2} 
+		\caption{Distribuzione della funzione $X^2$ per il set di vincoli numero 4 e fit con una distribuzione $\chi^2_{10}$}
+		\label{fig:set_4_chi2}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_5_x} 
+		\caption{Risoluzione di $x_1^+$ con il set di vincoli numero 5. La risoluzione è migliorata rispetto a quella del rivelatore (0.001).}
+		\label{fig:set_5_x}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_5_z} 
+		\caption{Risoluzione di $z_v$ con il set di vincoli numero 5.}
+		\label{fig:set_5_z}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_5_p} 
+		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 5. L'impulso è calcolato come $p^+ + p^-$, la parte angolare è trascurabile apporta un contributo trascurabile a questa risoluzione.}
+		\label{fig:set_5_p}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_5_chi2} 
+		\caption{Distribuzione della funzione $X^2$ per il set di vincoli numero 5 e fit con una distribuzione $\chi^2_{12}$}
+		\label{fig:set_5_chi2}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_5_spettro} 
+		\caption{Ricostruzione dello spettro di impulso del $K^0$ per il set di vincoli numero 5. In rosso lo spettro ricostruito, in blu quello generato.}
+		\label{fig:set_5_spettro}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.25]{set_1det_p} 
+		\caption{Risoluzione della determinazione dell'impulso del $K^0$ usando tre rivelatori e un fit E + LIN + CURV + PT + MK.}
+		\label{fig:set_1det_p}
+	\end{center}
+\end{figure}
+
+
+
+
+\subsection{Valori numerici utilizzati}
 \begin{itemize}
 \item $c = 299792458\ m/s$
 \item $M_K = 497.614\ MeV/c^2$

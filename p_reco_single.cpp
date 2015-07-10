@@ -77,7 +77,7 @@ void p_reco() {
 
     args_min[0] = chi2;
     args_min[1] = final_pars[0];
-    args_min[2] = 1.0/final_pars[1];
+    args_min[2] = -1.0/final_pars[1];
 
     for (UInt_t j = 3; j < 11; j++) {
       args_min[j] = final_meas[j-3];
@@ -89,7 +89,7 @@ void p_reco() {
   }
 
   nt_iter = MergeNtuples(nt_iter_plus, nt_iter_min, "measures_iter", "Iter Ntuple");
-  nt_final =  MergeNtuples(nt_gen, nt_iter, "measures_final", "Complete Ntuple");
+  nt_final =  MergeNtuples(nt_gen, nt_iter, "measures_final_single", "Complete Ntuple");
 
   nt_final->Write();
   root_in->Close();
