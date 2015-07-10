@@ -42,7 +42,7 @@ Sergio \textsc{Giudici}
 
 \begin{abstract}	
 \justify
- 
+Il progetto realizzato consiste nella simulazione di uno spettrometro per la ricostruzione dell'impulso di un fascio di $K^0$ puro di impulso distribuito gaussianamente $100 \pm 5\ GeV/c$ utilizzando il decadimento $K^0_S \rightarrow \pi^+ \pi^-$. Con un apparato sperimentale di $73\ m$ di lunghezza, circa $0.5\ m$ trasversali e uno spettrometro con $p_{kick} = 0.105\ MeV/c$ è stata confrontata la risoluzione ottenuta con un fit cinematico con vari vincoli.  La ricostruzione migliore utilizzata ha portato ad una risoluzione sull'impulso del $K^0$ di $1.0\ GeV/c$.
 \end{abstract}
 \bigskip
 
@@ -51,9 +51,7 @@ Sergio \textsc{Giudici}
 Il presente progetto consiste nella simulazione di uno spettrometro per la ricostruzione dell'impulso di un fascio puro di $K^0$ di impulso $100 \pm 5 \ GeV/c$, distribuito gaussianamente.
 \medskip
 
-!!!!!!!!!!!!!NOTA: NON CONSIDERIAMO L'IMPURITà DI KL, MA QUANTO AVREBBE INFLUITO ALLA DISTANZA Z1 SCELTA?!!!!!!!!!!!!!!!!!!!!!!! MAGARI SCRIVERE NELLE CONCLUSIONI, COME LIMITI DELLA SIMULAZIONE\\
-
-Scopo del progetto è quello di misurare la risoluzione del suddetto spettrometro al variare della tecnica di ricostruzione utilizzata e del numero di rivelatori utilizzati nell'apparato sperimentale (!!!!!!!!!!!!!!!!!E DEL RAGGIO INTERNO?!!!!!!!!!!!!). Ai fini della simulazione è stato considerato solamente il decadimento del $K^0_S \rightarrow \pi^+ \pi^-$. 
+Scopo del progetto è quello di misurare la risoluzione del suddetto spettrometro al variare della tecnica di ricostruzione utilizzata e del numero di rivelatori utilizzati nell'apparato sperimentale. Ai fini della simulazione è stato considerato solamente il decadimento del $K^0_S \rightarrow \pi^+ \pi^-$. 
 
 Il codice utilizzato è stato scritto interamente in C++, con l'ausilio delle librerie ROOT del CERN per la visualizzazione e il salvataggio in memoria dei dati. \\
 
@@ -72,14 +70,23 @@ L'apparato simulato, nella sua versione normale, appare come in Fig. \ref{fig:ap
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.4]{apparato_2d}
-		\caption{Sezione dell'apparato sperimentale: in viola lungo l'asse z, la traccia del $K^0$ genitore, in blu una possibile traccia di un $\pi^+$. Il campo magnetico, nella direzione positiva delle $x$, è uscente perpendicolarmente dal piano della figura. Con $z_i$ sono indicate le coordinate $z$ dei quattro piani di rivelatore. Con $R_{int}$, invece, il raggio interno del rivelatore più vicino.}
+		\caption{Sezione dell'apparato sperimentale: in viola lungo l'asse z, la traccia del $K^0$ genitore, in blu una possibile traccia di un $\pi^+$. Il campo magnetico, nella direzione positiva delle $x$, è uscente perpendicolarmente dal piano della figura. Con $z_i$ sono indicate le coordinate $z$ dei quattro piani di rivelatore. Con $R_{int}$, invece, il raggio interno del rivelatore più vicino. Con $y_i^{\pm}$ invece si intende la coordinata y del piano i-esimo corrispondente alla traccia di un $\pi^{\pm}$.}
 		\label{fig:apparato_2d}
 	\end{center}
 \end{figure}
 
-Ogni piano di rivelatore è modellizzato da una corona circolare di raggio interno $R_{int}$ e raggio esterno $R_{ext}$, con risoluzione fissa sugli assi $x$ e $y$ di $1\ mm$\footnote{Come si vedrà in Sez.\ref{sec:detector}, la risposta del rivelatore è assunta gaussiana e la risoluzione indicata è dunque uguale alla deviazione standard di questa distribuzione.}. Sebbene quest'ultimo sia importante a livello pratico nel disegno del rivelatore, ai fini di questa simulazione questo sarà sempre considerabile infinito, poiché scelto in modo tale da contenere l'interezza dei decadimenti. La scelta del raggio interno è invece soggetta a differenti necessità, che saranno discusse più avanti (Sez. \ref{subsec:raggio_interno}!!!!!!!!!!!!. Il campo magnetico è situato in una zona di $0.35\ m$ al centro tra i piani $2$ e $3$, che distano tra loro $3\ m$ e vale $B = 1\ T$. Il $p_{kick}$ corrispondente vale quindi circa $p_k = qB\Delta L = 105\ MeV/c$. La modellizzazione dell'effetto di un magnete come un kick effettuato nel punto medio tra i rivelatori sarà giustificata in sez.\ref{sec:generation} !!!!!!!!!!. In Tab.\ref{tab:apparato} sono riassunte le caratteristiche scelte per l'apparato e la lunghezza media di decadimento, con $\mathbf{<\lambda>} = \frac{<p>}{M_{K}} c \tau$, $\tau = 8.954 \cdot 10^{-11} \ s$.
+Ogni piano di rivelatore è modellizzato da una corona circolare di raggio interno $R_{int}$ e raggio esterno $R_{ext}$, con risoluzione fissa sugli assi $x$ e $y$ di $1\ mm$\footnote{Come si vedrà in Sez.\ref{sec:detector}, la risposta del rivelatore è assunta gaussiana e la risoluzione indicata è dunque uguale alla deviazione standard di questa distribuzione.}. Sebbene il raggio esterno sia importante a livello pratico nel disegno del rivelatore, ai fini di questa simulazione questo sarà sempre considerabile infinito, poiché scelto in modo tale da contenere l'interezza dei decadimenti. La scelta del raggio interno è invece soggetta a differenti necessità, che saranno discusse più avanti (Sez. \ref{subsec:raggio_interno}. Il campo magnetico è situato in una zona di $\Delta L = 0.35\ m$ al centro tra i piani $2$ e $3$, che distano tra loro $3\ m$ e vale $B = 1\ T$. Il $p_{kick}$ corrispondente vale quindi circa $p_k = qB\Delta L = 105\ MeV/c$. La modellizzazione dell'effetto di un magnete come un kick effettuato nel punto medio tra i rivelatori sarà giustificata in sez.\ref{sec:generation}. In Tab.\ref{tab:apparato} sono riassunte le caratteristiche scelte per l'apparato e la lunghezza media di decadimento, ovvero $\mathbf{<\lambda>} = \frac{<p>}{M_{K}} c \tau$, $\tau = 8.954 \cdot 10^{-11} \ s$. I valori dei raggi mostrati sono stati calcolati, una volta fissato il raggio del primo rivelatore, misurando gli estremi delle distribuzioni delle coordinate degli hit: 
+$$
+R_{int, i} = min(\sqrt{x_i^{2 \pm} + y_i^{2 \pm}})
+$$
+$$
+R_{ext, i} = max(\sqrt{x_i^{2 \pm} + y_i^{2 \pm}})
+$$
 
-!!!! SCRITTO DA QUALCHE PARTE COSA SONO X+,Y+?? !!!!
+Il valore di $R_{int, 1}$, inoltre, determina un valore massimo di z osservabile, che vale: \\
+$$
+(z_1 - z_{max})\tan{(max(min(\theta^+, \theta^-)))} = R_{int,1}
+$$
 
 \bigskip
 
@@ -97,7 +104,21 @@ $\mathbf{z_3(m)}$ & 63 \\
 \hline
 $\mathbf{z_4(m)}$ & 73 \\
 \hline
-$\mathbf{R_{int}(m)}$ & 0.1 \\
+$\mathbf{R_{int, 1}(m)}$ & 0.08 \\
+\hline
+$\mathbf{R_{ext, 1}(m)}$ & 0.46 \\
+\hline
+$\mathbf{R_{int, 2}(m)}$ & 0.09 \\
+\hline
+$\mathbf{R_{ext, 2}(m)}$ & 0.56 \\
+\hline
+$\mathbf{R_{int, 3}(m)}$ & 0.10 \\
+\hline
+$\mathbf{R_{ext, 3}(m)}$ & 0.60 \\
+\hline
+$\mathbf{R_{int, 4}(m)}$ & 0.10 \\
+\hline
+$\mathbf{R_{ext, 4}(m)}$ & 0.70 \\
 \hline
 $\mathbf{p_k}(MeV/c)$ & 105 \\
 \hline
@@ -123,7 +144,7 @@ Il codice, scritto in C++, presenta una struttura modulare rappresentata in un d
 	\end{center}
 \end{figure}
 
-Esso si basa sull'uso di una classe di ROOT, \textit{TNtupleD},  alle cui istanze ci riferiremo con il nome \textit{ntuple}, che permette di salvare in un file tutte le caratteristiche desiderate per un evento in forma di variabili in doppia precisione. \\
+Esso si basa sull'uso di una classe di ROOT, \textit{TNtupleD}, alle cui istanze ci riferiremo con il nome \textit{ntuple}, che permette di salvare in un file tutte le caratteristiche desiderate per un evento in forma di variabili in doppia precisione. \\
 
 Il codice consiste di tre moduli: \\
 \begin{itemize}
@@ -240,7 +261,7 @@ In Fig. \ref{fig:gen_pK}, \ref{fig:gen_z}, \ref{fig:gen_theta}, \ref{fig:gen_phi
 Le curve ricalcano il comportamento aspettato e i fit restituiscono un valore di $\chi^2$ accettabile con una fiducia del $1\%$. I parametri ottenuti dai fit sono compatibili con quelli generati.
 
 \section{Simulazione della risposta dei rivelatori} \label{sec:detector}
-Il secondo modulo (\textit{Detector}) calcola i punti di passaggio della particella nel rivelatore, escludendo dal salvataggio in memoria quelli che non superano il taglio geometrico imposto dalla struttura del rivelatore. Questo modulo fa uso della classe \textit{B\_event} per simulare l'effetto del campo magnetico e calcolare i punti di passaggio nei piani di rivelatore $3$ e $4$.
+Il secondo modulo (\textit{Detector}) calcola i punti di passaggio della particella nel rivelatore, escludendo dal salvataggio in memoria quelli che non superano il taglio geometrico imposto dalla struttura del rivelatore. Questo modulo fa uso della classe \textit{B\_event} per simulare l'effetto del campo magnetico e calcolare i punti di passaggio nei piani di rivelatore $3$ e $4$. Ognuno dei quattro rivelatori misura due coordinate per traccia: le misure totali effettuate sono quindi 16.
 
 \subsection{Raggio interno} \label{subsec:raggio_interno}
 La scelta del raggio interno si basa su tre aspetti principali:
@@ -252,7 +273,7 @@ La scelta del raggio interno si basa su tre aspetti principali:
 
 Per quanto riguarda la \textbf{larghezza del fascio}, essa non è stata presa in considerazione nella simulazione. Ciò nonostante,affinché quest'ultima abbia validità, occorre specificare un raggio interno minimo ragionevole, che collochiamo sui $10\ cm$. \medskip	
 
-Il secondo aspetto riguarda la \textbf{risoluzione} e gli \textbf{algoritmi di ricostruzione}. Per quanto il fit cinematico utilizzato non faccia uso esclusivo della curvatura della traccia prima e dopo il campo magnetico, nel calcolo dei parametri e nella loro inizializzazione appaiono spesso  al denominatore differenze tra le coordinate di due rivelatori. Questo si riflette su un peggioramento del calcolo dei parametri nei casi in cui la differenza delle coordinate sia prossima allo zero, ovvero quando l'angolo $\theta$ delle tracce è piccolo. Prevedere un raggio interno non nullo permette quindi di escludere dall'analisi eventi troppo piatti che comporterebbero un peggioramento complessivo della risoluzione dello spettrometro e/o un eventuale fallimento del fit per tali eventi. \medskip
+Il secondo aspetto riguarda la \textbf{risoluzione} e gli \textbf{algoritmi di ricostruzione}. Per quanto il fit cinematico utilizzato non faccia uso esclusivo della curvatura della traccia prima e dopo il campo magnetico, nel calcolo dei parametri e nella loro inizializzazione appaiono spesso al denominatore differenze tra le coordinate di due rivelatori. Questo si riflette su un peggioramento del calcolo dei parametri nei casi in cui la differenza delle coordinate sia prossima allo zero, ovvero quando l'angolo $\theta$ delle tracce è piccolo. Prevedere un raggio interno non nullo permette quindi di escludere dall'analisi eventi troppo piatti che comporterebbero un peggioramento complessivo della risoluzione dello spettrometro e/o un eventuale fallimento del fit per tali eventi. \medskip
 
 Il raggio interno non può tuttavia approcciare indefinitamente il massimo teorico (quello per cui solo i decadimenti prodotti nell'origine possono essere rivelati) poiché l'\textbf{accettanza} del sistema tende a zero. Tipicamente infatti si può cercare un compromesso tra la risoluzione e il tempo di misura necessario per ricostruire i parametri dello spettro ($\mu$ e $\sigma$ di una gaussiana in questo caso) con la precisione desiderata. \medskip
 
@@ -396,7 +417,7 @@ Per quanto riguarda la scelta dell'inizializzazione, le variabili vanno iniziali
 
 Una volta terminata la minimizzazione, si può calcolare la variabile $X^2$ nelle misure migliorate. Si può dimostrare che nel caso di vincoli lineari questa variabile è distribuita come $\chi^2_{C-R}$. \\
 \subsection{Set di vincoli scelti}
-Nel caso dello spettrometro, abbiamo scelto vari set di vincoli per confrontare la risoluzione ottenuta !!! E IL TEMPO NECESSARIO A RAGGIUNGERE LA CONVERGENZA !!!!!!!!!!. Un problema a più tracce come quello studiato in questo progetto si può affrontare almeno in due modi:
+Nel caso dello spettrometro, abbiamo scelto vari set di vincoli per confrontare le risoluzioni ottenute e i tempi di calcolo necessari. Un problema a più tracce come quello studiato in questo progetto si può affrontare almeno in due modi:
 \begin{itemize}
 \item Approccio a singola traccia;
 \item Approccio esaustivo.
@@ -475,10 +496,36 @@ In tab.\ref{tab:set_vincoli} sono specificati i set di vincoli scelti con cui è
 \end{table}
 
 \subsection{Risultati}
+In tutti i casi il numero di eventi generati scelto è stato $10^5$. Per tutti i fit cinematici sono state impostate le soglie uguali a $10^{-5}$ e i coefficienti di convergenza a $0.5$, a parte nel caso del set numero 5, in cui molti eventi superavano il numero massimo di iterazioni e si è dunque preferito usare una soglia $10^{-6}$ e un coefficiente di convergenza $0.2$.
 
-Alcuni dei grafici dei risultati sono riportati in appendice, sez.\ref{subsec:grafici}. In particolare sono riportati gli istogrammi della risoluzione della $x_1^+$, a titolo di esempio, che mostra per tutti i set di !!!!!! vincoli un miglioramento della misura rispetto a quella del rivelatore. Per quanto riguarda la ricostruzione del vertice, la distribuzione appare leggermente asimmetrica verso sinistra, ovvero succede più spesso che $z_{reco} < z$ che il viceversa. Questo è dovuto al fatto che un errore nella determinazione delle coordinate produce un errore asimmetrico sulla z, privilegiando le z piccole a quelle grandi. Per quanto riguarda il $\chi^2$, si noti che nei set di vincoli 1 e 2, dove si utilizzano solo vincoli lineari, il fit è compatibile con la distribuzione attesa, mentre si osserva una deviazione significativa dalla distribuzione aspettata quando si introducono vincoli non lineari. Questo è in linea con quanto atteso. La risoluzione dell'impulso, risultato principale della simulazione, è progressivamente migliore quanti più vincoli si sfruttano, come aspettato. Dal confronto tra le risoluzioni ottenute nei set di vincoli 3, 4, 5 si nota che risulta particolarmente importante il vincolo di massa invariante. !!!! Nei grafici è anche riportato il grafico della massa invariante per il set di vincoli 2, in cui non si utilizzano vincoli per l'impulso. !!! Per ricostruire adeguatamente lo spettro del $K^0$, che ha una larghezza di $5\ GeV/c$, occorre dunque scegliere un algoritmo di ricostruzione che abbia una risoluzione significativamente inferiore. Con un apparato sperimentale come quello simulato non si è quindi in grado di studiare nel dettaglio lo spettro, ma si può trovare una stima della sua larghezza con un errore del $20\%$ utilizzando il set di vincoli numero 5. !!!!!!
+Alcuni dei grafici dei risultati sono riportati in appendice, sez.\ref{subsec:grafici}. In diversi casi, unitamente ai grafici, è anche presente un fit. Con eccezione dei grafici del $\chi^2$ si tratta di un fit gaussiano, che non ha nessun fondamento statistico se non quello di confrontare la curva ottenuta con una curva nota e rendere più evidenti eventuali asimmetrie. Tra i risultati sono riportati gli istogrammi della risoluzione della $x_1^+$, a titolo di esempio, che mostra per tutti i set di vincoli un miglioramento della misura rispetto a quella del rivelatore e una deformazione della curva gaussiana in una più piccata. Per quanto riguarda la ricostruzione del vertice, la distribuzione appare leggermente asimmetrica verso sinistra, ovvero succede più spesso che $z_{reco} < z$ che il viceversa. Questo è dovuto al fatto che un errore nella determinazione delle coordinate produce un errore asimmetrico sulla z, privilegiando le z piccole a quelle grandi. Per quanto riguarda il $\chi^2$, si noti che nei set di vincoli 1 e 2, dove si utilizzano solo vincoli lineari, il fit è compatibile con la distribuzione attesa, mentre si osserva una deviazione significativa dalla distribuzione aspettata quando si introducono vincoli non lineari. Questo è in linea con quanto atteso. La risoluzione dell'impulso, risultato principale della simulazione, è progressivamente migliore quanti più vincoli si sfruttano, come aspettato. Dal confronto tra le risoluzioni ottenute nei set di vincoli 3, 4, 5 si nota che risulta particolarmente importante il vincolo di massa invariante. Nei grafici è anche riportato il grafico della massa invariante per il set di vincoli 2, in cui non si utilizzano vincoli per l'impulso. Per ricostruire adeguatamente lo spettro del $K^0$, che ha una larghezza di $5\ GeV/c$, occorre dunque scegliere un algoritmo di ricostruzione che abbia una risoluzione significativamente inferiore. Con un apparato sperimentale come quello simulato non si è quindi in grado di studiare nel dettaglio lo spettro, ma si può trovare una stima della sua larghezza con un errore del $1\%$ utilizzando il set di vincoli numero 5.
 
-\'E stata anche studiata la dipendenza della risoluzione dello spettrometro dal raggio interno del primo rivelatore: non sono state riscontrate dipendenze apprezzabili. 
+\'E stata anche studiata la dipendenza della risoluzione dello spettrometro dal raggio interno del primo rivelatore: non sono state riscontrate dipendenze apprezzabili. La scelta del raggio interno è quindi stata quella riportata in tab.\ref{tab:apparato}, ovvero quella minima per una ragionevole larghezza di fascio, affinché l'accettanza del sistema sia massima. In tab.\ref{tab:risultati} sono riportate le risoluzioni per i vari set di vincoli e il tempo di calcolo necessario per la ricostruzione di un evento. Quest'ultimo è ovviamente dipendente dalla macchina su cui si esegue il calcolo, ma i rapporti tra i tempi sono indicativi dell'onerosità computazionale richiesta.
+
+\begin{table} [h!]
+\centering
+\begin{tabular}{||p {1.5 cm}|p {1 cm} | p {1 cm}||}
+\hline
+\textbf{ID set} & Risoluzione(GeV/c) & Tempo(s)/ev \\
+\hline \hline
+1 & 6.9 & 0.0003 \\
+\hline
+2 & 5.9 & 0.0005 \\
+\hline
+3 & 4.8 & 0.0006 \\
+\hline
+4 & 2.3 & 0.017 \\
+\hline
+5 & 1.0 & 0.04 \\
+\hline
+3 riv. & 1.9 & 0.015 \\
+\hline \hline
+\end{tabular} 
+\caption{Tabella riassuntiva dei risultati della ricostruzione per i vari set di vincoli. Per il calcolo dei tempi, la soglia di convergenza del fit cinematico è stata impostata a $10^{-5}$ e il coefficiente di convergenza a $0.5$.}
+\label{tab:risultati}
+\end{table}
+
+
 
 \subsection{Problema combinatorio}
 Un problema che si incontra sempre sperimentalmente quando si vuole ricostruire un evento a più tracce è quello dovuto all'individuazione degli hit facenti parte della stessa traccia. Nel caso analizzato in questa simulazione questo problema non è particolarmente ostico perché ci sono solo due tracce . Il problema è stato risolto utilizzando il fit cinematico iterativo su tutte le possibili combinazioni (8, perché delle $2^4$ totali la metà sono doppioni) e cercando quella con il $\chi^2$ inferiore. Usando il set di vincoli numero 2 per quest'analisi è stato ottenuto un rate di successi del 100\% su 5000 eventi generati. \'E stato quindi possibile calcolare un limite superiore per il fondo di questi eventi:
@@ -487,7 +534,7 @@ B/S < 6\cdot 10^{-4}, 95\% CL
 $$
 
 \subsection{Misura della risoluzione con tre rivelatori}
-Per completezza è stato anche analizzato il caso in cui il quarto rivelatore non sia inserito. In questo caso si è scelto di procedere utilizzando tutte le informazioni possibili, e quindi un fit cinematico di tipo esaustivo con tutti i vincoli. Per quanto riguarda l'inizializzazione, si è utilizzata la CDA per la $z_v$, mentre per l'impulso, non potendo più usare il secondo vincolo di curvatura, si è utilizzato il primo (eq.\ref{eq:curvaturay3}). In questo caso l'inizializzazione dell'impulso risulta avere segno errato circa l'!!!!!!!!!!!!!!!!\% delle volte, ma questo problema si può parzialmente risolvere tagliando dall'analisi tutti gli eventi in cui almeno uno dei momenti ricostruiti sia negativo. \'E stato invece riscontrato che nell'1\% dei casi il fit non converge. Rispetto al caso di 4 rivelatori, quindi, sono stati effettuati alcuni tagli sugli eventi. Si è verificato che tagliando gli eventi con $\chi^2 > 50$ o con almeno un impulso negativo si perde il 5$\%$ degli eventi ma si ottiene una buona risoluzione sull'impulso del $K^0$ pari a $2\ GeV/c$, che è comunque circa il doppio rispetto alla migliore ottenuta con 4 rivelatori. !!!!!
+Per completezza è stato anche analizzato il caso in cui il quarto rivelatore non sia inserito. In questo caso si è scelto di procedere utilizzando tutte le informazioni possibili, e quindi un fit cinematico di tipo esaustivo con tutti i vincoli. Per quanto riguarda l'inizializzazione, si è utilizzata la CDA per la $z_v$, mentre per l'impulso, non potendo più usare il secondo vincolo di curvatura, si è utilizzato il primo (eq.\ref{eq:curvaturay3}). In questo caso l'inizializzazione dell'impulso risulta avere segno errato circa il 4\% delle volte, ma questo problema si può parzialmente risolvere tagliando dall'analisi tutti gli eventi in cui almeno uno dei momenti ricostruiti sia negativo. \'E stato invece riscontrato che nell'1\% dei casi il fit non converge. Rispetto al caso di 4 rivelatori, quindi, sono stati effettuati alcuni tagli sugli eventi. Si è verificato che tagliando gli eventi con $\chi^2 > 50$ o con almeno un impulso negativo si perde il 5$\%$ degli eventi ma si ottiene una buona risoluzione sull'impulso del $K^0$ pari a $2\ GeV/c$, che è comunque circa il doppio rispetto alla migliore ottenuta con 4 rivelatori.
 
 
 \section{Conclusioni} \label{sec:conclusioni}
@@ -515,7 +562,7 @@ La simulazione effettuata è da considerarsi fondamentalmente uno studio sulle t
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.25]{set_1_p} 
-		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 1. L'impulso è calcolato come $p^+ + p^-$, la parte angolare è trascurabile apporta un contributo trascurabile a questa risoluzione.}
+		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 1. L'impulso è calcolato come $p^+ + p^-$, la parte angolare apporta un contributo trascurabile, a questa risoluzione.}
 		\label{fig:set_1_p}
 	\end{center}
 \end{figure}
@@ -523,7 +570,7 @@ La simulazione effettuata è da considerarsi fondamentalmente uno studio sulle t
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.25]{set_1_chi2} 
-		\caption{Distribuzione della funzione $X^2^+$ e fit con una distribuzione $\chi^2_4$}
+		\caption{Distribuzione della funzione $X^{2,+}$ e fit con una distribuzione $\chi^2_4$}
 		\label{fig:set_1_chi2}
 	\end{center}
 \end{figure}
@@ -547,7 +594,7 @@ La simulazione effettuata è da considerarsi fondamentalmente uno studio sulle t
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.25]{set_2_p} 
-		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 2. L'impulso è calcolato come $p^+ + p^-$, la parte angolare è trascurabile apporta un contributo trascurabile a questa risoluzione.}
+		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 2. L'impulso è calcolato come $p^+ + p^-$, la parte angolare apporta un contributo trascurabile, a questa risoluzione.}
 		\label{fig:set_2_p}
 	\end{center}
 \end{figure}
@@ -588,7 +635,7 @@ La simulazione effettuata è da considerarsi fondamentalmente uno studio sulle t
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.25]{set_3_p} 
-		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 3. L'impulso è calcolato come $p^+ + p^-$, la parte angolare è trascurabile apporta un contributo trascurabile a questa risoluzione.}
+		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 3. L'impulso è calcolato come $p^+ + p^-$, la parte angolare apporta un contributo trascurabile, a questa risoluzione.}
 		\label{fig:set_3_p}
 	\end{center}
 \end{figure}
@@ -620,7 +667,7 @@ La simulazione effettuata è da considerarsi fondamentalmente uno studio sulle t
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.25]{set_4_p} 
-		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 4. L'impulso è calcolato come $p^+ + p^-$, la parte angolare è trascurabile apporta un contributo trascurabile a questa risoluzione.}
+		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 4. L'impulso è calcolato come $p^+ + p^-$, la parte angolare apporta un contributo trascurabile, a questa risoluzione.}
 		\label{fig:set_4_p}
 	\end{center}
 \end{figure}
@@ -641,6 +688,8 @@ La simulazione effettuata è da considerarsi fondamentalmente uno studio sulle t
 	\end{center}
 \end{figure}
 
+\clearpage
+
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.25]{set_5_z} 
@@ -652,7 +701,7 @@ La simulazione effettuata è da considerarsi fondamentalmente uno studio sulle t
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.25]{set_5_p} 
-		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 5. L'impulso è calcolato come $p^+ + p^-$, la parte angolare è trascurabile apporta un contributo trascurabile a questa risoluzione.}
+		\caption{Risoluzione dell'impulso del $K^0$ con il set di vincoli numero 5. L'impulso è calcolato come $p^+ + p^-$, la parte angolare apporta un contributo trascurabile, a questa risoluzione.}
 		\label{fig:set_5_p}
 	\end{center}
 \end{figure}
@@ -684,12 +733,14 @@ La simulazione effettuata è da considerarsi fondamentalmente uno studio sulle t
 
 
 
-\subsection{Valori numerici utilizzati}
+\subsection{Valori numerici utilizzati e unità di misura}
 \begin{itemize}
 \item $c = 299792458\ m/s$
 \item $M_K = 497.614\ MeV/c^2$
 \item $M_\pi = 139.57018\ MeV/c^2$
 \item $\tau = 8.954\cdot 10^{-11}\ s$
 \end{itemize}
+
+Le unità di misura, laddove non indicate, sono da intendersi \textit{m} per le lunghezze, \textit{GeV} per le energie, \textit{GeV/c} per gli impulsi, \textit{$GeV/c^2$} per le masse, \textit{s} per i tempi.
 
 \end{document}

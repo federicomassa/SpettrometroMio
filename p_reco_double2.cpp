@@ -47,8 +47,8 @@ void p_reco() {
     iter = new IterKinFitP;
     iter->Initialize(16,15,3,init_meas,init_pars,Constr, Der, PDer, err);
     iter->SetStepParameter(0.2);
-    iter->SetThreshold(1E-6);
-    iter->SetMaxIterationNumber(5000);
+    // iter->SetThreshold(1E-6);
+    // iter->SetMaxIterationNumber(5000);
     iter->Minimize(final_meas, final_pars);
     chi2 = iter->GetChi2();
 
