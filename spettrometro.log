@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.6)  10 JUL 2015 16:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.6)  13 JUL 2015 20:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -307,11 +307,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 
 
 Writing index file spettrometro.idx
-(./spettrometro.aux
-
-LaTeX Warning: Label `tab:apparato' multiply defined.
-
-)
+(./spettrometro.aux)
 \openout1 = `spettrometro.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
@@ -326,7 +322,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
- (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+
+(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count112
 \scratchdimen=\dimen145
@@ -484,467 +481,544 @@ Overfull \hbox (133.3668pt too wide) in paragraph at lines 72--73
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
-
- []
-
-[2]
-Overfull \hbox (1.04727pt too wide) in paragraph at lines 123--123
+Overfull \hbox (1.04727pt too wide) in paragraph at lines 112--112
 []$[]\OT1/cmr/m/n/8 (\OML/cmm/m/it/8 MeV=c\OT1/cmr/m/n/8 )$|  
  []
 
-<script_structure.png, id=33, 517.935pt x 404.51125pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<script_structure.png, id=17, 517.935pt x 404.51125pt>
 File: script_structure.png Graphic file (type png)
 
 <use script_structure.png>
-Package pdftex.def Info: script_structure.png used on input line 141.
+Package pdftex.def Info: script_structure.png used on input line 130.
 (pdftex.def)             Requested size: 207.17032pt x 161.80162pt.
- [3 <./apparato_3d.png>] [4 <./apparato_2d.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
+ [2]
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 151.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 140.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 151.
-
-Overfull \hbox (1.01157pt too wide) in paragraph at lines 153--154
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 140.
+ [3 <./apparato_3d.png>] [4 <./apparato_2d.png> <./script_structure.png>]
+Overfull \hbox (1.01157pt too wide) in paragraph at lines 142--143
 \OT1/cmr/m/n/10.95 fruibili allo sper-i-men-ta-tore, si oc-cupa di ef-fet-tuare
  un fit cin-e-matico con vin-coli e parametri
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--157
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 160--163
+Underfull \hbox (badness 10000) in paragraph at lines 149--152
 
  []
 
-[5 <./script_structure.png>] <gen_pK.png, id=49, 1289.81876pt x 773.89125pt>
+[5] <gen_pK.png, id=48, 1289.81876pt x 773.89125pt>
 File: gen_pK.png Graphic file (type png)
-
-<use gen_pK.png>
-Package pdftex.def Info: gen_pK.png used on input line 207.
+ <use gen_pK.png>
+Package pdftex.def Info: gen_pK.png used on input line 196.
 (pdftex.def)             Requested size: 386.94861pt x 232.16916pt.
- <gen_z.png, id=50, 1596.96625pt x 773.89125pt>
-File: gen_z.png Graphic file (type png)
 
-<use gen_z.png>
-Package pdftex.def Info: gen_z.png used on input line 215.
+<gen_z.png, id=49, 1596.96625pt x 773.89125pt>
+File: gen_z.png Graphic file (type png)
+ <use gen_z.png>
+Package pdftex.def Info: gen_z.png used on input line 204.
 (pdftex.def)             Requested size: 479.09358pt x 232.16916pt.
 
-Overfull \hbox (35.5151pt too wide) in paragraph at lines 215--216
+Overfull \hbox (35.5151pt too wide) in paragraph at lines 204--205
  [] 
  []
 
-<gen_theta.png, id=51, 1377.145pt x 773.89125pt>
+<gen_theta.png, id=50, 1377.145pt x 773.89125pt>
 File: gen_theta.png Graphic file (type png)
  <use gen_theta.png>
-Package pdftex.def Info: gen_theta.png used on input line 223.
+Package pdftex.def Info: gen_theta.png used on input line 212.
 (pdftex.def)             Requested size: 413.14668pt x 232.16916pt.
+
+<gen_mintheta.png, id=51, 1358.07375pt x 773.89125pt>
+File: gen_mintheta.png Graphic file (type png)
+ <use gen_mintheta.png>
+Package pdftex.def Info: gen_mintheta.png used on input line 220.
+(pdftex.def)             Requested size: 407.42526pt x 232.16916pt.
 
 <gen_phi.png, id=52, 1178.4025pt x 773.89125pt>
 File: gen_phi.png Graphic file (type png)
  <use gen_phi.png>
-Package pdftex.def Info: gen_phi.png used on input line 231.
+Package pdftex.def Info: gen_phi.png used on input line 228.
 (pdftex.def)             Requested size: 353.52348pt x 232.16916pt.
 
 <gen_p.png, id=53, 1178.4025pt x 773.89125pt>
 File: gen_p.png Graphic file (type png)
  <use gen_p.png>
-Package pdftex.def Info: gen_p.png used on input line 239.
+Package pdftex.def Info: gen_p.png used on input line 236.
 (pdftex.def)             Requested size: 353.52348pt x 232.16916pt.
 
 <gen_thetatheta.png, id=54, 1596.96625pt x 773.89125pt>
 File: gen_thetatheta.png Graphic file (type png)
 
 <use gen_thetatheta.png>
-Package pdftex.def Info: gen_thetatheta.png used on input line 247.
+Package pdftex.def Info: gen_thetatheta.png used on input line 244.
 (pdftex.def)             Requested size: 479.09358pt x 232.16916pt.
 
-Overfull \hbox (35.5151pt too wide) in paragraph at lines 247--248
+Overfull \hbox (35.5151pt too wide) in paragraph at lines 244--245
  [] 
  []
 
 <gen_thetap.png, id=55, 1404.24625pt x 773.89125pt>
 File: gen_thetap.png Graphic file (type png)
  <use gen_thetap.png>
-Package pdftex.def Info: gen_thetap.png used on input line 255.
+Package pdftex.def Info: gen_thetap.png used on input line 252.
 (pdftex.def)             Requested size: 421.27713pt x 232.16916pt.
 
-[6] [7 <./gen_pK.png> <./gen_z.png>] [8 <./gen_theta.png> <./gen_phi.png>]
-[9 <./gen_p.png> <./gen_thetatheta.png>] [10 <./gen_thetap.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 280--281
+[6 <./gen_pK.png>] [7 <./gen_z.png> <./gen_theta.png>] [8 <./gen_mintheta.png> 
+<./gen_phi.png>] [9 <./gen_p.png> <./gen_thetatheta.png>] [10 <./gen_thetap.png
+>]
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
 
  []
 
-<acc_vs_rint.png, id=73, 1596.96625pt x 773.89125pt>
+<acc_vs_rint.png, id=74, 1596.96625pt x 773.89125pt>
 File: acc_vs_rint.png Graphic file (type png)
  <use acc_vs_rint.png>
-Package pdftex.def Info: acc_vs_rint.png used on input line 298.
+Package pdftex.def Info: acc_vs_rint.png used on input line 295.
 (pdftex.def)             Requested size: 479.09358pt x 232.16916pt.
 
-Overfull \hbox (35.5151pt too wide) in paragraph at lines 298--299
+Overfull \hbox (35.5151pt too wide) in paragraph at lines 295--296
  [] 
  []
 
-[11] [12 <./acc_vs_rint.png>]
-<reco_zCDA.png, id=80, 1684.2925pt x 926.46124pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 309--310
+
+ []
+
+[11] [12 <./acc_vs_rint.png>] [13]
+<reco_zCDA.png, id=85, 1684.2925pt x 926.46124pt>
 File: reco_zCDA.png Graphic file (type png)
  <use reco_zCDA.png>
-Package pdftex.def Info: reco_zCDA.png used on input line 380.
+Package pdftex.def Info: reco_zCDA.png used on input line 389.
 (pdftex.def)             Requested size: 505.29166pt x 277.9405pt.
 
-Overfull \hbox (61.71318pt too wide) in paragraph at lines 380--381
+Overfull \hbox (61.71318pt too wide) in paragraph at lines 389--390
  [] 
  []
 
-<reco_p_curvatura.png, id=81, 1684.2925pt x 926.46124pt>
+<reco_p_curvatura.png, id=86, 1684.2925pt x 926.46124pt>
 File: reco_p_curvatura.png Graphic file (type png)
 
 <use reco_p_curvatura.png>
-Package pdftex.def Info: reco_p_curvatura.png used on input line 388.
+Package pdftex.def Info: reco_p_curvatura.png used on input line 397.
 (pdftex.def)             Requested size: 421.0721pt x 231.61473pt.
 
-<reco_pk_curvatura.png, id=82, 1684.2925pt x 926.46124pt>
+<reco_pk_curvatura.png, id=87, 1684.2925pt x 926.46124pt>
 File: reco_pk_curvatura.png Graphic file (type png)
 
 <use reco_pk_curvatura.png>
-Package pdftex.def Info: reco_pk_curvatura.png used on input line 396.
+Package pdftex.def Info: reco_pk_curvatura.png used on input line 405.
 (pdftex.def)             Requested size: 421.0721pt x 231.61473pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 403--404
+Underfull \hbox (badness 10000) in paragraph at lines 412--413
 
  []
 
-[13] [14 <./reco_zCDA.png>] [15 <./reco_p_curvatura.png> <./reco_pk_curvatura.p
-ng>]
-Underfull \hbox (badness 10000) in paragraph at lines 411--413
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 414--415
+[14 <./reco_zCDA.png>] [15 <./reco_p_curvatura.png> <./reco_pk_curvatura.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 420--422
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 416--417
+Underfull \hbox (badness 10000) in paragraph at lines 423--424
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 418--419
+Underfull \hbox (badness 10000) in paragraph at lines 425--426
 
  []
 
-[16] [17]
-Overfull \hbox (52.23215pt too wide) in paragraph at lines 473--474
+
+Underfull \hbox (badness 10000) in paragraph at lines 427--428
+
+ []
+
+[16]
+Overfull \hbox (52.23215pt too wide) in paragraph at lines 482--483
 []\OT1/cmr/m/n/10.95 Per quanto riguarda i parametri, sono 4 nel caso dell'appr
 occio a sin-gola trac-cia ($\OML/cmm/m/it/10.95 z[]; z[]; \OT1/cmr/m/n/10.95 1\
 OML/cmm/m/it/10.95 =p[]; \OMS/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 1\OML/cmm/m/
 it/10.95 =p[]$[]\OT1/cmr/m/n/10.95 ),
  []
 
-[18]
-Overfull \hbox (45.1886pt too wide) in paragraph at lines 509--509
-[]\OT1/cmr/m/n/8 Risoluzione(GeV/c)|  
+[17] [18]
+Overfull \hbox (14.19821pt too wide) in paragraph at lines 518--518
+[]\OT1/cmr/bx/n/8 Risoluzione(GeV/c)|  
  []
 
 
-Overfull \hbox (19.52573pt too wide) in paragraph at lines 509--510
-[]\OT1/cmr/m/n/8 Tempo(s)/ev|  
+Overfull \hbox (7.08809pt too wide) in paragraph at lines 518--519
+[]\OT1/cmr/bx/n/8 Tempo(s)/ev|  
  []
 
-[19] <set_1_x.png, id=106, 1859.94875pt x 928.46875pt>
+[19] <set_1_x.png, id=107, 1859.94875pt x 928.46875pt>
 File: set_1_x.png Graphic file (type png)
  <use set_1_x.png>
-Package pdftex.def Info: set_1_x.png used on input line 548.
+Package pdftex.def Info: set_1_x.png used on input line 557.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 548--549
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 557--558
  [] 
  []
 
-<set_1_z.png, id=107, 1859.94875pt x 928.46875pt>
+<set_1_z.png, id=108, 1859.94875pt x 928.46875pt>
 File: set_1_z.png Graphic file (type png)
  <use set_1_z.png>
-Package pdftex.def Info: set_1_z.png used on input line 556.
+Package pdftex.def Info: set_1_z.png used on input line 565.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 556--557
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 565--566
  [] 
  []
 
-<set_1_p.png, id=108, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_1_p.png, id=109, 1859.94875pt x 928.46875pt>
 File: set_1_p.png Graphic file (type png)
  <use set_1_p.png>
-Package pdftex.def Info: set_1_p.png used on input line 564.
+Package pdftex.def Info: set_1_p.png used on input line 573.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 564--565
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 573--574
  [] 
  []
 
-<set_1_chi2.png, id=109, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_1_chi2.png, id=110, 1859.94875pt x 928.46875pt>
 File: set_1_chi2.png Graphic file (type png)
  <use set_1_chi2.png>
-Package pdftex.def Info: set_1_chi2.png used on input line 572.
+Package pdftex.def Info: set_1_chi2.png used on input line 581.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 572--573
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 581--582
  [] 
  []
 
-<set_2_x.png, id=110, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_2_x.png, id=111, 1859.94875pt x 928.46875pt>
 File: set_2_x.png Graphic file (type png)
  <use set_2_x.png>
-Package pdftex.def Info: set_2_x.png used on input line 580.
+Package pdftex.def Info: set_2_x.png used on input line 589.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 580--581
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 589--590
  [] 
  []
 
-<set_2_z.png, id=111, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_2_z.png, id=112, 1859.94875pt x 928.46875pt>
 File: set_2_z.png Graphic file (type png)
  <use set_2_z.png>
-Package pdftex.def Info: set_2_z.png used on input line 588.
+Package pdftex.def Info: set_2_z.png used on input line 597.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 588--589
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 597--598
  [] 
  []
 
-<set_2_p.png, id=112, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_2_p.png, id=113, 1859.94875pt x 928.46875pt>
 File: set_2_p.png Graphic file (type png)
  <use set_2_p.png>
-Package pdftex.def Info: set_2_p.png used on input line 596.
+Package pdftex.def Info: set_2_p.png used on input line 605.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 596--597
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 605--606
  [] 
  []
 
-<set_2_chi2.png, id=113, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_2_chi2.png, id=114, 1859.94875pt x 928.46875pt>
 File: set_2_chi2.png Graphic file (type png)
  <use set_2_chi2.png>
-Package pdftex.def Info: set_2_chi2.png used on input line 604.
+Package pdftex.def Info: set_2_chi2.png used on input line 613.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 604--605
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 613--614
  [] 
  []
 
-<set_2_inv.png, id=114, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_2_inv.png, id=115, 1859.94875pt x 928.46875pt>
 File: set_2_inv.png Graphic file (type png)
  <use set_2_inv.png>
-Package pdftex.def Info: set_2_inv.png used on input line 612.
-(pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
-
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 612--613
- [] 
- []
-
-<set_3_x.png, id=115, 1859.94875pt x 928.46875pt>
-File: set_3_x.png Graphic file (type png)
- <use set_3_x.png>
-Package pdftex.def Info: set_3_x.png used on input line 621.
+Package pdftex.def Info: set_2_inv.png used on input line 621.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
 Overfull \hbox (21.40758pt too wide) in paragraph at lines 621--622
  [] 
  []
 
-<set_3_z.png, id=116, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_3_x.png, id=116, 1859.94875pt x 928.46875pt>
+File: set_3_x.png Graphic file (type png)
+ <use set_3_x.png>
+Package pdftex.def Info: set_3_x.png used on input line 630.
+(pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
+
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 630--631
+ [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_3_z.png, id=117, 1859.94875pt x 928.46875pt>
 File: set_3_z.png Graphic file (type png)
  <use set_3_z.png>
-Package pdftex.def Info: set_3_z.png used on input line 629.
+Package pdftex.def Info: set_3_z.png used on input line 638.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 629--630
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 638--639
  [] 
  []
 
-<set_3_p.png, id=117, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_3_p.png, id=118, 1859.94875pt x 928.46875pt>
 File: set_3_p.png Graphic file (type png)
  <use set_3_p.png>
-Package pdftex.def Info: set_3_p.png used on input line 637.
+Package pdftex.def Info: set_3_p.png used on input line 646.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 637--638
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 646--647
  [] 
  []
 
-<set_3_chi2.png, id=118, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_3_chi2.png, id=119, 1859.94875pt x 928.46875pt>
 File: set_3_chi2.png Graphic file (type png)
  <use set_3_chi2.png>
-Package pdftex.def Info: set_3_chi2.png used on input line 645.
+Package pdftex.def Info: set_3_chi2.png used on input line 654.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 645--646
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 654--655
  [] 
  []
 
-<set_4_x.png, id=119, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_4_x.png, id=120, 1859.94875pt x 928.46875pt>
 File: set_4_x.png Graphic file (type png)
  <use set_4_x.png>
-Package pdftex.def Info: set_4_x.png used on input line 653.
+Package pdftex.def Info: set_4_x.png used on input line 662.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 653--654
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 662--663
  [] 
  []
 
-<set_4_z.png, id=120, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_4_z.png, id=121, 1859.94875pt x 928.46875pt>
 File: set_4_z.png Graphic file (type png)
  <use set_4_z.png>
-Package pdftex.def Info: set_4_z.png used on input line 661.
+Package pdftex.def Info: set_4_z.png used on input line 670.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 661--662
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 670--671
  [] 
  []
 
-<set_4_p.png, id=121, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_4_p.png, id=122, 1859.94875pt x 928.46875pt>
 File: set_4_p.png Graphic file (type png)
  <use set_4_p.png>
-Package pdftex.def Info: set_4_p.png used on input line 669.
+Package pdftex.def Info: set_4_p.png used on input line 678.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 669--670
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 678--679
  [] 
  []
 
-<set_4_chi2.png, id=122, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_4_chi2.png, id=123, 1859.94875pt x 928.46875pt>
 File: set_4_chi2.png Graphic file (type png)
  <use set_4_chi2.png>
-Package pdftex.def Info: set_4_chi2.png used on input line 677.
+Package pdftex.def Info: set_4_chi2.png used on input line 686.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 677--678
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 686--687
  [] 
  []
 
-<set_5_x.png, id=123, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_5_x.png, id=124, 1859.94875pt x 928.46875pt>
 File: set_5_x.png Graphic file (type png)
  <use set_5_x.png>
-Package pdftex.def Info: set_5_x.png used on input line 685.
+Package pdftex.def Info: set_5_x.png used on input line 694.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 685--686
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 694--695
  [] 
  []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [20 <./set_1_x.png>] [21 <./set_1_z.png> <./set_1_p.png>] [22 <./set_1_chi2.png
 > <./set_2_x.png>] [23 <./set_2_z.png> <./set_2_p.png>] [24 <./set_2_chi2.png> 
 <./set_2_inv.png>] [25 <./set_3_x.png> <./set_3_z.png>] [26 <./set_3_p.png> <./
 set_3_chi2.png>] [27 <./set_4_x.png> <./set_4_z.png>] [28 <./set_4_p.png> <./se
 t_4_chi2.png>] [29 <./set_5_x.png>]
-<set_5_z.png, id=155, 1859.94875pt x 928.46875pt>
+<set_5_z.png, id=156, 1859.94875pt x 928.46875pt>
 File: set_5_z.png Graphic file (type png)
  <use set_5_z.png>
-Package pdftex.def Info: set_5_z.png used on input line 695.
+Package pdftex.def Info: set_5_z.png used on input line 704.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 695--696
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 704--705
  [] 
  []
 
-<set_5_p.png, id=156, 1859.94875pt x 928.46875pt>
+<set_5_p.png, id=157, 1859.94875pt x 928.46875pt>
 File: set_5_p.png Graphic file (type png)
  <use set_5_p.png>
-Package pdftex.def Info: set_5_p.png used on input line 703.
+Package pdftex.def Info: set_5_p.png used on input line 712.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 703--704
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 712--713
  [] 
  []
 
-<set_5_chi2.png, id=157, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_5_chi2.png, id=158, 1859.94875pt x 928.46875pt>
 File: set_5_chi2.png Graphic file (type png)
  <use set_5_chi2.png>
-Package pdftex.def Info: set_5_chi2.png used on input line 711.
+Package pdftex.def Info: set_5_chi2.png used on input line 720.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 711--712
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 720--721
  [] 
  []
 
-<set_5_spettro.png, id=158, 1684.2925pt x 926.46124pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_5_spettro.png, id=159, 1684.2925pt x 926.46124pt>
 File: set_5_spettro.png Graphic file (type png)
  <use set_5_spettro.png>
-Package pdftex.def Info: set_5_spettro.png used on input line 719.
+Package pdftex.def Info: set_5_spettro.png used on input line 728.
 (pdftex.def)             Requested size: 421.0721pt x 231.61473pt.
 
-<set_1det_p.png, id=159, 1859.94875pt x 928.46875pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<set_1det_p.png, id=160, 1859.94875pt x 928.46875pt>
 File: set_1det_p.png Graphic file (type png)
  <use set_1det_p.png>
-Package pdftex.def Info: set_1det_p.png used on input line 727.
+Package pdftex.def Info: set_1det_p.png used on input line 736.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 727--728
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 736--737
  [] 
  []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [30
 
- <./set_5_z.png>] [31 <./set_5_p.png> <./set_5_chi2.png>] [32 <./set_5_spettro.
-png> <./set_1det_p.png>] (./spettrometro.aux)
+ <./set_5_z.png>]
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Text page 31 contains only floats.
 
- ) 
+
+Overfull \vbox (2.3367pt too high) has occurred while \output is active []
+
+
+[31 <./set_5_p.png> <./set_5_chi2.png>] [32 <./set_5_spettro.png> <./set_1det_p
+.png>] [33
+
+] (./spettrometro.aux) ) 
 Here is how much of TeX's memory you used:
- 6156 strings out of 493093
- 93637 string characters out of 6134996
- 169594 words of memory out of 5000000
- 9467 multiletter control sequences out of 15000+600000
+ 6162 strings out of 493093
+ 93754 string characters out of 6134996
+ 169564 words of memory out of 5000000
+ 9472 multiletter control sequences out of 15000+600000
  24019 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,15n,40p,2200b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/l
-ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/loc
-al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmti8.pfb>
-Output written on spettrometro.pdf (32 pages, 1437130 bytes).
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmbx6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmbx7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmcsc10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
+2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on spettrometro.pdf (33 pages, 1457994 bytes).
 PDF statistics:
- 252 PDF objects out of 1000 (max. 8388607)
- 151 compressed objects within 2 object streams
+ 256 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 186 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 191 words of extra memory for PDF output out of 10000 (max. 10000000)
 
