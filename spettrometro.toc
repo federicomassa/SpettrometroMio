@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Introduzione}{3}
+\contentsline {section}{\numberline {2}Apparato sperimentale simulato}{3}
+\contentsline {section}{\numberline {3}Struttura del codice}{5}
+\contentsline {section}{\numberline {4}Generazione dell'evento}{6}
+\contentsline {section}{\numberline {5}Simulazione della risposta dei rivelatori}{7}
+\contentsline {subsection}{\numberline {5.1}Raggio interno}{12}
+\contentsline {subsection}{\numberline {5.2}Coordinate degli hit: linearit\IeC {\`a} e approssimazione di kick}{13}
+\contentsline {subsubsection}{\numberline {5.2.1}Applicazione dello smeering del rivelatore}{14}
+\contentsline {section}{\numberline {6}Ricostruzione dell'evento}{14}
+\contentsline {subsection}{\numberline {6.1}La classe IterKinFitP}{17}
+\contentsline {subsection}{\numberline {6.2}Set di vincoli scelti}{18}
+\contentsline {subsection}{\numberline {6.3}Risultati}{19}
+\contentsline {subsection}{\numberline {6.4}Problema combinatorio}{20}
+\contentsline {subsection}{\numberline {6.5}Misura della risoluzione con tre rivelatori}{21}
+\contentsline {section}{\numberline {7}Conclusioni}{21}
+\contentsline {section}{\numberline {8}Appendice}{22}
+\contentsline {subsection}{\numberline {8.1}Grafici dei risultati}{22}
+\contentsline {subsection}{\numberline {8.2}Valori numerici utilizzati e unit\IeC {\`a} di misura}{35}

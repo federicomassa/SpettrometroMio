@@ -1,23 +1,23 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.6)  13 JUL 2015 20:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.29)  14 JUL 2015 01:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **spettrometro.tex
 (./spettrometro.tex
-LaTeX2e <2015/01/01> patch level 1
+LaTeX2e <2014/05/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
-(/usr/local/texlive/2015/texmf-dist/tex/latex/extsizes/extarticle.cls
+(/usr/local/texlive/2014/texmf-dist/tex/latex/extsizes/extarticle.cls
 Document Class: extarticle 1996/10/08 v1.0 Non Standard LaTeX document class
-(/usr/local/texlive/2015/texmf-dist/tex/latex/extsizes/size8.clo
+(/usr/local/texlive/2014/texmf-dist/tex/latex/extsizes/size8.clo
 File: size8.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/exscale.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/exscale.sty
 Package: exscale 2014/09/29 v2.1h Standard LaTeX package exscale
-LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 57.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 52.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 52.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 52.
 \big@size=\dimen102
 )
 \c@part=\count79
@@ -32,68 +32,108 @@ LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 \belowcaptionskip=\skip42
 \bibindent=\dimen103
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/makeidx.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/makeidx.sty
 Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tocloft/tocloft.sty
+Package: tocloft 2013/05/02 v2.3f parameterised ToC, etc., typesetting
+Package tocloft Info: The document has section divisions on input line 44.
+\cftparskip=\skip43
+\cftbeforetoctitleskip=\skip44
+\cftaftertoctitleskip=\skip45
+\cftbeforepartskip=\skip46
+\cftpartnumwidth=\skip47
+\cftpartindent=\skip48
+\cftbeforesecskip=\skip49
+\cftsecindent=\skip50
+\cftsecnumwidth=\skip51
+\cftbeforesubsecskip=\skip52
+\cftsubsecindent=\skip53
+\cftsubsecnumwidth=\skip54
+\cftbeforesubsubsecskip=\skip55
+\cftsubsubsecindent=\skip56
+\cftsubsubsecnumwidth=\skip57
+\cftbeforeparaskip=\skip58
+\cftparaindent=\skip59
+\cftparanumwidth=\skip60
+\cftbeforesubparaskip=\skip61
+\cftsubparaindent=\skip62
+\cftsubparanumwidth=\skip63
+\cftbeforeloftitleskip=\skip64
+\cftafterloftitleskip=\skip65
+\cftbeforefigskip=\skip66
+\cftfigindent=\skip67
+\cftfignumwidth=\skip68
+\c@lofdepth=\count87
+\c@lotdepth=\count88
+\cftbeforelottitleskip=\skip69
+\cftafterlottitleskip=\skip70
+\cftbeforetabskip=\skip71
+\cfttabindent=\skip72
+\cfttabnumwidth=\skip73
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 94.
+Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
-\Gread@gobject=\count87
+\Gread@gobject=\count89
 ))
 \Gin@req@height=\dimen104
 \Gin@req@width=\dimen105
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
-\@mathmargin=\skip43
+\@mathmargin=\skip74
 
 For additional information on amsmath, use the `?' option.
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks15
 \ex@=\dimen106
 ))
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen107
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count88
+\inf@bad=\count90
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count89
-\leftroot@=\count90
+\uproot@=\count91
+\leftroot@=\count92
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count91
-\DOTSCASE@=\count92
+\classnum@=\count93
+\DOTSCASE@=\count94
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
@@ -102,15 +142,15 @@ LaTeX Info: Redefining \cdots on input line 466.
 \big@size=\dimen108
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count93
-\c@MaxMatrixCols=\count94
+\macc@depth=\count95
+\c@MaxMatrixCols=\count96
 \dotsspace@=\muskip10
-\c@parentequation=\count95
-\dspbrk@lvl=\count96
+\c@parentequation=\count97
+\dspbrk@lvl=\count98
 \tag@help=\toks16
-\row@=\count97
-\column@=\count98
-\maxfields@=\count99
+\row@=\count99
+\column@=\count100
+\maxfields@=\count101
 \andhelp@=\toks17
 \eqnshift@=\dimen109
 \alignsep@=\dimen110
@@ -119,35 +159,35 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \totwidth@=\dimen113
 \lineht@=\dimen114
 \@envbody=\toks18
-\multlinegap=\skip44
-\multlinetaggap=\skip45
+\multlinegap=\skip75
+\multlinetaggap=\skip76
 \mathdisplay@stack=\toks19
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/latexsym.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
-(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/caption/subcaption.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
 \captionmargin=\dimen115
@@ -158,35 +198,35 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 \caption@parindent=\dimen120
 \caption@hangindent=\dimen121
 )
-\c@ContinuedFloat=\count100
+\c@ContinuedFloat=\count102
 )
-\c@subfigure=\count101
-\c@subtable=\count102
+\c@subfigure=\count103
+\c@subtable=\count104
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2015/03/17 v1.2c Input encoding file
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2014/04/30 v1.2b Input encoding file
 \inpenc@prehook=\toks20
 \inpenc@posthook=\toks21
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/utf8x.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ucs/utf8x.def
 File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
 ))
-(/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/ucs.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ucs/ucs.sty
 Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/data/uni-global.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ucs/data/uni-global.def
 File: uni-global.def 2013/05/13 UCS: Unicode global data
 )
-\uc@secondtry=\count103
+\uc@secondtry=\count105
 \uc@combtoks=\toks22
 \uc@combtoksb=\toks23
 \uc@temptokena=\toks24
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/titlesec/titlesec.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
 \ttl@box=\box28
-\beforetitleunit=\skip46
-\aftertitleunit=\skip47
+\beforetitleunit=\skip77
+\aftertitleunit=\skip78
 \ttl@plus=\dimen122
 \ttl@minus=\dimen123
 \ttl@toksa=\toks25
@@ -194,41 +234,39 @@ Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
 \titlewidthlast=\dimen125
 \titlewidthfirst=\dimen126
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/bm.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2014/10/28 v1.1c Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup7
 \symboldletters=\mathgroup8
 \symboldsymbols=\mathgroup9
 \symboldlasy=\mathgroup10
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
-LaTeX Info: Redefining \bm on input line 207.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 137.
+LaTeX Info: Redefining \bm on input line 203.
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/mathtools/mathtools.sty
-Package: mathtools 2015/06/17 v1.17 mathematical typesetting tools
+(/usr/local/texlive/2014/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2014/07/16 v1.15 mathematical typesetting tools
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/calc.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count104
-\calc@Bcount=\count105
+\calc@Acount=\count106
+\calc@Bcount=\count107
 \calc@Adimen=\dimen127
 \calc@Bdimen=\dimen128
-\calc@Askip=\skip48
-\calc@Bskip=\skip49
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count106
-\calc@Cskip=\skip50
+\calc@Askip=\skip79
+\calc@Bskip=\skip80
+LaTeX Info: Redefining \setlength on input line 75.
+LaTeX Info: Redefining \addtolength on input line 76.
+\calc@Ccount=\count108
+\calc@Cskip=\skip81
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/mathtools/mhsetup.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
-LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
-LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count107
+\g_MT_multlinerow_int=\count109
 \l_MT_multwidth_dim=\dimen129
-\origjot=\skip51
+\origjot=\skip82
 \l_MT_shortvdotswithinadjustabove_dim=\dimen130
 \l_MT_shortvdotswithinadjustbelow_dim=\dimen131
 \l_MT_above_intertext_sep=\dimen132
@@ -236,21 +274,21 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen134
 \l_MT_below_shortintertext_sep=\dimen135
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/ms/ragged2e.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ms/ragged2e.sty
 Package: ragged2e 2009/05/21 v2.1 ragged2e Package (MS)
 
 
 LaTeX Warning: Command \@arrayparboxrestore  has changed.
                Check if current package is valid.
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/ms/everysel.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ms/everysel.sty
 Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/footmisc/footmisc.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/footmisc/footmisc.sty
 Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
 \FN@temptoken=\toks26
 \footnotemargin=\dimen136
-\c@pp@next@reset=\count108
+\c@pp@next@reset=\count110
 Package footmisc Info: Declaring symbol style bringhurst on input line 855.
 Package footmisc Info: Declaring symbol style chicago on input line 863.
 Package footmisc Info: Declaring symbol style wiley on input line 872.
@@ -260,38 +298,38 @@ Package footmisc Info: Declaring symbol style lamport* on input line 903.
 Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
 .
 )
-\CenteringLeftskip=\skip52
-\RaggedLeftLeftskip=\skip53
-\RaggedRightLeftskip=\skip54
-\CenteringRightskip=\skip55
-\RaggedLeftRightskip=\skip56
-\RaggedRightRightskip=\skip57
-\CenteringParfillskip=\skip58
-\RaggedLeftParfillskip=\skip59
-\RaggedRightParfillskip=\skip60
-\JustifyingParfillskip=\skip61
-\CenteringParindent=\skip62
-\RaggedLeftParindent=\skip63
-\RaggedRightParindent=\skip64
-\JustifyingParindent=\skip65
+\CenteringLeftskip=\skip83
+\RaggedLeftLeftskip=\skip84
+\RaggedRightLeftskip=\skip85
+\CenteringRightskip=\skip86
+\RaggedLeftRightskip=\skip87
+\RaggedRightRightskip=\skip88
+\CenteringParfillskip=\skip89
+\RaggedLeftParfillskip=\skip90
+\RaggedRightParfillskip=\skip91
+\JustifyingParfillskip=\skip92
+\CenteringParindent=\skip93
+\RaggedLeftParindent=\skip94
+\RaggedRightParindent=\skip95
+\JustifyingParindent=\skip96
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(/usr/local/texlive/2015/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count109
-\Gm@cntv=\count110
-\c@Gm@tempcnt=\count111
+\Gm@cnth=\count111
+\Gm@cntv=\count112
+\c@Gm@tempcnt=\count113
 \Gm@bindingoffset=\dimen137
 \Gm@wd@mp=\dimen138
 \Gm@odd@mp=\dimen139
@@ -310,37 +348,37 @@ Writing index file spettrometro.idx
 (./spettrometro.aux)
 \openout1 = `spettrometro.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
 
-(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count112
+\scratchcounter=\count114
 \scratchdimen=\dimen145
 \scratchbox=\box29
-\nofMPsegments=\count113
-\nofMParguments=\count114
+\nofMPsegments=\count115
+\nofMParguments=\count116
 \everyMPshowfont=\toks28
-\MPscratchCnt=\count115
+\MPscratchCnt=\count117
 \MPscratchDim=\dimen146
-\MPnumerator=\count116
-\makeMPintoPDFobject=\count117
+\MPnumerator=\count118
+\makeMPintoPDFobject=\count119
 \everyMPtoPDFconversion=\toks29
-) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+) (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
@@ -349,22 +387,22 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/grfext.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
 
-(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
 Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
 ))
-(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 
-(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
 Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
 
-(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
@@ -376,20 +414,20 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 452.
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/ucsencs.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
-Package ragged2e Info: ABD: executing \RaggedRight on input line 20.
+Package ragged2e Info: ABD: executing \RaggedRight on input line 24.
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 20.
+LaTeX Info: Redefining \selectfont on input line 24.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -425,600 +463,599 @@ LaTeX Info: Redefining \selectfont on input line 20.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 24.
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
+LaTeX Font Info:    Try loading font information for U+msa on input line 28.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 24.
+LaTeX Font Info:    Try loading font information for U+msb on input line 28.
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 24.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 28.
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/ulasy.fd
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ) [1
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 45.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 49.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 45.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 49.
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/data/uni-0.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ucs/data/uni-0.def
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
+(./spettrometro.toc
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 51.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 51.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 1.
+)
+\tf@toc=\write4
+\openout4 = `spettrometro.toc'.
 
-Overfull \hbox (17.87334pt too wide) in paragraph at lines 51--53
+ [2]
+Overfull \hbox (17.87334pt too wide) in paragraph at lines 61--63
 []\OT1/cmr/m/n/10.95 Il pre-sente pro-getto con-siste nella sim-u-lazione di un
 o spet-trometro per la ri-costruzione dell'impulso
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--57
+Underfull \hbox (badness 10000) in paragraph at lines 66--67
 
  []
 
-<apparato_3d.png, id=14, 998.22937pt x 487.8225pt>
+<apparato_3d.png, id=25, 998.22937pt x 487.8225pt>
 File: apparato_3d.png Graphic file (type png)
  <use apparato_3d.png>
-Package pdftex.def Info: apparato_3d.png used on input line 64.
+Package pdftex.def Info: apparato_3d.png used on input line 74.
 (pdftex.def)             Requested size: 399.28467pt x 195.12553pt.
 
-<apparato_2d.png, id=15, 1442.38875pt x 670.75594pt>
+<apparato_2d.png, id=26, 1442.38875pt x 670.75594pt>
 File: apparato_2d.png Graphic file (type png)
  <use apparato_2d.png>
-Package pdftex.def Info: apparato_2d.png used on input line 72.
+Package pdftex.def Info: apparato_2d.png used on input line 82.
 (pdftex.def)             Requested size: 576.94528pt x 268.2976pt.
 
-Overfull \hbox (133.3668pt too wide) in paragraph at lines 72--73
+Overfull \hbox (133.3668pt too wide) in paragraph at lines 82--83
  [] 
  []
 
-
-Overfull \hbox (1.04727pt too wide) in paragraph at lines 112--112
+[3 <./apparato_3d.png>] [4 <./apparato_2d.png>]
+Overfull \hbox (1.04727pt too wide) in paragraph at lines 122--122
 []$[]\OT1/cmr/m/n/8 (\OML/cmm/m/it/8 MeV=c\OT1/cmr/m/n/8 )$|  
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<script_structure.png, id=17, 517.935pt x 404.51125pt>
+<script_structure.png, id=41, 517.935pt x 404.51125pt>
 File: script_structure.png Graphic file (type png)
 
 <use script_structure.png>
-Package pdftex.def Info: script_structure.png used on input line 130.
+Package pdftex.def Info: script_structure.png used on input line 140.
 (pdftex.def)             Requested size: 207.17032pt x 161.80162pt.
- [2]
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--139
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 140.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 150.
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 140.
- [3 <./apparato_3d.png>] [4 <./apparato_2d.png> <./script_structure.png>]
-Overfull \hbox (1.01157pt too wide) in paragraph at lines 142--143
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 150.
+ [5]
+Overfull \hbox (1.01157pt too wide) in paragraph at lines 152--153
 \OT1/cmr/m/n/10.95 fruibili allo sper-i-men-ta-tore, si oc-cupa di ef-fet-tuare
  un fit cin-e-matico con vin-coli e parametri
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--152
+Underfull \hbox (badness 10000) in paragraph at lines 159--162
 
  []
 
-[5] <gen_pK.png, id=48, 1289.81876pt x 773.89125pt>
+[6 <./script_structure.png>] <gen_pK.png, id=52, 1289.81876pt x 773.89125pt>
 File: gen_pK.png Graphic file (type png)
- <use gen_pK.png>
-Package pdftex.def Info: gen_pK.png used on input line 196.
-(pdftex.def)             Requested size: 386.94861pt x 232.16916pt.
 
-<gen_z.png, id=49, 1596.96625pt x 773.89125pt>
+<use gen_pK.png>
+Package pdftex.def Info: gen_pK.png used on input line 206.
+(pdftex.def)             Requested size: 386.94861pt x 232.16916pt.
+ <gen_z.png, id=53, 1596.96625pt x 773.89125pt>
 File: gen_z.png Graphic file (type png)
- <use gen_z.png>
-Package pdftex.def Info: gen_z.png used on input line 204.
+
+<use gen_z.png>
+Package pdftex.def Info: gen_z.png used on input line 214.
 (pdftex.def)             Requested size: 479.09358pt x 232.16916pt.
 
-Overfull \hbox (35.5151pt too wide) in paragraph at lines 204--205
+Overfull \hbox (35.5151pt too wide) in paragraph at lines 214--215
  [] 
  []
 
-<gen_theta.png, id=50, 1377.145pt x 773.89125pt>
+<gen_theta.png, id=54, 1377.145pt x 773.89125pt>
 File: gen_theta.png Graphic file (type png)
  <use gen_theta.png>
-Package pdftex.def Info: gen_theta.png used on input line 212.
+Package pdftex.def Info: gen_theta.png used on input line 222.
 (pdftex.def)             Requested size: 413.14668pt x 232.16916pt.
 
-<gen_mintheta.png, id=51, 1358.07375pt x 773.89125pt>
+<gen_mintheta.png, id=55, 1358.07375pt x 773.89125pt>
 File: gen_mintheta.png Graphic file (type png)
  <use gen_mintheta.png>
-Package pdftex.def Info: gen_mintheta.png used on input line 220.
+Package pdftex.def Info: gen_mintheta.png used on input line 230.
 (pdftex.def)             Requested size: 407.42526pt x 232.16916pt.
 
-<gen_phi.png, id=52, 1178.4025pt x 773.89125pt>
+<gen_phi.png, id=56, 1178.4025pt x 773.89125pt>
 File: gen_phi.png Graphic file (type png)
  <use gen_phi.png>
-Package pdftex.def Info: gen_phi.png used on input line 228.
+Package pdftex.def Info: gen_phi.png used on input line 238.
 (pdftex.def)             Requested size: 353.52348pt x 232.16916pt.
 
-<gen_p.png, id=53, 1178.4025pt x 773.89125pt>
+<gen_p.png, id=57, 1178.4025pt x 773.89125pt>
 File: gen_p.png Graphic file (type png)
  <use gen_p.png>
-Package pdftex.def Info: gen_p.png used on input line 236.
+Package pdftex.def Info: gen_p.png used on input line 246.
 (pdftex.def)             Requested size: 353.52348pt x 232.16916pt.
 
-<gen_thetatheta.png, id=54, 1596.96625pt x 773.89125pt>
+<gen_thetatheta.png, id=58, 1596.96625pt x 773.89125pt>
 File: gen_thetatheta.png Graphic file (type png)
 
 <use gen_thetatheta.png>
-Package pdftex.def Info: gen_thetatheta.png used on input line 244.
+Package pdftex.def Info: gen_thetatheta.png used on input line 254.
 (pdftex.def)             Requested size: 479.09358pt x 232.16916pt.
 
-Overfull \hbox (35.5151pt too wide) in paragraph at lines 244--245
+Overfull \hbox (35.5151pt too wide) in paragraph at lines 254--255
  [] 
  []
 
-<gen_thetap.png, id=55, 1404.24625pt x 773.89125pt>
+<gen_thetap.png, id=59, 1404.24625pt x 773.89125pt>
 File: gen_thetap.png Graphic file (type png)
  <use gen_thetap.png>
-Package pdftex.def Info: gen_thetap.png used on input line 252.
+Package pdftex.def Info: gen_thetap.png used on input line 262.
 (pdftex.def)             Requested size: 421.27713pt x 232.16916pt.
 
-[6 <./gen_pK.png>] [7 <./gen_z.png> <./gen_theta.png>] [8 <./gen_mintheta.png> 
-<./gen_phi.png>] [9 <./gen_p.png> <./gen_thetatheta.png>] [10 <./gen_thetap.png
+[7] [8 <./gen_pK.png> <./gen_z.png>] [9 <./gen_theta.png> <./gen_mintheta.png>]
+[10 <./gen_phi.png> <./gen_p.png>] [11 <./gen_thetatheta.png> <./gen_thetap.png
 >]
-Underfull \hbox (badness 10000) in paragraph at lines 277--278
+Underfull \hbox (badness 10000) in paragraph at lines 287--288
 
  []
 
-<acc_vs_rint.png, id=74, 1596.96625pt x 773.89125pt>
+<acc_vs_rint.png, id=77, 1596.96625pt x 773.89125pt>
 File: acc_vs_rint.png Graphic file (type png)
  <use acc_vs_rint.png>
-Package pdftex.def Info: acc_vs_rint.png used on input line 295.
+Package pdftex.def Info: acc_vs_rint.png used on input line 305.
 (pdftex.def)             Requested size: 479.09358pt x 232.16916pt.
 
-Overfull \hbox (35.5151pt too wide) in paragraph at lines 295--296
+Overfull \hbox (35.5151pt too wide) in paragraph at lines 305--306
  [] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 309--310
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 319--320
 
  []
 
-[11] [12 <./acc_vs_rint.png>] [13]
-<reco_zCDA.png, id=85, 1684.2925pt x 926.46124pt>
+[13 <./acc_vs_rint.png>] [14]
+<reco_zCDA.png, id=88, 1684.2925pt x 926.46124pt>
 File: reco_zCDA.png Graphic file (type png)
  <use reco_zCDA.png>
-Package pdftex.def Info: reco_zCDA.png used on input line 389.
+Package pdftex.def Info: reco_zCDA.png used on input line 399.
 (pdftex.def)             Requested size: 505.29166pt x 277.9405pt.
 
-Overfull \hbox (61.71318pt too wide) in paragraph at lines 389--390
+Overfull \hbox (61.71318pt too wide) in paragraph at lines 399--400
  [] 
  []
 
-<reco_p_curvatura.png, id=86, 1684.2925pt x 926.46124pt>
+<reco_p_curvatura.png, id=89, 1684.2925pt x 926.46124pt>
 File: reco_p_curvatura.png Graphic file (type png)
 
 <use reco_p_curvatura.png>
-Package pdftex.def Info: reco_p_curvatura.png used on input line 397.
+Package pdftex.def Info: reco_p_curvatura.png used on input line 407.
 (pdftex.def)             Requested size: 421.0721pt x 231.61473pt.
 
-<reco_pk_curvatura.png, id=87, 1684.2925pt x 926.46124pt>
+<reco_pk_curvatura.png, id=90, 1684.2925pt x 926.46124pt>
 File: reco_pk_curvatura.png Graphic file (type png)
 
 <use reco_pk_curvatura.png>
-Package pdftex.def Info: reco_pk_curvatura.png used on input line 405.
+Package pdftex.def Info: reco_pk_curvatura.png used on input line 415.
 (pdftex.def)             Requested size: 421.0721pt x 231.61473pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 412--413
+Underfull \hbox (badness 10000) in paragraph at lines 422--423
 
  []
 
-[14 <./reco_zCDA.png>] [15 <./reco_p_curvatura.png> <./reco_pk_curvatura.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 420--422
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 423--424
+[15 <./reco_zCDA.png>] [16 <./reco_p_curvatura.png> <./reco_pk_curvatura.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 430--432
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 425--426
+Underfull \hbox (badness 10000) in paragraph at lines 433--434
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 427--428
+Underfull \hbox (badness 10000) in paragraph at lines 435--436
 
  []
 
-[16]
-Overfull \hbox (52.23215pt too wide) in paragraph at lines 482--483
-[]\OT1/cmr/m/n/10.95 Per quanto riguarda i parametri, sono 4 nel caso dell'appr
-occio a sin-gola trac-cia ($\OML/cmm/m/it/10.95 z[]; z[]; \OT1/cmr/m/n/10.95 1\
-OML/cmm/m/it/10.95 =p[]; \OMS/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 1\OML/cmm/m/
-it/10.95 =p[]$[]\OT1/cmr/m/n/10.95 ),
+
+Underfull \hbox (badness 10000) in paragraph at lines 437--438
+
  []
 
-[17] [18]
-Overfull \hbox (14.19821pt too wide) in paragraph at lines 518--518
+[17] [18] [19]
+Overfull \hbox (14.19821pt too wide) in paragraph at lines 528--528
 []\OT1/cmr/bx/n/8 Risoluzione(GeV/c)|  
  []
 
 
-Overfull \hbox (7.08809pt too wide) in paragraph at lines 518--519
+Overfull \hbox (7.08809pt too wide) in paragraph at lines 528--529
 []\OT1/cmr/bx/n/8 Tempo(s)/ev|  
  []
 
-[19] <set_1_x.png, id=107, 1859.94875pt x 928.46875pt>
+[20] [21] <set_1_x.png, id=113, 1859.94875pt x 928.46875pt>
 File: set_1_x.png Graphic file (type png)
  <use set_1_x.png>
-Package pdftex.def Info: set_1_x.png used on input line 557.
+Package pdftex.def Info: set_1_x.png used on input line 569.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 557--558
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 569--570
  [] 
  []
 
-<set_1_z.png, id=108, 1859.94875pt x 928.46875pt>
+<set_1_z.png, id=114, 1859.94875pt x 928.46875pt>
 File: set_1_z.png Graphic file (type png)
  <use set_1_z.png>
-Package pdftex.def Info: set_1_z.png used on input line 565.
+Package pdftex.def Info: set_1_z.png used on input line 577.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 565--566
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 577--578
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_1_p.png, id=109, 1859.94875pt x 928.46875pt>
+<set_1_p.png, id=115, 1859.94875pt x 928.46875pt>
 File: set_1_p.png Graphic file (type png)
  <use set_1_p.png>
-Package pdftex.def Info: set_1_p.png used on input line 573.
+Package pdftex.def Info: set_1_p.png used on input line 585.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 573--574
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 585--586
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_1_chi2.png, id=110, 1859.94875pt x 928.46875pt>
+<set_1_chi2.png, id=116, 1859.94875pt x 928.46875pt>
 File: set_1_chi2.png Graphic file (type png)
  <use set_1_chi2.png>
-Package pdftex.def Info: set_1_chi2.png used on input line 581.
+Package pdftex.def Info: set_1_chi2.png used on input line 593.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 581--582
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 593--594
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_2_x.png, id=111, 1859.94875pt x 928.46875pt>
+<set_2_x.png, id=117, 1859.94875pt x 928.46875pt>
 File: set_2_x.png Graphic file (type png)
  <use set_2_x.png>
-Package pdftex.def Info: set_2_x.png used on input line 589.
+Package pdftex.def Info: set_2_x.png used on input line 601.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 589--590
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 601--602
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_2_z.png, id=112, 1859.94875pt x 928.46875pt>
+<set_2_z.png, id=118, 1859.94875pt x 928.46875pt>
 File: set_2_z.png Graphic file (type png)
  <use set_2_z.png>
-Package pdftex.def Info: set_2_z.png used on input line 597.
+Package pdftex.def Info: set_2_z.png used on input line 609.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 597--598
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 609--610
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_2_p.png, id=113, 1859.94875pt x 928.46875pt>
+<set_2_p.png, id=119, 1859.94875pt x 928.46875pt>
 File: set_2_p.png Graphic file (type png)
  <use set_2_p.png>
-Package pdftex.def Info: set_2_p.png used on input line 605.
+Package pdftex.def Info: set_2_p.png used on input line 617.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 605--606
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 617--618
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_2_chi2.png, id=114, 1859.94875pt x 928.46875pt>
+<set_2_chi2.png, id=120, 1859.94875pt x 928.46875pt>
 File: set_2_chi2.png Graphic file (type png)
  <use set_2_chi2.png>
-Package pdftex.def Info: set_2_chi2.png used on input line 613.
+Package pdftex.def Info: set_2_chi2.png used on input line 625.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 613--614
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 625--626
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_2_inv.png, id=115, 1859.94875pt x 928.46875pt>
+<set_2_inv.png, id=121, 1859.94875pt x 928.46875pt>
 File: set_2_inv.png Graphic file (type png)
  <use set_2_inv.png>
-Package pdftex.def Info: set_2_inv.png used on input line 621.
+Package pdftex.def Info: set_2_inv.png used on input line 633.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 621--622
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 633--634
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_3_x.png, id=116, 1859.94875pt x 928.46875pt>
+<set_3_x.png, id=122, 1859.94875pt x 928.46875pt>
 File: set_3_x.png Graphic file (type png)
  <use set_3_x.png>
-Package pdftex.def Info: set_3_x.png used on input line 630.
+Package pdftex.def Info: set_3_x.png used on input line 642.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 630--631
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 642--643
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_3_z.png, id=117, 1859.94875pt x 928.46875pt>
+<set_3_z.png, id=123, 1859.94875pt x 928.46875pt>
 File: set_3_z.png Graphic file (type png)
  <use set_3_z.png>
-Package pdftex.def Info: set_3_z.png used on input line 638.
+Package pdftex.def Info: set_3_z.png used on input line 650.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 638--639
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 650--651
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_3_p.png, id=118, 1859.94875pt x 928.46875pt>
+<set_3_p.png, id=124, 1859.94875pt x 928.46875pt>
 File: set_3_p.png Graphic file (type png)
  <use set_3_p.png>
-Package pdftex.def Info: set_3_p.png used on input line 646.
+Package pdftex.def Info: set_3_p.png used on input line 658.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 646--647
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 658--659
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_3_chi2.png, id=119, 1859.94875pt x 928.46875pt>
+<set_3_chi2.png, id=125, 1859.94875pt x 928.46875pt>
 File: set_3_chi2.png Graphic file (type png)
  <use set_3_chi2.png>
-Package pdftex.def Info: set_3_chi2.png used on input line 654.
+Package pdftex.def Info: set_3_chi2.png used on input line 666.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 654--655
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 666--667
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_4_x.png, id=120, 1859.94875pt x 928.46875pt>
+<set_4_x.png, id=126, 1859.94875pt x 928.46875pt>
 File: set_4_x.png Graphic file (type png)
  <use set_4_x.png>
-Package pdftex.def Info: set_4_x.png used on input line 662.
+Package pdftex.def Info: set_4_x.png used on input line 674.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 662--663
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 674--675
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_4_z.png, id=121, 1859.94875pt x 928.46875pt>
+<set_4_z.png, id=127, 1859.94875pt x 928.46875pt>
 File: set_4_z.png Graphic file (type png)
  <use set_4_z.png>
-Package pdftex.def Info: set_4_z.png used on input line 670.
+Package pdftex.def Info: set_4_z.png used on input line 682.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 670--671
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 682--683
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_4_p.png, id=122, 1859.94875pt x 928.46875pt>
+<set_4_p.png, id=128, 1859.94875pt x 928.46875pt>
 File: set_4_p.png Graphic file (type png)
  <use set_4_p.png>
-Package pdftex.def Info: set_4_p.png used on input line 678.
+Package pdftex.def Info: set_4_p.png used on input line 690.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 678--679
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 690--691
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_4_chi2.png, id=123, 1859.94875pt x 928.46875pt>
+<set_4_chi2.png, id=129, 1859.94875pt x 928.46875pt>
 File: set_4_chi2.png Graphic file (type png)
  <use set_4_chi2.png>
-Package pdftex.def Info: set_4_chi2.png used on input line 686.
+Package pdftex.def Info: set_4_chi2.png used on input line 698.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 686--687
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 698--699
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_5_x.png, id=124, 1859.94875pt x 928.46875pt>
+<set_5_x.png, id=130, 1859.94875pt x 928.46875pt>
 File: set_5_x.png Graphic file (type png)
  <use set_5_x.png>
-Package pdftex.def Info: set_5_x.png used on input line 694.
+Package pdftex.def Info: set_5_x.png used on input line 706.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 694--695
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 706--707
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[20 <./set_1_x.png>] [21 <./set_1_z.png> <./set_1_p.png>] [22 <./set_1_chi2.png
-> <./set_2_x.png>] [23 <./set_2_z.png> <./set_2_p.png>] [24 <./set_2_chi2.png> 
-<./set_2_inv.png>] [25 <./set_3_x.png> <./set_3_z.png>] [26 <./set_3_p.png> <./
-set_3_chi2.png>] [27 <./set_4_x.png> <./set_4_z.png>] [28 <./set_4_p.png> <./se
-t_4_chi2.png>] [29 <./set_5_x.png>]
-<set_5_z.png, id=156, 1859.94875pt x 928.46875pt>
+[22 <./set_1_x.png>] [23 <./set_1_z.png> <./set_1_p.png>] [24 <./set_1_chi2.png
+> <./set_2_x.png>] [25 <./set_2_z.png> <./set_2_p.png>] [26 <./set_2_chi2.png> 
+<./set_2_inv.png>] [27 <./set_3_x.png> <./set_3_z.png>] [28 <./set_3_p.png> <./
+set_3_chi2.png>] [29 <./set_4_x.png> <./set_4_z.png>] [30 <./set_4_p.png> <./se
+t_4_chi2.png>] [31 <./set_5_x.png>]
+<set_5_z.png, id=163, 1859.94875pt x 928.46875pt>
 File: set_5_z.png Graphic file (type png)
  <use set_5_z.png>
-Package pdftex.def Info: set_5_z.png used on input line 704.
+Package pdftex.def Info: set_5_z.png used on input line 716.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 704--705
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 716--717
  [] 
  []
 
-<set_5_p.png, id=157, 1859.94875pt x 928.46875pt>
+<set_5_p.png, id=164, 1859.94875pt x 928.46875pt>
 File: set_5_p.png Graphic file (type png)
  <use set_5_p.png>
-Package pdftex.def Info: set_5_p.png used on input line 712.
+Package pdftex.def Info: set_5_p.png used on input line 724.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 712--713
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 724--725
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_5_chi2.png, id=158, 1859.94875pt x 928.46875pt>
+<set_5_chi2.png, id=165, 1859.94875pt x 928.46875pt>
 File: set_5_chi2.png Graphic file (type png)
  <use set_5_chi2.png>
-Package pdftex.def Info: set_5_chi2.png used on input line 720.
+Package pdftex.def Info: set_5_chi2.png used on input line 732.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 720--721
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 732--733
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_5_spettro.png, id=159, 1684.2925pt x 926.46124pt>
+<set_5_spettro.png, id=166, 1684.2925pt x 926.46124pt>
 File: set_5_spettro.png Graphic file (type png)
  <use set_5_spettro.png>
-Package pdftex.def Info: set_5_spettro.png used on input line 728.
+Package pdftex.def Info: set_5_spettro.png used on input line 740.
 (pdftex.def)             Requested size: 421.0721pt x 231.61473pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<set_1det_p.png, id=160, 1859.94875pt x 928.46875pt>
+<set_1det_p.png, id=167, 1859.94875pt x 928.46875pt>
 File: set_1det_p.png Graphic file (type png)
  <use set_1det_p.png>
-Package pdftex.def Info: set_1det_p.png used on input line 736.
+Package pdftex.def Info: set_1det_p.png used on input line 748.
 (pdftex.def)             Requested size: 464.98605pt x 232.11662pt.
 
-Overfull \hbox (21.40758pt too wide) in paragraph at lines 736--737
+Overfull \hbox (21.40758pt too wide) in paragraph at lines 748--749
  [] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[30
+[32
 
  <./set_5_z.png>]
 
-LaTeX Warning: Text page 31 contains only floats.
+LaTeX Warning: Text page 33 contains only floats.
 
 
 Overfull \vbox (2.3367pt too high) has occurred while \output is active []
 
 
-[31 <./set_5_p.png> <./set_5_chi2.png>] [32 <./set_5_spettro.png> <./set_1det_p
-.png>] [33
+[33 <./set_5_p.png> <./set_5_chi2.png>] [34 <./set_5_spettro.png> <./set_1det_p
+.png>] [35
 
-] (./spettrometro.aux) ) 
+] (./spettrometro.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 6162 strings out of 493093
- 93754 string characters out of 6134996
- 169564 words of memory out of 5000000
- 9472 multiletter control sequences out of 15000+600000
+ 6449 strings out of 493109
+ 98107 string characters out of 6135009
+ 175440 words of memory out of 5000000
+ 9729 multiletter control sequences out of 15000+600000
  24019 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,15n,40p,2200b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmbx6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmbx7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmbx8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmcsc10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8
-.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
-fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr
-/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on spettrometro.pdf (33 pages, 1457994 bytes).
+ 42i,15n,40p,2153b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></
+usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></us
+r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/
+local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/
+local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/l
+ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/lo
+cal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/loc
+al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local
+/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/t
+exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/tex
+live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texli
+ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2
+014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2014
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2014/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2014/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2014/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2014/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmti8.pfb>
+Output written on spettrometro.pdf (35 pages, 1459793 bytes).
 PDF statistics:
- 256 PDF objects out of 1000 (max. 8388607)
- 153 compressed objects within 2 object streams
+ 262 PDF objects out of 1000 (max. 8388607)
+ 157 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  191 words of extra memory for PDF output out of 10000 (max. 10000000)
 
